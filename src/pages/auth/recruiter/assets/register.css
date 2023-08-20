@@ -1,0 +1,898 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+@media (max-width: 575px) {
+
+    .page{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .page #box .flow .background .container{
+        display: flex;
+        justify-content: center;
+        padding-top: 10px;
+    }
+
+    .page #box .flow .background .container .bgimg{
+        /* display: none; */
+        object-fit: cover;
+        position: absolute;
+        z-index: 1;
+        width: 340px;
+        height: 1000px;
+        border-radius: 10px;
+    }
+
+    .page #box .flow .background .container .find{
+        display: none;
+    }
+
+    .page #box .flow .background .container .color{
+        background-color: #5E50A1;
+        opacity: 80%;
+        width: 340px;
+        height: 1000px;
+        position: absolute;
+        z-index: 2;
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px #1F2A36;
+    }
+
+    .page #box .flow .background .container .logo{
+        width: 172px;
+        height: 48px;
+        padding-top: 30px;
+    }
+    .page #grid .authorization{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 5px;
+    }
+
+    .page #grid .authorization .authlog{
+        max-width: 330px;
+    }
+
+    .page #grid .authorization .authlog h2{
+        font-family: 'Open Sans' sans-serif;
+        font-weight: 600;
+        font-size: 24px;
+        color: #1F2A36;
+    }
+
+    .page #grid .authorization .authlog p{
+        color: #FFF;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding-top: 10px;
+    }
+
+    .page #grid .authorization .authlog .name p{
+        text-align: start;
+        padding-left: 10px;
+        font-size: 14px;
+        color: #FFF;
+    }
+
+    .page #grid .authorization .authlog .name input{
+        width: 310px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        color: black;
+    }
+
+    .page #grid .authorization .authlog .name input::placeholder{
+        color: #858D96;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .page #grid .authorization .authlog .email p{
+        text-align: start;
+        padding-left: 10px;
+        font-size: 14px;
+        color: #FFF;
+    }
+
+    .page #grid .authorization .authlog .email input{
+        width: 310px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        color: black;
+    }
+
+    .page #grid .authorization .authlog .email input::placeholder{
+        color: #858D96;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .page #grid .authorization .authlog .company p{
+        text-align: start;
+        padding-left: 10px;
+        font-size: 14px;
+        color: #FFF;
+    }
+
+    .page #grid .authorization .authlog .company input{
+        width: 310px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        color: black;
+    }
+
+    .page #grid .authorization .authlog .company  input::placeholder{
+        color: #858D96;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .page #grid .authorization .authlog .lead p{
+        text-align: start;
+        padding-left: 10px;
+        font-size: 14px;
+        color: #FFF;
+    }
+
+    .page #grid .authorization .authlog .lead input{
+        width: 310px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        color: black;
+    }
+
+    .page #grid .authorization .authlog .lead input::placeholder{
+        color: #858D96;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .page #grid .authorization .authlog .number p{
+        text-align: start;
+        padding-left: 10px;
+        font-size: 14px;
+        color: #FFF;
+    }
+
+    .page #grid .authorization .authlog .number input{
+        width: 310px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        color: black;
+    }
+
+    .page #grid .authorization .authlog .number input::placeholder{
+        color: #858D96;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .page #grid .authorization .authlog .password p{
+        color: #FFF;
+        font-size: 14px;
+        text-align: start;
+        padding-left: 10px;
+    }
+    
+    .page #grid .authorization .authlog .password input{
+        width: 310px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        color: black;
+    }
+    
+    .page #grid .authorization .authlog .password input::placeholder{
+        color: #858D96;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    
+    .page #grid .authorization .authlog .confirm p{
+        color: #FFF;
+        font-size: 14px;
+        text-align: start;
+        padding-left: 10px;
+    }
+    
+    .page #grid .authorization .authlog .confirm input{
+        width: 310px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        color: black;
+    }
+    
+    .page #grid .authorization .authlog .confirm input::placeholder{
+        color: #858D96;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .page #grid .authorization .authlog button{
+        /* padding-top: 20px; */
+        margin-top: 20px;
+    }
+
+    .page #grid .authorization .authlog .tolog{
+        width: 310px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        background: #FBB017;
+        border: none;
+        color: #FFF;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+    }
+    
+    .page #grid .authorization .authlog button:hover{
+        background-color: transparent;
+        border: 3px solid #FBB017;
+        color: #FBB017;
+    }
+
+    .page #grid .authorization .authlog .account{
+        color: #E2E5ED;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding-top: 40px;
+        text-align: center;
+    }
+    
+    .page #grid .authorization .authlog .account a{
+        font-family: 'Open Sans' sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: #FBB017;
+        text-decoration: none;
+    }
+
+    .page #grid .authorization .authlog .account a:hover{
+        color: white;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991px){
+    .page{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .page #box .flow .background .container{
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+    }
+
+    .page #box .flow .background .container .bgimg{
+        /* display: none; */
+        object-fit: cover;
+        position: absolute;
+        z-index: 1;
+        width: 630px;
+        height: 1170px;
+        border-radius: 10px;
+    }
+
+    .page #box .flow .background .container .find{
+        display: none;
+    }
+
+    .page #box .flow .background .container .color{
+        background-color: #5E50A1;
+        opacity: 80%;
+        width: 630px;
+        height: 1170px;
+        position: absolute;
+        z-index: 2;
+        border-radius: 10px;
+        box-shadow: 0px 0px 30px #46505C;
+    }
+
+    .page #box .flow .background .container .logo{
+        width: 242px;
+        height: 63px;
+        padding-top: 30px;
+    }
+    .page #grid .authorization{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 15px;
+    }
+
+    .page #grid .authorization .authlog{
+        max-width: 580px;
+        padding-top: 20px;
+        z-index: 3;
+    }
+
+    .page #grid .authorization .authlog h2{
+        font-family: 'Open Sans' sans-serif;
+        font-weight: 600;
+        font-size: 42px;
+        color: #1F2A36;
+    }
+
+    .page #grid .authorization .authlog p{
+        color: #FFF;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding-top: 15px;
+    }
+
+    .page #grid .authorization .authlog .name{
+        padding-top: 20px;
+    }
+    .page #grid .authorization .authlog .name p{
+        text-align: start;
+        padding-left: 20px;
+        font-size: 20px;
+        color: #FFF;
+    }
+
+    .page #grid .authorization .authlog .name input{
+        width: 540px;
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        color: black;
+    }
+
+    .page #grid .authorization .authlog .name input::placeholder{
+        color: #858D96;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .page #grid .authorization .authlog .email{
+        padding-top: 20px;
+    }
+    .page #grid .authorization .authlog .email p{
+        text-align: start;
+        padding-left: 20px;
+        font-size: 20px;
+        color: #FFF;
+    }
+
+    .page #grid .authorization .authlog .email input{
+        width: 540px;
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        color: black;
+    }
+
+    .page #grid .authorization .authlog .email input::placeholder{
+        color: #858D96;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .page #grid .authorization .authlog .number{
+        padding-top: 20px;
+    }
+    .page #grid .authorization .authlog .number p{
+        text-align: start;
+        padding-left: 20px;
+        font-size: 20px;
+        color: #FFF;
+    }
+
+    .page #grid .authorization .authlog .number input{
+        width: 540px;
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        color: black;
+    }
+
+    .page #grid .authorization .authlog .number input::placeholder{
+        color: #858D96;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .page #grid .authorization .authlog .password{
+        padding-top: 20px;
+    }
+
+    .page #grid .authorization .authlog .password p{
+        color: #FFF;
+        font-size: 20px;
+        text-align: start;
+        padding-left: 20px;
+    }
+    
+    .page #grid .authorization .authlog .password input{
+        width: 540px;
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        color: black;
+    }
+    
+    .page #grid .authorization .authlog .password input::placeholder{
+        color: #858D96;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    
+    .page #grid .authorization .authlog .confirm{
+        padding-top: 20px;
+    }
+
+    .page #grid .authorization .authlog .confirm p{
+        color: #FFF;
+        font-size: 20px;
+        text-align: start;
+        padding-left: 20px;
+    }
+    
+    .page #grid .authorization .authlog .confirm input{
+        width: 540px;
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        color: black;
+    }
+    
+    .page #grid .authorization .authlog .confirm input::placeholder{
+        color: #858D96;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .page #grid .authorization .authlog button{
+        margin-top: 30px;
+    }
+    
+    .page #grid .authorization .authlog .tolog{
+        width: 540px;
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        background: #FBB017;
+        border: none;
+        color: #FFF;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+    }
+
+    .page #grid .authorization .authlog button:hover{
+        background-color: transparent;
+        border: 3px solid #FBB017;
+        color: #FBB017;
+    }
+    
+    .page #grid .authorization .authlog .account{
+        color: #E2E5ED;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding-top: 40px;
+        text-align: center;
+        padding-top: 60px;
+    }
+    
+    .page #grid .authorization .authlog .account a{
+        font-family: 'Open Sans' sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: #FBB017;
+        text-decoration: none;
+    }
+
+    .page #grid .authorization .authlog .account a:hover{
+        color: aqua;
+    }
+}
+
+@media (min-width: 992px) {
+    .page{
+        /* padding: 0;
+        margin: 0; */
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        vertical-align: middle;
+        background-color: white;
+    }
+
+    #box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #box .flow{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 30px 50px;
+        align-items: center;
+    }
+    
+    #box .flow .background .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #box .flow .background .container .find{
+        position: absolute;
+        z-index: 2;
+    }
+    
+    #box .flow .background .container .color{
+        position: absolute;
+        background-color: #5E50A1;
+        width: 650px;
+        height: 822px;
+        opacity: 60%;
+    }
+    
+    #box .flow .background .container .logo{
+        position: absolute;
+        padding-bottom: 700px;
+        padding-right: 470px;
+        z-index: 1;
+    }
+    
+    #box .flow .background .container .bgimg{
+        object-fit: cover;
+        width: 650px;
+        height: 822px;
+    }
+
+    #grid{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: start;
+    }
+
+    #grid .authlog h2{
+        color: #1F2A36;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 34px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+
+    #grid .lorem{
+        color: #46505C;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        max-width: 560px;
+    }
+
+    #grid .authlog p{
+        text-align: start;
+        color: #46505C;
+        font-family: 'Open Sans' sans-serif;
+    }
+
+    #grid .authlog .name p{
+        color: #9EA0A5;
+        font-family: 'Open Sans';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding-top: 10px;
+    }
+
+    #grid .authlog .name input{
+        width: 500px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        color: black;
+    }
+
+    #grid .authlog .email p{
+        color: #9EA0A5;
+        font-family: 'Open Sans';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding-top: 10px;
+    }
+
+    #grid .authlog .email input{
+        width: 500px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        color: black;
+    }
+
+    #grid .authlog .company p{
+        color: #9EA0A5;
+        font-family: 'Open Sans';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding-top: 10px;
+    }
+
+    #grid .authlog .company input{
+        width: 500px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        color: black;
+    }
+
+    #grid .authorization .authlog .lead p{
+        color: #9EA0A5;
+        font-family: 'Open Sans';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding-top: 10px;
+    }
+
+    #grid .authorization .authlog .lead input{
+        width: 500px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        color: black;
+    }
+
+    #grid .authorization .authlog .lead input::placeholder{
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        color: #9EA0A5;
+    }
+    #grid .authlog .number p{
+        color: #9EA0A5;
+        font-family: 'Open Sans';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding-top: 10px;
+    }
+
+    #grid .authlog .number input{
+        width: 500px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        color: black;
+    }
+
+    #grid .authlog .password p{
+        color: #9EA0A5;
+        font-family: 'Open Sans';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding-top: 10px;
+    }
+
+    #grid .authlog .password input{
+        width: 500px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        color: black;
+    }
+
+    #grid .authlog .confirm p{
+        color: #9EA0A5;
+        font-family: 'Open Sans';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding-top: 10px;
+    }
+
+    #grid .authlog .confirm input{
+        width: 500px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 2px solid #E2E5ED;
+        background: #FFF;
+        padding-left: 10px;
+        color: black;
+    }
+
+    #grid button{
+        width: 510px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        background: #FBB017;
+        border: none;
+        color: #FFF;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px; /* 125% */
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #grid button:hover{
+        background-color: transparent;
+        border: 3px solid #FBB017;
+        color: #FBB017;
+    }
+
+    #grid .authlog .account{
+        color: #1F2A36;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding-top: 20px;
+        /* align-items: center; */
+        text-align: center;
+    }
+
+    #grid .authlog .account a{
+        font-family: 'Open Sans' sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: #FBB017;
+        text-decoration: none;
+    }
+}
