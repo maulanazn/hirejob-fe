@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function RegisterPage() {
 
     const dispatch = useDispatch();
-    const { isError, errorMessage, isLoading } = useSelector(state => state.register);
+    const { isError, errorMessage, isLoading } = useSelector(state => state.registered);
     const [userData, setUserData] = useState({
         name: '',
         email: '',
@@ -25,8 +25,28 @@ export default function RegisterPage() {
         confirm: '',
     });
 
+    const [emailError, setEmailError] = useState("");
+    const allFieldsFilled = () => {
+        return Object.values(userData).every(field => field !== "");
+    }
+    const [passwordError, setPasswordError] = useState("");
+    const [confirmError, setConfirmError] = useState("");
+
+    const isValidPassword = (password) => {
+        const regex = /^(?=.*[A-Z])(?=.*[!@#$&*]).{8,}$/;
+        return regex.test(password);
+    }
+
     const registerUser = (e) => {
         e.preventDefault();
+        if (!isValidPassword(userData.password)) {
+            setPasswordError("Password harus memiliki huruf kapital dan karakter unik");
+            return;
+        }
+        if (userData.password !== userData.confirm) { // 2. Periksa kesesuaian password dan confirm
+            setConfirmError("Kata Sandi tidak cocok"); // 3. Menampilkan pesan error
+            return;
+        }
         dispatch(registerAction(userData))
     }
 
@@ -36,8 +56,11 @@ export default function RegisterPage() {
         setUserData({
             ...userData,
             [e.target.name]: e.target.value
-        })
+        });
+        if (e.target.name === "password") setPasswordError("");
+        if (e.target.name === "confirm") setConfirmError("")
     }
+    
 
     return (
         <>
@@ -68,6 +91,7 @@ export default function RegisterPage() {
                                 <input
                                     type="text"
                                     placeholder="Masukan nama panjang"
+                                    name='name'
                                     value={userData.name}
                                     onChange={onUserChange}
                                 />
@@ -77,6 +101,7 @@ export default function RegisterPage() {
                                 <input
                                     type="text"
                                     placeholder="Masukan alamat Email"
+                                    name='email'
                                     value={userData.email}
                                     onChange={onUserChange}
                                 />
@@ -85,7 +110,8 @@ export default function RegisterPage() {
                                 <p>Perusahaan</p>
                                 <input 
                                     type="text" 
-                                    placeholder="Masukan nama perusahaan" 
+                                    placeholder="Masukan nama perusahaan"
+                                    name='company' 
                                     value={userData.company}
                                     onChange={onUserChange}
                                     />
@@ -94,7 +120,8 @@ export default function RegisterPage() {
                                 <p>Jabatan</p>
                                 <input 
                                     type="text" 
-                                    placeholder="Posisi anda di perusahaan" 
+                                    placeholder="Posisi anda di perusahaan"
+                                    name='role' 
                                     value={userData.role}
                                     onChange={onUserChange}
                                     />
@@ -104,6 +131,7 @@ export default function RegisterPage() {
                                 <input
                                     type="text"
                                     placeholder="Masukan no. handphone"
+                                    name='number'
                                     value={userData.number}
                                     onChange={onUserChange}
                                 />
@@ -113,6 +141,7 @@ export default function RegisterPage() {
                                 <input
                                     type="password"
                                     placeholder="Masukan kata sandi"
+                                    name='password'
                                     value={userData.password}
                                     onChange={onUserChange}
                                 />
@@ -122,11 +151,12 @@ export default function RegisterPage() {
                                 <input
                                     type="password"
                                     placeholder="Masukan kembali kata sandi"
+                                    name='confirm'
                                     value={userData.confirm}
                                     onChange={onUserChange}
                                 />
                             </div>
-                            <button type="submit" className="tolog" onClick={afterRegister}>Daftar</button>
+                            <button type="submit" className="tolog" onClick={afterRegister} disabled={!allFieldsFilled() || !isValidPassword (userData.password) || userData.password !== userData.confirm}>Daftar</button>
                             <p className="account">Anda sudah punya akun? <Link to={'/login/recruiter'} className="href">Masuk disini</Link></p>
                         </form>
                     </div>

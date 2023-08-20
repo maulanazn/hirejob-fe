@@ -5,13 +5,11 @@ import logo from './assets/Group 978.svg';
 import txt from './assets/Temukan developer berbakat & terbaik di berbagai bidang keahlian.svg';
 import { loginAction } from '../../../redux/action/authActionRecruiter';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Alert from '../../component/alert';
 import { BounceLoader } from 'react-spinners';
 
 export default function LoginPage() {
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { errorMessage, isError, isLoading } = useSelector(state => state.login);
@@ -19,22 +17,39 @@ export default function LoginPage() {
         email: '',
         password: ''
     });
+    const [passwordError, setPasswordError] = useState("");
+
+    const isValidPassword = (password) => {
+        const regex = /^(?=.*[A-Z])(?=.*[!@#$&*]).{8,}$/;
+        return regex.test(password);
+    }
+
     const loginUser = (e) => {
         e.preventDefault();
-        dispatch(loginAction(dataLogin, navigate));
+        if (!isValidPassword(dataLogin.password)) {
+            setPasswordError("Password harus memiliki huruf kapital dan karakter unik");
+            return;
+        }
+        dispatch(loginAction(dataLogin))
+            .then(() => {
+                navigate('/');
+            })
+            .catch(error => {
+                // Handle error here jika diperlukan
+            });
     }
 
     const onLogin = (e) => {
         handleDataLogin({
             ...dataLogin,
             [e.target.name]: e.target.value
-        })
+        });
+        if (e.target.name === "password") setPasswordError("");  // reset passwordError jika user mengetik di input password
     }
 
     return (
         <>
             {isLoading && <BounceLoader color='#000000' cssOverride={{ marginLeft: '50vw' }} />}
-            {!isLoading && <BounceLoader color='#000000' cssOverride={{ marginLeft: '50vw' }} loading={false} />}
             {isError && errorMessage && <Alert alerttype='danger' message={errorMessage} />}
             <div className="page">
                 <section id="box">
@@ -75,9 +90,10 @@ export default function LoginPage() {
                                     value={dataLogin.password}
                                     onChange={onLogin}
                                 />
+                                {passwordError && <span className="error">{passwordError}</span>}
                             </div>
                             <p className="forgot" >Lupa kata sandi?</p>
-                            <button type="submit" className="tolog">Masuk</button>
+                            <button type="submit" className="tolog" onClick={loginUser}>Masuk</button>
                             <p className="account">Anda belum punya akun? <Link to={'/register/recruiter'} className="href">Daftar disini</Link></p>
                         </form>
                     </div>

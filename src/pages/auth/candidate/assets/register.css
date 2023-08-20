@@ -190,6 +190,13 @@ body {
         font-weight: 400;
         line-height: normal;
     }
+
+    .page #grid .authorization .authlog .password .error{
+        color: rgb(212, 25, 25);
+        display: block;
+        margin-top: 4px;
+        font-size: 12px;
+    }
     
     .page #grid .authorization .authlog .confirm p{
         color: #FFF;
@@ -470,6 +477,13 @@ body {
         line-height: normal;
     }
     
+    .page #grid .authorization .authlog .password .error{
+        color: rgb(212, 25, 25);
+        display: block;
+        margin-top: 4px;
+        font-size: 12px;
+    }
+
     .page #grid .authorization .authlog .confirm{
         padding-top: 20px;
     }
@@ -726,6 +740,19 @@ body {
         color: black;
     }
 
+    .page #grid .authorization .authlog .password .error{
+        color: rgb(212, 25, 25);
+        display: block;
+        margin-top: 4px;
+        font-size: 12px;
+    }
+
+    .page #grid .authorization .authlog .password .error1{
+        color: rgb(212, 25, 25);
+        display: block;
+        margin-top: 4px;
+        font-size: 12px;
+    }
     #grid .authlog .confirm p{
         color: #9EA0A5;
         font-family: 'Open Sans';

@@ -1,6 +1,6 @@
 import initialState from '../../pages/config/initialState';
 
-export const loginReducer = (state = initialState, action) => {
+export const loginReducerA = (state = initialState, action) => {
     if (action.type === 'LOGIN_PENDING') {
         return {
             ...state,
@@ -31,7 +31,7 @@ export const loginReducer = (state = initialState, action) => {
     return state;
 }
 
-export const registerReducer = (state = initialState, action) => {
+export const registerReducerA = (state = initialState, action) => {
     if (action.type === 'REGISTER_PENDING') {
         return {
             ...state,

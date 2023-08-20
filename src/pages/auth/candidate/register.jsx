@@ -22,11 +22,39 @@ export default function RegisterPage() {
         password: '',
         confirm: '',
     });
+    const [emailError, setEmailError] = useState("");
+    const allFieldsFilled = () => {
+        return Object.values(userData).every(field => field !== "");
+    }
+    const [passwordError, setPasswordError] = useState("");
+    const [confirmError, setConfirmError] = useState("");
+
+    const isValidPassword = (password) => {
+        const regex = /^(?=.*[A-Z])(?=.*[!@#$&*]).{8,}$/;
+        return regex.test(password);
+    }
 
     const registerUser = (e) => {
         e.preventDefault();
+        if (!isValidPassword(userData.password)) {
+            setPasswordError("Password harus memiliki huruf kapital dan karakter unik");
+            return;
+        }
+        if (userData.password !== userData.confirm) { // 2. Periksa kesesuaian password dan confirm
+            setConfirmError("Kata Sandi tidak cocok"); // 3. Menampilkan pesan error
+            return;
+        }
         dispatch(registerAction(userData))
     }
+    // const handleButtonClick = (e) => {
+    //     if (!isValidPassword(userData.password)) {
+    //         setPasswordError("Password harus memiliki huruf kapital dan karakter unik");
+    //         e.preventDefault(); 
+    //         return false; 
+    //     }
+    //     afterRegister();
+    //     return true;
+    // }
 
     const afterRegister = () => toast("Verifikasi Email Anda!")
 
@@ -34,34 +62,11 @@ export default function RegisterPage() {
         setUserData({
             ...userData,
             [e.target.name]: e.target.value
-        })
+        });
+        if (e.target.name === "password") setPasswordError("");
+        if (e.target.name === "confirm") setConfirmError("")
     }
-    // const dispatch = useDispatch();
-
-    // // State untuk setiap field input
-    // const [name, setName] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [number, setNumber] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [confirmPassword, setConfirmPassword] = useState('');
-
-    // const handleRegister = () => {
-    //     // Simulasi fungsi navigate
-    //     const navigate = (path) => {
-    //         if (path == '/login') 
-    //         console.log("Navigated to", path)
-    //         window.location.href = '/login/candidate';
-    //     };
-
-    //     dispatch(registerAction({
-    //         name,
-    //         email,
-    //         number,
-    //         password,
-    //         confirm: confirmPassword,
-    //         // Anda bisa menambahkan field lainnya sesuai kebutuhan
-    //     }, navigate));
-    // };
+    
 
     return (
         <>
@@ -92,6 +97,8 @@ export default function RegisterPage() {
                                 <input
                                     type="text"
                                     placeholder="Masukan nama panjang"
+                                    required
+                                    name="name"
                                     value={userData.name}
                                     onChange={onUserChange}
                                 />
@@ -101,6 +108,8 @@ export default function RegisterPage() {
                                 <input
                                     type="text"
                                     placeholder="Masukan alamat Email"
+                                    required
+                                    name='email'
                                     value={userData.email}
                                     onChange={onUserChange}
                                 />
@@ -110,6 +119,8 @@ export default function RegisterPage() {
                                 <input
                                     type="text"
                                     placeholder="Masukan no. handphone"
+                                    required
+                                    name='number'
                                     value={userData.number}
                                     onChange={onUserChange}
                                 />
@@ -119,20 +130,26 @@ export default function RegisterPage() {
                                 <input
                                     type="password"
                                     placeholder="Masukan kata sandi"
+                                    required
+                                    name='password'
                                     value={userData.password}
                                     onChange={onUserChange}
                                 />
+                                {passwordError && <span className="error">{passwordError}</span>}
                             </div>
                             <div className="confirm">
                                 <p>Konfirmasi kata sandi</p>
                                 <input
                                     type="password"
                                     placeholder="Masukan kembali kata sandi"
+                                    required
+                                    name='confirm'
                                     value={userData.confirm}
                                     onChange={onUserChange}
                                 />
+                                {confirmError && <span className="error1">{confirmError}</span>}
                             </div>
-                            <button type="submit" className="tolog" onClick={afterRegister}>Daftar</button>
+                            <button type="submit" className="tolog" onClick={afterRegister} disabled={!allFieldsFilled() || !isValidPassword (userData.password) || userData.password !== userData.confirm}>Daftar</button>
                             <p className="account">Anda sudah punya akun? <Link to={'/login/candidate'} className="href">Masuk disini</Link></p>
                         </form>
                     </div>

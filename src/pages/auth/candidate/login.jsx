@@ -30,7 +30,13 @@ export default function LoginPage() {
             setPasswordError("Password harus memiliki huruf kapital dan karakter unik");
             return;
         }
-        dispatch(loginAction(dataLogin, navigate));
+        dispatch(loginAction(dataLogin))
+            .then(() => {
+                navigate('/');
+            })
+            .catch(error => {
+                // Handle error here jika diperlukan
+            });
     }
 
     const onLogin = (e) => {
@@ -87,7 +93,7 @@ export default function LoginPage() {
                                 {passwordError && <span className="error">{passwordError}</span>}
                             </div>
                             <p className="forgot" >Lupa kata sandi?</p>
-                            <button type="submit" className="tolog">Masuk</button>
+                            <button type="submit" className="tolog" onClick={loginUser}>Masuk</button>
                             <p className="account">Anda belum punya akun? <Link to={'/register/candidate'} className="href">Daftar disini</Link></p>
                         </form>
                     </div>
