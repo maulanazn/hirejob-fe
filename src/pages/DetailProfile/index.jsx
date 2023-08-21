@@ -11,8 +11,8 @@ const DetailProfile = () => {
     dispatch(getUserById(1))
   },[])
 
-  const user = useSelector((state)=> state.user.user)
-  console.log(user,'ini user')
+  // const user = useSelector((state)=> state.user.user)
+  // console.log(user,'ini user')
 
   return (
     <div id='detail-profile'>
