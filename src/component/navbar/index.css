@@ -1,0 +1,30 @@
+.mail:hover {
+  filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg) brightness(95%) contrast(93%);
+}
+
+.bell:hover {
+  filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg) brightness(95%) contrast(93%);
+}
+
+.ham-text {
+  display: none;
+}
+
+@media (max-width: 576px) {
+  .nav-left {
+    margin-left: 2rem;
+  }
+
+  .nav-right {
+    margin-right: 2rem;
+  }
+
+  .ham-text {
+    margin-left: 8px;
+    display: inline-block;
+  }
+
+  .ham-text:hover {
+    filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg) brightness(95%) contrast(93%);
+  }
+}
