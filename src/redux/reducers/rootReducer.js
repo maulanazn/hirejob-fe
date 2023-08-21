@@ -1,13 +1,13 @@
 import { combineReducers } from "redux";
 import { loginReducer, registerReducer } from "./authReducerCandidate";
 
-import { loginReducerA, registerReducerA } from "./authReducerRecruiter";
+import { loginReducerRecruiter, registerReducerRecruiter } from "./authReducerRecruiter";
 
 const rootReducer = combineReducers({
-	login: loginReducer,
-	register: registerReducer,
-	logged: loginReducerA,
-	registered: registerReducerA
+	login_candidate: loginReducer,
+	register_candidate: registerReducer,
+	login_recruiter: loginReducerRecruiter,
+	register_recruiter: registerReducerRecruiter
 });
 
 export default rootReducer;

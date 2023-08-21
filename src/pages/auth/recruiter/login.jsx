@@ -12,7 +12,7 @@ import { BounceLoader } from 'react-spinners';
 export default function LoginPage() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { errorMessage, isError, isLoading } = useSelector(state => state.login);
+    const { errorMessage, isError, isLoading } = useSelector(state => state.login_recruiter);
     const [dataLogin, handleDataLogin] = useState({
         email: '',
         password: ''

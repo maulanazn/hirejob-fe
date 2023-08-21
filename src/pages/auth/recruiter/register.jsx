@@ -14,18 +14,18 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function RegisterPage() {
 
     const dispatch = useDispatch();
-    const { isError, errorMessage, isLoading } = useSelector(state => state.registered);
+    const { isError, errorMessage, isLoading } = useSelector(state => state.register_recruiter);
     const [userData, setUserData] = useState({
         name: '',
         email: '',
-        company:'',
-        role:'',
+        company: '',
+        role: '',
         number: '',
         password: '',
         confirm: '',
     });
 
-    const [emailError, setEmailError] = useState("");
+    // const [emailError, setEmailError] = useState("");
     const allFieldsFilled = () => {
         return Object.values(userData).every(field => field !== "");
     }
@@ -60,7 +60,7 @@ export default function RegisterPage() {
         if (e.target.name === "password") setPasswordError("");
         if (e.target.name === "confirm") setConfirmError("")
     }
-    
+
 
     return (
         <>
@@ -108,23 +108,23 @@ export default function RegisterPage() {
                             </div>
                             <div className="company">
                                 <p>Perusahaan</p>
-                                <input 
-                                    type="text" 
+                                <input
+                                    type="text"
                                     placeholder="Masukan nama perusahaan"
-                                    name='company' 
+                                    name='company'
                                     value={userData.company}
                                     onChange={onUserChange}
-                                    />
+                                />
                             </div>
                             <div className="lead">
                                 <p>Jabatan</p>
-                                <input 
-                                    type="text" 
+                                <input
+                                    type="text"
                                     placeholder="Posisi anda di perusahaan"
-                                    name='role' 
+                                    name='role'
                                     value={userData.role}
                                     onChange={onUserChange}
-                                    />
+                                />
                             </div>
                             <div className="number">
                                 <p>No. Handphone</p>
@@ -145,6 +145,7 @@ export default function RegisterPage() {
                                     value={userData.password}
                                     onChange={onUserChange}
                                 />
+                                {passwordError && <span className="error">{passwordError}</span>}
                             </div>
                             <div className="confirm">
                                 <p>Konfirmasi kata sandi</p>
@@ -155,8 +156,9 @@ export default function RegisterPage() {
                                     value={userData.confirm}
                                     onChange={onUserChange}
                                 />
+                                {confirmError && <span className="error1">{confirmError}</span>}
                             </div>
-                            <button type="submit" className="tolog" onClick={afterRegister} disabled={!allFieldsFilled() || !isValidPassword (userData.password) || userData.password !== userData.confirm}>Daftar</button>
+                            <button type="submit" className="tolog" onClick={afterRegister} disabled={!allFieldsFilled() || !isValidPassword(userData.password) || userData.password !== userData.confirm}>Daftar</button>
                             <p className="account">Anda sudah punya akun? <Link to={'/login/recruiter'} className="href">Masuk disini</Link></p>
                         </form>
                     </div>

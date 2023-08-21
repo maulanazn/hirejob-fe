@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function RegisterPage() {
 
     const dispatch = useDispatch();
-    const { isError, errorMessage, isLoading } = useSelector(state => state.register);
+    const { isError, errorMessage, isLoading } = useSelector(state => state.register_candidate);
     const [userData, setUserData] = useState({
         name: '',
         email: '',
@@ -22,7 +22,7 @@ export default function RegisterPage() {
         password: '',
         confirm: '',
     });
-    const [emailError, setEmailError] = useState("");
+    // const [emailError, setEmailError] = useState("");
     const allFieldsFilled = () => {
         return Object.values(userData).every(field => field !== "");
     }
