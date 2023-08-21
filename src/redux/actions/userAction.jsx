@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const serverUrl = import.meta.env.VITE_URL;
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQyNDFjYzNlLWIwNjYtNDI0NC1iZDhlLWNkNzQ0NGZjZDU5ZCIsIm5hbWUiOiJ0ZXN0ZXIiLCJpYXQiOjE2OTI2MTc4MzcsImV4cCI6MTY5MjYyNzgzN30.QeR80ArlztLEiCxa5ihjg90oqH8qDfCXaw3W2Yn8gH8'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQyNDFjYzNlLWIwNjYtNDI0NC1iZDhlLWNkNzQ0NGZjZDU5ZCIsIm5hbWUiOiJ0ZXN0ZXIiLCJpYXQiOjE2OTI2Mjg3ODAsImV4cCI6MTY5MjYzODc4MH0.jzxbuac-67xDcihrVxLososw5e0TRigW1tMThY1BHHw'
 
 export const getUserById = (userId) => {
     return async(dispatch) => {
@@ -14,7 +14,7 @@ export const getUserById = (userId) => {
               'Content-Type': 'application/json',
           },
           payload: {
-              id: '9f415485-4629-415a-9e76-47c1fc08f181'
+              id: '47583e19f63cdd7e83dc693a1a9567a7'
           }
       };
         try {
