@@ -4,9 +4,29 @@ import "./editCandidate.css";
 import { CiLocationOn } from "react-icons/ci";
 import Candidate from "../../images/imgrecruiter.png";
 import { BsPencilFill } from "react-icons/bs";
+import NavBar from "../../../component/navbar";
+import Footer from "../../../component/footer";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
 const Index = () => {
+  const { id } = useParams();
+  const [data, setData] = useState([]);
+  const [inputData, setInputData] = useState({
+    nama_lengkap: "",
+    jobdesk: "",
+    Domisili: "",
+    Tempat_kerja: "",
+    deskripsi_singkat: "",
+    email: "",
+   skill: "",
+    nomor_telpon: "",
+    linkedin: "",
+  });
+
   return (
     <Fragment>
+      <NavBar/>
       <Container className="my-5">
         <Row>
           <Col md={4}>
@@ -282,6 +302,7 @@ const Index = () => {
           </Col>
         </Row>
       </Container>
+      <Footer/>
     </Fragment>
   );
 };

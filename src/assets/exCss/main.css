@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@100;500;600;700&display=swap');
+
+:root {
+    --primary-color: #5e50a1;
+    --secondary-color: #fbb017;
+
+    /* text-color */
+    --text-primary: #1f2a36;
+    --text-secondary: #46505c;
+    --text-third: #9ea0a5;
+    --text-fourth: #e2e5ed;
+
+    /* background-color */
+    --bg-primary: #f6f7f8;
+    --bg-secondary: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: "Open Sans", sans-serif;
+    color: rgba(158, 160, 165, 1);
+}
+
+.body {
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--bg-primary) !important;
+}
+
+
+
+img {
+    width: 100%;
+}
+
+.text-title {
+    color: var(--text-primary);
+}
+
+.text-desc {
+    color: var(--text-secondary) !important;
+}
+
+.text-desc2 {
+    color: var(--text-third);
+}
+
+nav,
+footer {
+    flex: 1;
+}
+
+main {
+    flex: 2;
+}
+
+main .wrapProfile {
+    width: 100vw;
+    position: relative;
+    background-color: rgba(246, 247, 248, 1);
+}
+
+main .background {
+    height: 300px;
+    width: 100%;
+    background-color: rgba(94, 80, 161, 1);
+    position: absolute;
+}
+
+main .wrapProfile .wrapCardEdit {
+    width: 30%;
+    padding: 4rem 1rem;
+    z-index: 1;
+}
+
+main .wrapProfile .wrapCardEdit .cardEditProfile {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+main .wrapProfile .wrapMainEdit {
+    width: 60%;
+    z-index: 1;
+    padding: 4rem 1rem;
+}
+
+main .wrapProfile .wrapMainEdit .mainEditProfile .bio,
+.mainEditProfile .skill,
+.mainEditProfile .experience,
+.mainEditProfile .portofolio {
+    background-color: rgba(255, 255, 255, 1);
+    padding: 1rem;
+}
+
+main .wrapProfile .btnGrup .btnUserSave {
+    background-color: rgba(94, 80, 161, 1);
+    color: white;
+}
+
+main .wrapProfile .btnGrup .btnUserCancel {
+    background-color: white;
+    color: rgba(94, 80, 161, 1);
+    border: 2px solid rgba(94, 80, 161, 1);
+}
+
+main .wrapProfile .wrapMainEdit .mainEditProfile .bio .input input,
+textarea {
+    background-color: #fff;
+    padding: 1rem;
+    border: 1px solid rgba(158, 160, 165, 1);
+}
+
+@media (max-width: 768px) {
+    main .wrapProfile {
+        flex-direction: column !important;
+    }
+
+    main .wrapProfile .wrapCardEdit {
+        width: 90%;
+    }
+
+    main .wrapProfile .wrapMainEdit {
+        width: 90%;
+    }
+
+    main .background {
+        top: 0;
+    }
+
+    main .wrapProfile .wrapMainEdit .experience .workInformation {
+        flex-direction: column !important;
+    }
+}
+
+
+/* Styling for Home page */
+.back-background {
+    position: absolute;
+    width: 100%;
+    height: 22rem;
+    background-color: var(--primary-color);
+    z-index: -10;
+}
+
+.custom-line {
+    padding-bottom: 4px;
+    border-bottom: 4px solid var(--primary-color);
+    width: max-content;
+}
+
+/* Styling for background home */
+.custom-bg-nav {
+    background-color: var(--primary-color) !important;
+    max-height: 100px;
+}
