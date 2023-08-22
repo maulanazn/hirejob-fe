@@ -1,0 +1,13 @@
+{
+  "user": {
+    "id_user": 1,
+    "username": "Ucok Baba",
+    "provinsi": "Jawa Barat",
+    "provinsi_id": "1",
+    "kota": "Garut",
+    "kota_id": "1",
+    "tempat_kerja": "Freelance",
+    "description": "aldkfj fasdfijae fasdfiajeofihasfjasdfnsald sdfjascoa sefashdcasencoasehif saidfoashef dsjfoa hsfsadfoae dfja0 fasf",
+    "skill": ["javascript", "css", "html", "bootsrap", "php", "react", "express"]
+  }
+}
