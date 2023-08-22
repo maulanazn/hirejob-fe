@@ -28,15 +28,8 @@ export default function LoginPage() {
         e.preventDefault();
         if (!isValidPassword(dataLogin.password)) {
             setPasswordError("Password harus memiliki huruf kapital dan karakter unik");
-            return;
         }
-        dispatch(loginAction(dataLogin))
-            .then(() => {
-                navigate('/');
-            })
-            .catch(error => {
-                // Handle error here jika diperlukan
-            });
+        dispatch(loginAction(dataLogin, navigate));
     }
 
     const onLogin = (e) => {

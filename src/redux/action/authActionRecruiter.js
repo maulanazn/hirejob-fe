@@ -7,9 +7,9 @@ export const loginAction = (data, navigate) =>
             dispatch({type: 'LOGIN_PENDING'})
             const result = await axios.post(`${URL}/recruiter/login`,data)
 
-            localStorage.setItem("token", result.data.accesstoken)
-            localStorage.setItem("email", result.data.data.email)
-            localStorage.setItem("password", result.data.data.password)
+            localStorage.setItem("token", result.data.data)
+            localStorage.setItem("email", result.data.email)
+            localStorage.setItem("password", result.data.password)
 
             dispatch({payload: result.data.data, type: 'LOGIN_SUCCESS'})
             navigate('/')

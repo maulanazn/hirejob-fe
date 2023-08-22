@@ -12,7 +12,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function RegisterPage() {
-
     const dispatch = useDispatch();
     const { isError, errorMessage, isLoading } = useSelector(state => state.register_candidate);
     const [userData, setUserData] = useState({
@@ -22,7 +21,7 @@ export default function RegisterPage() {
         password: '',
         confirm: '',
     });
-    // const [emailError, setEmailError] = useState("");
+
     const allFieldsFilled = () => {
         return Object.values(userData).every(field => field !== "");
     }
@@ -46,15 +45,6 @@ export default function RegisterPage() {
         }
         dispatch(registerAction(userData))
     }
-    // const handleButtonClick = (e) => {
-    //     if (!isValidPassword(userData.password)) {
-    //         setPasswordError("Password harus memiliki huruf kapital dan karakter unik");
-    //         e.preventDefault(); 
-    //         return false; 
-    //     }
-    //     afterRegister();
-    //     return true;
-    // }
 
     const afterRegister = () => toast("Verifikasi Email Anda!")
 
