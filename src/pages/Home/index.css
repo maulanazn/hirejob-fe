@@ -1,0 +1,9 @@
+.pagination-btn {
+    background-color: white;
+    border-color: #E2E5ED;
+}
+
+.active-btn {
+    background-color: #5E50A1;
+    color: white;
+}
