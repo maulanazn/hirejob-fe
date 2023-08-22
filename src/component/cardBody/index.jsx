@@ -2,7 +2,7 @@ import React from "react";
 
 import { Card, Container, Button } from "react-bootstrap";
 
-import image from "../../assets/image/anjayy.svg";
+import image from "../../assets/images/imgrecruiter.png";
 import "./index.css";
 
 const CardBody = (props) => {
@@ -14,7 +14,7 @@ const CardBody = (props) => {
                 <div className="p-3 d-md-flex justify-content-between">
                     <div className="d-flex">
                         <img
-                            src={data.image}
+                            src={data?.photo_profile || image}
                             alt="photo profile"
                             className="rounded-circle"
                             style={{ width: 80, height: 80 }}
