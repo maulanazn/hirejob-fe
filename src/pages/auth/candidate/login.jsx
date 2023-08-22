@@ -48,9 +48,9 @@ export default function LoginPage() {
                 <section id="box">
                     <nav className="flow">
                         <div className="background">
-                            <div className="container">
+                            <div className="containerss">
                                 <img src={txt} alt="Find" className="find" />
-                                <img src={logo} alt="logo" className="logo" />
+                                <img src={logo} alt="logo" className="logos" />
                                 <img src={bg} alt="background image" className="bgimg" />
                                 <div className="color"></div>
                             </div>

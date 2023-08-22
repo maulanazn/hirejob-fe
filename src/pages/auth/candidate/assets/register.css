@@ -601,6 +601,8 @@ body {
     #box .flow .background .container .find{
         position: absolute;
         z-index: 2;
+		width: 460px;
+		height: 460px;
     }
     
     #box .flow .background .container .color{
@@ -616,6 +618,7 @@ body {
         padding-bottom: 700px;
         padding-right: 470px;
         z-index: 1;
+		display: none;
     }
     
     #box .flow .background .container .bgimg{
