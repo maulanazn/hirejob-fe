@@ -18,10 +18,10 @@ const Footer = () => {
                   className="object-fit-cover"
                     style={{width : "200px"}}
                 />
-                <div className="py-4">
+                <div className="py-4 fw-bold text-white">
                   <p className="m-0">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    <p>In euismod ipsum et dui rhoncus auctor.</p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.
+                    🤐
                   </p>
                 </div>
               </div>

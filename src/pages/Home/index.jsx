@@ -6,6 +6,7 @@ import CardBody from "../../component/cardBody";
 import "../../assets/exCss/main.css";
 import "./index.css"
 import axios from "axios";
+import Footer from "../../component/footer";
 
 
 export default function HomePage() {
@@ -54,7 +55,7 @@ export default function HomePage() {
             <Navbar className="custom-bg-nav">
                 <Container>
                     <NavbarBrand>
-                        <h5 className="mb-0 text-white">Top Jobs</h5>
+                        <h5 className="mb-3 text-white">Top Jobs</h5>
                     </NavbarBrand>
                 </Container>
             </Navbar>
@@ -95,8 +96,10 @@ export default function HomePage() {
                         </nav>
                     </div>
                 </div>
+                
             </Container>
-
+            
+            <Footer/>
         </div>
     )
 

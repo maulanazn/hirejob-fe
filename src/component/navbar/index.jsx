@@ -9,7 +9,7 @@ import photo from "../../assets/image/photo.svg";
 const NavBar = () => {
     return (
         <Navbar expand="lg" className="bg-body-tertiary" style={{ maxHeight: '100px' }}>
-            <Container>
+            <Container >
                 <Navbar.Brand href="#home">
                     <img
                         src={Logo}
@@ -20,7 +20,7 @@ const NavBar = () => {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto">
+                    <Nav className="ms-auto gap-5">
                         <Nav.Link href="#home">
                             <img
                                 src={bell}
