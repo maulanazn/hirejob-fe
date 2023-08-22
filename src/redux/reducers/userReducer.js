@@ -11,22 +11,18 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
       case 'PENDING':
-        console.log('loading...')
         return {
             ...state,
             isLoading:true,
         };
       //get user by id
       case 'GET_USER_SUCCESS':
-        console.log('success')
-        console.log('ini success',action.payload)
         return {
             ...state,
             user: action.payload,
             isLoading:false
         };
       case 'GET_USER_FAILED':
-        console.log('failed',action.error)
         return {
           ...state,
           isError: true,

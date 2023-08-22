@@ -7,9 +7,12 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './redux/store'
 
 // import './index.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
+
+
+
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <App />
@@ -17,4 +20,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </Provider>
 
 )
-

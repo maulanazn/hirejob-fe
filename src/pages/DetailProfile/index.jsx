@@ -1,28 +1,25 @@
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import './style.css'
 import { useDispatch, useSelector } from "react-redux";
-import { getUserById } from "../../redux/actions/userAction";
+import { getSkill, getUserById } from "../../redux/actions/userAction";
 
 const DetailProfile = () => {
-
   const dispatch = useDispatch();
-
-  useEffect(()=> {
-    dispatch(getUserById(1))
-  },[])
-
-  // const user = useSelector((state)=> state.user.user)
-  // console.log(user,'ini user')
+  const user = useSelector(state => state.user)
+  
+  useEffect(() => {
+    dispatch(getSkill(user))
+  }, [])
 
   return (
     <div id='detail-profile'>
       <div className="bio">
           <img src="./images/img-profile.svg" alt="" className="photo-profile"/>
-          <h1 className='name' >Ucok Baba</h1>
-          <h3 className='job'>Web Developer</h3>
+          <h1 className='name' >{localStorage.getItem("name")}</h1>
+          <h3 className='job'>lkjasdf</h3>
           <div className="address">
             <img src="./images/icon-location.svg" alt="" className="icon-location" />
-            <h3 className="text-address">Purwokero,Jawa Tengah</h3>
+            <h3 className="text-address">Purwokerto,Jawa Tengah</h3>
           </div>
 
           <h3 className="type-job">Freelancer</h3>
@@ -35,13 +32,7 @@ const DetailProfile = () => {
             <h2 className="head-skill">Skill</h2>
 
             <div className="list-skill">
-              <p className="name-skill">Phyton</p>  
-              <p className="name-skill">Javascript</p>  
-              <p className="name-skill">Laravel</p>  
-              <p className="name-skill">Html</p>  
-              <p className="name-skill">Bootstrap</p>  
-              <p className="name-skill">Phyton</p>  
-              <p className="name-skill">Phyton</p>  
+              <p className="name-skill">{user.skill_name}</p>   
             </div>  
           </div>
 
