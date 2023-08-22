@@ -43,11 +43,11 @@ const Hire = () => {
         <form action="" className="hire-form">
           <div className="position">
             <label htmlFor="input-position">Posisi</label>
-            <input type="text" id="input-position" placeholder="Masukan posisi" spellcheck="false"/>
+            <input type="text" id="input-position" placeholder="Masukan posisi" spellCheck="false"/>
           </div>
           <div className="description">
             <label htmlFor="input-description">Deskripsi</label>
-            <textarea id="input-description" placeholder="Deskripsi" spellcheck="false"/>
+            <textarea id="input-description" placeholder="Deskripsi" spellCheck="false"/>
           </div>
           <button className="hire-button" type="submit">Hire</button>
         </form>
