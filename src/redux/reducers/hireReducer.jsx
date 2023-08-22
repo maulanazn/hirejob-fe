@@ -1,6 +1,4 @@
 const initialState = {
-  users: [],
-  totalCount:null,
   user:{},
   isError:false,
   isLoading : false,
@@ -8,7 +6,7 @@ const initialState = {
   modalMessage:{}
 };
 
-const userReducer = (state = initialState, action) => {
+const hireReducer = (state = initialState, action) => {
   switch (action.type) {
       case 'PENDING':
         console.log('loading...')
@@ -16,25 +14,19 @@ const userReducer = (state = initialState, action) => {
             ...state,
             isLoading:true,
         };
-      //get user by id
-      case 'GET_USER_SUCCESS':
+      //HIRE BY USER ID
+      case 'HIRE_SUCCESS':
         console.log('ini success',action.payload)
         return {
             ...state,
             user: action.payload,
             isLoading:false
         };
-      case 'GET_USER_FAILED':
+      case 'HIRE_FAILED':
         console.log('failed',action.error)
         return {
           ...state,
           isError: true,
-          isLoading:false
-        };
-      case 'CLOSE_MODAL':
-        return{
-          ...state,
-          showModal : false,
           isLoading:false
         };
       default:
@@ -42,4 +34,4 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-export default userReducer;
+export default hireReducer;

@@ -1,7 +1,43 @@
-import React from "react"
+import React, { useState } from "react"
 import './style.css'
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { hire } from "../../redux/actions/hireActions";
 
 const Hire = () => {
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
+
+  const params = useParams("id");
+
+  console.log(params.id)
+
+
+  const [message,setMessage] = useState({
+    id:params.id,
+    position:'',
+    message_detail:''
+});
+
+  // console.log(message)
+
+const handleChange = (event) => {
+  const {name,value} = event.target;
+  setMessage((prev) => ({
+      ...prev,
+      [name]: value
+  }));
+}
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+
+  console.log(message)
+
+  dispatch(hire(message))
+}
+
   return (
     <div id='hire'>
       <div className="bio">
@@ -43,13 +79,13 @@ const Hire = () => {
         <form action="" className="hire-form">
           <div className="position">
             <label htmlFor="input-position">Posisi</label>
-            <input type="text" id="input-position" placeholder="Masukan posisi" spellCheck="false"/>
+            <input name='position' value={message.position} type="text" id="input-position" placeholder="Masukan posisi" spellCheck="false" onChange={handleChange}/>
           </div>
           <div className="description">
             <label htmlFor="input-description">Deskripsi</label>
-            <textarea id="input-description" placeholder="Deskripsi" spellCheck="false"/>
+            <textarea name='message_detail' value={message.message_detail} id="input-description" placeholder="Deskripsi" spellCheck="false" onChange={handleChange}/>
           </div>
-          <button className="hire-button" type="submit">Hire</button>
+          <button className="hire-button" type="submit" onClick={handleSubmit}>Hire</button>
         </form>
       </div>
 

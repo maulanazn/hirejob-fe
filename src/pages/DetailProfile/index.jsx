@@ -2,13 +2,15 @@ import React, { useEffect } from "react"
 import './style.css'
 import { useDispatch, useSelector } from "react-redux";
 import { getUserById } from "../../redux/actions/userAction";
+import { useParams } from "react-router-dom";
 
 const DetailProfile = () => {
 
   const dispatch = useDispatch();
+  const {id} = useParams('id')
 
   useEffect(()=> {
-    dispatch(getUserById(1))
+    dispatch(getUserById(id))
   },[])
 
   // const user = useSelector((state)=> state.user.user)
