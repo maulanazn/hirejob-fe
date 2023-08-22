@@ -17,7 +17,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 
-
 const Index = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
@@ -32,70 +31,63 @@ const Index = () => {
     phone: "",
     linkedin_url: "",
   });
-  // useEffect(() => {
-    // const getDetail = async () => {
-    //   try {
-        
-        
-    //     const getDetailRecruiter = await axios.post(
-    //       import.meta.env.VITE_BASE_URL + `/recruiter/photoprofile`,
-    //       {
-    //         headers: {
-    //           Authorization: `Bearer ${token}`,
-    //         },
-    //       }
-    //     );
-    //     console.log(getDetailRecruiter);
-    //     setData(getDetailRecruiter.data.data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
-    // getDetail();
-  // }, []);
+  useEffect(() => {
+    const getDetail = async () => {
+      try {
+        const getDetailRecruiter = await axios.post(
+          import.meta.env.VITE_BASE_URL + `/recruiter/photoprofile`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        console.log(getDetailRecruiter);
+        setData(getDetailRecruiter.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getDetail();
+  }, []);
   useEffect(() => {
     data &&
       setInputData({
         ...inputData,
         company_name: inputData.company_name,
         company_field: inputData.company_field,
-        province:  inputData.province,
-        city:  inputData.city,
-        company_info:  inputData.company_info,
-        email:  inputData.email,
-        company_email:  inputData.company_email,
-        phone:  inputData.phone,
-        linkedin_url:  inputData.linkedin_url,
+        province: inputData.province,
+        city: inputData.city,
+        company_info: inputData.company_info,
+        email: inputData.email,
+        company_email: inputData.company_email,
+        phone: inputData.phone,
+        linkedin_url: inputData.linkedin_url,
       });
   }, [data]);
-  const putRecruiter = async(event)=>{
+  const putRecruiter = async (event) => {
     event.preventDefault();
-    let token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyZjdmZjc5LTUzZmYtNDdhMi1iMWExLTRiZTc4ZTRjZjQ5MCIsIm5hbWUiOiJtYXVsYW5hem4iLCJlbWFpbCI6Im1hdWxpbnV4em5AZ21haWwuY29tIiwiaWF0IjoxNjkyNjg5MTk0LCJleHAiOjE2OTI3NzU1OTR9.ImkeV3VHC9QXUOBDK1fPkXfYDhv0tO_ACq6V2DdPP4E"
-    let bodyIndex =new FormData()
-    bodyIndex.append("company_name",inputData.company_name);
-    bodyIndex.append("company_field",inputData.company_field);
-    bodyIndex.append("province",inputData.province);
-    bodyIndex.append("city",inputData.city);
-    bodyIndex.append("company_info",inputData.company_info);
-    bodyIndex.append("email",inputData.email);
-    bodyIndex.append("company_email",inputData.company_email);
-    bodyIndex.append("phone",inputData.phone);
-    bodyIndex.append("linkedin_url",inputData.linkedin_url);
+    let bodyIndex = new FormData();
+    bodyIndex.append("company_name", inputData.company_name);
+    bodyIndex.append("company_field", inputData.company_field);
+    bodyIndex.append("province", inputData.province);
+    bodyIndex.append("city", inputData.city);
+    bodyIndex.append("company_info", inputData.company_info);
+    bodyIndex.append("email", inputData.email);
+    bodyIndex.append("company_email", inputData.company_email);
+    bodyIndex.append("phone", inputData.phone);
+    bodyIndex.append("linkedin_url", inputData.linkedin_url);
 
     try {
-      // const token = localStorage.getItem("token");
-      const editRecruiter = await axios.post(import.meta.env.VITE_BASE_URL + "/recruiter/bio-recruiter",{headers : {Authorization : `Bearer ${token}`}})
-       console.log('ini token saya')
-        console.log(token)
-      
-      
+      const editRecruiter = await axios.post(
+        import.meta.env.VITE_BASE_URL + "/recruiter/bio-recruiter",
+        { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
+      );
+    console.log(localStorage.getItem("token"))
     } catch (error) {
-      
-console.log(error)
-
+      console.log(error);
     }
-  }
-
+  };
   const handleInput = (e) => {
     setInputData({ ...inputData, [e.target.name]: e.target.value });
   };
@@ -206,7 +198,6 @@ console.log(error)
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan Kota"
                       onChange={handleInput}
-
                     />
                   </div>
 
@@ -262,13 +253,13 @@ console.log(error)
                     />
                   </div>
                   <button
-                  style={{ backgroundColor: " #5E50A1" }}
-                  className=" text-white border border-0 w-100 p-2 fw-bold rounded  "
-                  type="submit"
-                >
-                  {" "}
-                  Simpan
-                </button>
+                    style={{ backgroundColor: " #5E50A1" }}
+                    className=" text-white border border-0 w-100 p-2 fw-bold rounded  "
+                    type="submit"
+                  >
+                    {" "}
+                    Simpan
+                  </button>
                 </form>
               </div>
             </Col>

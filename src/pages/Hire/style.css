@@ -1,0 +1,647 @@
+#hire{
+  font-family: Open Sans;
+  display: flex;
+  padding: 60px;
+  background-color: #F6F7F8;
+  position: relative;
+}
+
+
+/* bio */
+#hire
+.bio {
+  position: relative;
+  width: 357px;
+  height: fit-content;
+  border-radius: 8px;
+  background: #FFF;
+  padding:30px;
+  margin-right: 60px;
+  box-shadow: -8px 8px 10px rgba(0, 0, 0, .1);
+  z-index:3;
+}
+
+#hire
+.bio .photo-profile {
+  width: 150px;
+  /* border-radius:50%; */
+  margin-bottom: 30px;
+}
+
+#hire
+.bio .name {
+  color: #1F2A36;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: left;
+}
+
+#hire
+.bio .job {
+  color: #1F2A36;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+}
+
+#hire
+.bio .address {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+
+#hire
+.bio .address .icon-location {
+  width: 16px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#hire
+.bio .address .text-address {
+  color: #9EA0A5;
+  font-size: 14px;
+  margin: 0;
+}
+
+#hire
+.bio .type-job {
+  font-size: 14px;
+  font-weight: 400;
+  color: #9EA0A5;
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+#hire 
+.bio .description {
+  color: #9EA0A5;
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 50px;
+} 
+
+/* skill */
+#hire 
+.bio .skill .head-skill{
+  color: #1F2A36;
+  font-size: 22px;
+  text-align: left;
+  margin-bottom: 20px;
+} 
+
+#hire 
+.bio .skill .list-skill{
+  display: flex;
+  flex-wrap: wrap;
+  /* background-color: yellowgreen; */
+  gap:10px;
+
+} 
+
+#hire 
+.bio .skill .list-skill .name-skill{
+  display: block;
+  padding: 6px 14px;
+  color: #FFF;
+  border-radius: 4px;
+  border: 1px solid #FBB017;
+  background: rgba(251, 176, 23, 0.60);
+  font-size: 12px;
+  margin: 0;
+} 
+
+/* hire */
+#hire
+.hire-section {
+  text-align: left;
+  width: 570px;
+}
+
+#hire
+.hire-section .head {
+  color: #1F2A36;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+#hire 
+.hire-section .instruction{
+  color: #46505C;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+#hire
+.hire-section .hire-form label {
+  color: #9EA0A5;
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 10px 0;
+}
+
+#hire
+.hire-section .hire-form .position input {
+  width: 100%;
+  font-size: 18px;
+  border-radius: 4px;
+  border: 1px solid #E2E5ED;
+  background: #FFF;
+  padding: 15px;
+  margin-bottom: 20px;
+  color: #858D96;
+}
+
+
+#hire
+.hire-section .hire-form .description textarea:focus ,
+#hire
+.hire-section .hire-form input:focus {
+  box-shadow: -5px 5px 10px rgba(0, 0, 0, .1);
+  outline: none;
+}
+
+#hire
+.hire-section .hire-form .description textarea {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #E2E5ED;
+  background: #FFF;
+  padding: 15px;
+  height: 200px;
+  color: #858D96;
+}
+
+
+#hire 
+.hire-section .hire-button {
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 15px;
+  width: 100%;
+  border-radius: 4px;
+  background: #FBB017;
+  margin-top: 40px;
+}
+
+#hire 
+.hire-section .hire-button:hover {
+  box-shadow: -5px 5px 10px rgba(0, 0, 0, .1);
+  outline: none;
+
+}
+
+/* Small Desk */
+@media (max-width: 1040px) {
+  #hire{
+    padding: 40px;
+  }
+  
+  
+  /* bio */
+  #hire
+  .bio {
+    width: 300px;
+    background: #FFF;
+    padding:28px;
+    margin-right: 40px;
+  }
+  
+  #hire
+  .bio .photo-profile {
+    width: 130px;
+    margin-bottom: 20px;
+  }
+  
+  #hire
+  .bio .name {
+    font-size: 20px;
+  }
+  
+  #hire
+  .bio .job {
+    font-size: 13px;
+  }
+  
+  #hire
+  .bio .address {
+    margin: 12px 0;
+  }
+  
+  #hire
+  .bio .address .icon-location {
+    width: 14px;
+    margin-right: 8px;
+  }
+  
+  #hire
+  .bio .address .text-address {
+    font-size: 13px;
+    margin: 0;
+  }
+  
+  #hire
+  .bio .type-job {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  
+  #hire 
+  .bio .description {
+    font-size: 14px;
+    margin-bottom: 40px;
+  } 
+  
+  /* skill */
+  #hire 
+  .bio .skill .head-skill{
+    font-size: 20px;
+    margin-bottom: 18px;
+  } 
+  
+  #hire 
+  .bio .skill .list-skill{
+    gap:9px;
+  
+  } 
+  
+  #hire 
+  .bio .skill .list-skill .name-skill{
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+  }
+  
+  /* media social */
+  #hire
+  .bio .media-social {
+    margin: 40px 0;
+  }
+  
+  #hire
+  .bio .media-social .icon {
+    margin-right: 18px;
+  }
+  
+  #hire
+  .bio .media-social p {
+    font-size: 14px;
+  }
+  
+  #hire 
+  .bio .hire-button {
+    font-size: 15px;
+  }
+  
+  /* hire */
+  #hire
+  .hire-section {
+    width: 480px;
+  }
+
+  #hire
+  .hire-section .head {
+    font-size: 28px;
+  }
+
+  #hire 
+  .hire-section .instruction{
+    font-size: 14px;
+  }
+
+  #hire
+  .hire-section .hire-form label {
+    font-size: 14px;
+    margin:8px 0;
+  }
+
+  #hire
+  .hire-section .hire-form .position input {
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+
+
+  #hire
+  .hire-section .hire-form .description textarea:focus ,
+  #hire
+  .hire-section .hire-form .position input:focus {
+    box-shadow: -5px 5px 8px rgba(0, 0, 0, .1);
+  }
+
+  #hire
+  .hire-section .hire-form .description textarea {
+    border-radius: 4px;
+    padding: 12px;
+    height: 170px;
+  }
+
+
+  #hire 
+  .hire-section .hire-button {
+    font-size: 14px;
+    padding: 12px;
+    width: 100%;
+    border-radius: 4px;
+    margin-top: 30px;
+  }
+
+  #hire 
+  .hire-section .hire-button:hover {
+    box-shadow: -5px 5px 8px rgba(0, 0, 0, .1);
+  }
+  
+}
+
+
+/* Tablet */
+@media (max-width: 768px) {
+  #hire{
+    flex-direction: column;
+    padding: 30px;
+  }
+  
+  /* bio */
+  #hire
+  .bio {
+    width: 100%;
+    padding:30px;
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+  
+  #hire
+  .bio .photo-profile {
+    width: 130px;
+    margin-bottom: 20px;
+  }
+  
+  #hire
+  .bio .name {
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  #hire
+  .bio .job {
+    font-size: 15px;
+    text-align: center;
+  }
+  
+  #hire
+  .bio .address {
+    margin: 15px 0;
+  }
+  
+  #hire
+  .bio .address .icon-location {
+    width: 15px;
+    margin-right: 13px;
+  }
+  
+  #hire
+  .bio .address .text-address {
+    font-size: 15px;
+    margin: 0;
+  }
+  
+  #hire
+  .bio .type-job {
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+  
+  #hire 
+  .bio .description {
+    font-size: 15px;
+    margin-bottom: 40px;
+  } 
+  
+  /* skill */
+  #hire 
+  .bio .skill .head-skill{
+    font-size: 20px;
+    margin-bottom: 18px;
+  } 
+  
+  #hire 
+  .bio .skill .list-skill{
+    gap:9px;
+  
+  } 
+  
+  #hire 
+  .bio .skill .list-skill .name-skill{
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+  }
+  
+  /* hire */
+  #hire
+  .hire-section {
+    width: 90%;
+    margin: auto;
+  }
+
+  #hire
+  .hire-section .head {
+    font-size: 28px;
+  }
+
+  #hire 
+  .hire-section .instruction{
+    font-size: 14px;
+  }
+
+  #hire
+  .hire-section .hire-form label {
+    font-size: 14px;
+    margin:8px 0;
+  }
+
+  #hire
+  .hire-section .hire-form .position input {
+    border-radius: 4px;
+    padding: 9px;
+    margin-bottom: 13px;
+    font-size: 14px;
+  }
+
+
+  #hire
+  .hire-section .hire-form .description textarea:focus ,
+  #hire
+  .hire-section .hire-form .position input:focus {
+    box-shadow: -5px 5px 8px rgba(0, 0, 0, .1);
+  }
+
+  #hire
+  .hire-section .hire-form .description textarea {
+    border-radius: 4px;
+    padding: 12px;
+    height: 170px;
+
+  }
+
+  #hire 
+  .hire-section .hire-button {
+    font-size: 14px;
+    padding: 12px;
+    width: 100%;
+    border-radius: 4px;
+    margin-top: 30px;
+  }
+
+  #hire 
+  .hire-section .hire-button:hover {
+    box-shadow: -5px 5px 8px rgba(0, 0, 0, .1);
+  }
+
+}
+
+/* Smartphone */
+@media (max-width: 480px) {
+  #hire{
+    padding: 10px;
+  }
+  
+  /* bio */
+  #hire
+  .bio {
+    padding:20px;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+  
+  #hire
+  .bio .photo-profile {
+    width: 100px;
+    margin-bottom: 10px;
+  }
+  
+  #hire
+  .bio .name {
+    font-size: 18px;
+  }
+  
+  #hire
+  .bio .job {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  #hire
+  .bio .address {
+    margin: 12px 0;
+  }
+  
+  #hire
+  .bio .address .icon-location {
+    width: 14px;
+    margin-right: 10px;
+  }
+  
+  #hire
+  .bio .address .text-address {
+    font-size: 14px;
+  }
+  
+  #hire
+  .bio .type-job {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  
+  #hire 
+  .bio .description {
+    font-size: 14px;
+    margin-bottom: 40px;
+  } 
+  
+  /* skill */
+  #hire 
+  .bio .skill .head-skill{
+    font-size: 18px;
+    margin-bottom: 18px;
+  } 
+  
+  #hire 
+  .bio .skill .list-skill{
+    gap:9px;
+  
+  } 
+  
+  #hire 
+  .bio .skill .list-skill .name-skill{
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+  }
+  
+  /* hire */
+  #hire
+  .hire-section {
+    width: 95%;
+    margin: auto;
+  }
+
+  #hire
+  .hire-section .head {
+    font-size: 18px;
+  }
+
+  #hire 
+  .hire-section .instruction{
+    font-size: 12px;
+  }
+
+  #hire
+  .hire-section .hire-form label {
+    font-size: 12px;
+    margin:6px 0;
+  }
+
+  #hire
+  .hire-section .hire-form .position input {
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 14px;
+    font-size: 12px;
+  }
+
+
+  #hire
+  .hire-section .hire-form .description textarea:focus ,
+  #hire
+  .hire-section .hire-form .position input:focus {
+    box-shadow: -5px 5px 8px rgba(0, 0, 0, .1);
+  }
+
+  #hire
+  .hire-section .hire-form .description textarea {
+    border-radius: 4px;
+    font-size: 12px;
+    padding: 12px;
+    height: 170px;
+  }
+
+  #hire 
+  .hire-section .hire-button {
+    font-size: 12px;
+    padding: 12px;
+    width: 100%;
+    border-radius: 4px;
+    margin: 20px 0 100px 0;
+  }
+
+  #hire 
+  .hire-section .hire-button:hover {
+    box-shadow: -5px 5px 8px rgba(0, 0, 0, .1);
+  }
+}

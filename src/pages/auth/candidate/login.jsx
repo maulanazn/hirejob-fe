@@ -32,7 +32,7 @@ export default function LoginPage() {
         }
         dispatch(loginAction(dataLogin))
             .then(() => {
-                navigate('/');
+                // navigate('/');
             })
             .catch(error => {
                 // Handle error here jika diperlukan
