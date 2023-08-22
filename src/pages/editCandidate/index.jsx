@@ -2,10 +2,10 @@ import React, { Fragment } from "react";
 import { Container, Row, Col, Form, FloatingLabel } from "react-bootstrap";
 import "./editCandidate.css";
 import { CiLocationOn } from "react-icons/ci";
-import Candidate from "../../images/imgrecruiter.png";
+import Candidate from "../../assets/images/imgrecruiter.png";
 import { BsPencilFill } from "react-icons/bs";
-import NavBar from "../../../component/navbar";
-import Footer from "../../../component/footer";
+import NavBar from "../../component/navbar";
+import Footer from "../../component/footer";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
@@ -19,14 +19,14 @@ const Index = () => {
     Tempat_kerja: "",
     deskripsi_singkat: "",
     email: "",
-   skill: "",
+    skill: "",
     nomor_telpon: "",
     linkedin: "",
   });
 
   return (
     <Fragment>
-      <NavBar/>
+      <NavBar />
       <Container className="my-5">
         <Row>
           <Col md={4}>
@@ -39,7 +39,7 @@ const Index = () => {
                 >
                   <img
                     className="picture"
-                    src={Candidate}
+                    src="../../assets/images/imgrecruiter.png"
                     alt=""
                     width={150}
                     height={150}
@@ -132,21 +132,21 @@ const Index = () => {
                 </div>
               </form>
               <button
-                  style={{
-                    backgroundColor: "white",
-                    borderColor: "#FBB017",
-                    color: "#FBB017",
-                  }}
-                  className=" w-100 p-2 fw-bold rounded mt-3 "
-                >
-                  Simpan
-                </button>{" "}
+                style={{
+                  backgroundColor: "white",
+                  borderColor: "#FBB017",
+                  color: "#FBB017",
+                }}
+                className=" w-100 p-2 fw-bold rounded mt-3 "
+              >
+                Simpan
+              </button>{" "}
             </div>
             <div
               style={{ backgroundColor: "white" }}
               className="mt-5 p-5 rounded"
             >
-               
+
               <h2 className="fw-bold">Skill</h2>
               <hr />
               <div className="mt-4 d-flex gap-4">
@@ -281,28 +281,28 @@ const Index = () => {
                   </label>
                 </div>
               </div>
-                <Form.Control
+              <Form.Control
                 className="my-5"
-                  type="file"
-                  aria-describedby="passwordHelpBlock"
-                  placeholder="Masukan tempat kerja"
-                />
+                type="file"
+                aria-describedby="passwordHelpBlock"
+                placeholder="Masukan tempat kerja"
+              />
 
               <button
-                  style={{
-                    backgroundColor: "white",
-                    borderColor: "#FBB017",
-                    color: "#FBB017",
-                  }}
-                  className=" w-100 p-2 fw-bold rounded mt-3 "
-                >
-                  Tambah Portofolio
-                </button>{" "}
+                style={{
+                  backgroundColor: "white",
+                  borderColor: "#FBB017",
+                  color: "#FBB017",
+                }}
+                className=" w-100 p-2 fw-bold rounded mt-3 "
+              >
+                Tambah Portofolio
+              </button>{" "}
             </div>
           </Col>
         </Row>
       </Container>
-      <Footer/>
+      <Footer />
     </Fragment>
   );
 };

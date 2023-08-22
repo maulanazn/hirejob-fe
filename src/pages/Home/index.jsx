@@ -27,8 +27,6 @@ export default function HomePage() {
         const url = new URL('https://lazy-teal-piranha-vest.cyclic.cloud/recruiter/all-candidate');
         url.searchParams.append('page', page);
         url.searchParams.append('limit', 10);
-        url.searchParams.append('searchBy', 'nama');
-        url.searchParams.append('search', 'tambun');
 
         axios.get(url, {
             headers: {
@@ -37,7 +35,7 @@ export default function HomePage() {
         })
             .then((res) => {
                 console.log(res.data.data)  // ini harus pake data.data
-                const totalPage = Math.ceil(res.totaldata / 10)
+                const totalPage = Math.ceil(res.data.data.length / 10)
                 manipulateTotalPage(totalPage)
                 setData(res.data.data) // ini harus pake data.data
             })

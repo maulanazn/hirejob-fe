@@ -7,8 +7,8 @@ import LoginCandidate from './pages/auth/candidate/login'
 import RegisterCandidate from './pages/auth/candidate/register'
 import LoginRecruiter from './pages/auth/recruiter/login'
 import RegisterRecruiter from './pages/auth/recruiter/register'
-import EditRecruiter from "./assets/pages/edit Recruiter/index"
-import EditCandidate from "./assets/pages/editCandidate/index"
+import EditRecruiter from "./pages/edit Recruiter/index"
+import EditCandidate from "./pages/editCandidate/index"
 import Home from './pages/Home'
 const App = () => {
   return (

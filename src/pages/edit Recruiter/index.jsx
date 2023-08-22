@@ -9,10 +9,10 @@ import {
 } from "react-bootstrap";
 import "./editReqruiter.css";
 import { CiLocationOn } from "react-icons/ci";
-import recruiter from "../../images/imgrecruiter.png";
+import recruiter from "../../assets/images/imgrecruiter.png";
 import { BsPencilFill } from "react-icons/bs";
-import NavBar from "../../../component/navbar";
-import Footer from "../../../component/footer";
+import NavBar from "../../component/navbar";
+import Footer from "../../component/footer";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
@@ -34,14 +34,14 @@ const Index = () => {
   useEffect(() => {
     const getDetail = async () => {
       try {
-        const getDetailRecruiter = await axios.post(
-          import.meta.env.VITE_BASE_URL + `/recruiter/photoprofile`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
+        // const getDetailRecruiter = await axios.post(
+        //   import.meta.env.VITE_BASE_URL + `/recruiter/photoprofile`,
+        //   {
+        //     headers: {
+        //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+        //     },
+        //   }
+        // );
         console.log(getDetailRecruiter);
         setData(getDetailRecruiter.data.data);
       } catch (error) {
@@ -80,10 +80,10 @@ const Index = () => {
 
     try {
       const editRecruiter = await axios.post(
-        import.meta.env.VITE_BASE_URL + "/recruiter/bio-recruiter",
+        import.meta.env.VITE_BASE_URL + "/recruiter/bio-recruiter", bodyIndex, // tambah bodyindex buat simpen token
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
-    console.log(localStorage.getItem("token"))
+      console.log(localStorage.getItem("token"))
     } catch (error) {
       console.log(error);
     }
@@ -113,13 +113,13 @@ const Index = () => {
                   >
                     <img
                       className="picture"
-                      src={recruiter}
+                      src="../../assets/images/imgrecruiter.png"
                       alt=""
                       width={150}
                       height={150}
                     />
                     <div className="d-flex text-center justify-content-center gap-2 mt-2">
-                      <BsPencilFill size={18} />
+                      {/* <BsPencilFill size={18} /> */}
                       <p className="m-0">Edit</p>
                     </div>
                   </label>
@@ -131,7 +131,7 @@ const Index = () => {
                   <h4> PT Mencari Pintu Taubat </h4>
                   <h6>Financial</h6>
                   <div className="d-flex mt-">
-                    <CiLocationOn size={20} />
+                    {/* <CiLocationOn size={20} /> */}
                     <p>Purwokerto, Jawa Tengah</p>
                   </div>
                 </div>
