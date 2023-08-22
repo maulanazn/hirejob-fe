@@ -46,6 +46,17 @@ export default function RegisterPage() {
         dispatch(registerAction(userData))
     }
 
+    const handleButtonClick = (e) => {
+        if (!isValidPassword(userData.password)) {
+            setPasswordError("Password harus memiliki huruf kapital dan karakter unik");
+            e.preventDefault();
+            return false;
+        }
+        afterRegister();
+        return true;
+    }
+
+
     const afterRegister = () => toast("Verifikasi Email Anda!")
 
     const onUserChange = (e) => {
@@ -56,7 +67,7 @@ export default function RegisterPage() {
         if (e.target.name === "password") setPasswordError("");
         if (e.target.name === "confirm") setConfirmError("")
     }
-    
+
 
     return (
         <>
@@ -139,7 +150,7 @@ export default function RegisterPage() {
                                 />
                                 {confirmError && <span className="error1">{confirmError}</span>}
                             </div>
-                            <button type="submit" className="tolog" onClick={afterRegister} disabled={!allFieldsFilled() || !isValidPassword (userData.password) || userData.password !== userData.confirm}>Daftar</button>
+                            <button type="submit" className="tolog" onClick={afterRegister} disabled={!allFieldsFilled() || !isValidPassword(userData.password) || userData.password !== userData.confirm}>Daftar</button>
                             <p className="account">Anda sudah punya akun? <Link to={'/login/candidate'} className="href">Masuk disini</Link></p>
                         </form>
                     </div>
