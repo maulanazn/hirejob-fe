@@ -18,7 +18,7 @@ const userReducer = (state = initialState, action) => {
         };
       //get user by id
       case 'GET_USER_SUCCESS':
-        console.log('ini success',action.payload)
+        // console.log('ini success',action.payload)
         return {
             ...state,
             user: action.payload,
