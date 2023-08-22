@@ -23,17 +23,22 @@ export default function HomePage() {
         }
         return setTotalPage(rows)
     }
-
+    const token = localStorage.getItem('token')
     const getData = (page) => {
         const url = new URL('https://lazy-teal-piranha-vest.cyclic.cloud/recruiter/all-candidate');
         url.searchParams.append('page', page);
         url.searchParams.append('limit', 10);
 
-        axios.get(url)
+        axios.get(url, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
             .then((res) => {
-                console.log(res)
-                manipulateTotalPage(5)
-                setData(res.data)
+                console.log(res.data.data)  // ini harus pake data.data
+                const totalPage = Math.ceil(res.data.data.length / 10)
+                manipulateTotalPage(totalPage)
+                setData(res.data.data) // ini harus pake data.data
             })
             .catch((err) => {
                 console.log(err)

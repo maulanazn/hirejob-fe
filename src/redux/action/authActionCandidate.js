@@ -5,7 +5,7 @@ export const loginAction = (data, navigate) =>
     async (dispatch) => {
         try{
             dispatch({type: 'LOGIN_PENDING'})
-            const result = await axios.post(`${URL}/user/login`,data)
+            const result = await axios.post(`${URL}/user/login/`,data)
             localStorage.setItem("token", result.data.data)
             localStorage.setItem("email", result.data.data.email)
             localStorage.setItem("password", result.data.data.password)

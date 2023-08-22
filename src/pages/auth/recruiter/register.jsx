@@ -24,8 +24,7 @@ export default function RegisterPage() {
         password: '',
         confirm: '',
     });
-
-    // const [emailError, setEmailError] = useState("");
+    
     const allFieldsFilled = () => {
         return Object.values(userData).every(field => field !== "");
     }
