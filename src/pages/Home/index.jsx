@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Navbar, NavbarBrand, Card } from "react-bootstrap";
+import { Container, Navbar, NavbarBrand } from "react-bootstrap";
 import NavigationBar from "../../component/navbar";
 import Search from "../../component/search";
 import CardBody from "../../component/cardBody";

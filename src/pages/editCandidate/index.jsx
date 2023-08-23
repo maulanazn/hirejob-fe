@@ -1,5 +1,5 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { Container, Row, Col, Form, FloatingLabel } from "react-bootstrap";
+import { Fragment, useState, useEffect } from "react";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import "./editCandidate.css";
 import { CiLocationOn } from "react-icons/ci";
 import Candidate from "../../assets/images/imgrecruiter.png";
@@ -20,7 +20,7 @@ const Index = () => {
     description: "",
   });
   const [skill, setSkill] = useState({
-    skill: "",
+    skill_name: "",
   });
   const [experince, setExperience] = useState({
     position: "",
@@ -30,7 +30,7 @@ const Index = () => {
     description: "",
   });
   const [Portofolio, setPortofolio] = useState({
-    user_name: "",
+    portfolio_name: "",
     repository_link: "",
     app_type: "",
     photo: "",
@@ -109,9 +109,7 @@ const Index = () => {
       .then((response) => {
         console.log("Skill berhasil ditambahkan:", response.data);
         // Reset form setelah berhasil ditambahkan
-        setSkill({
-          skill: "",
-        });
+        setSkill(response.data.data);
       })
       .catch((error) => {
         console.error("Gagal menambahkan skill:", error);
@@ -139,12 +137,19 @@ const Index = () => {
         console.log("Skill berhasil ditambahkan:", response.data);
         // Reset form setelah berhasil ditambahkan
         setExperience({
-          experince: "",
+          position: "",
+          company_name: "",
+          working_start_at: "",
+          working_end_at: "",
+          description: "",
         });
       })
       .catch((error) => {
         console.error("Gagal menambahkan skill:", error);
       });
+  };
+  const handlePortfolioChange = (e) => {
+    setInputData({ ...Portofolio, [e.target.name]: e.target.value });
   };
   const handlePortofolio = (event) => {
     event.preventDefault();
@@ -161,7 +166,7 @@ const Index = () => {
         console.log("Skill berhasil ditambahkan:", response.data);
         // Reset form setelah berhasil ditambahkan
         setPortofolio({
-          user_name: "",
+          portfolio_name: "",
           repository_link: "",
           app_type: "",
           photo: "",
@@ -411,14 +416,14 @@ const Index = () => {
                 className="p-5 mt-5 rounded"
               >
                 <h2>Portofolio</h2>
-                <form onSubmit={handleExperience}>
+                <form onSubmit={handlePortofolio}>
                   <div className="mt-4">
                     <Form.Label>Nama aplikasi</Form.Label>
                     <Form.Control
                       type="text"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan nama aplikasi"
-                      onChange={handleExperienceChange}
+                      onChange={handlePortfolioChange}
                     />
                   </div>
                   <div className="mt-4">
@@ -427,7 +432,7 @@ const Index = () => {
                       type="text"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan Link repository"
-                      onChange={handleExperienceChange}
+                      onChange={handlePortfolioChange}
                     />
                   </div>
                   <div className="d-flex gap-5 mt-3">
@@ -465,7 +470,7 @@ const Index = () => {
                     type="file"
                     aria-describedby="passwordHelpBlock"
                     placeholder="Masukan tempat kerja"
-                    onChange={handleExperienceChange}
+                    onChange={handlePortfolioChange}
                   />
                   <button
                     style={{

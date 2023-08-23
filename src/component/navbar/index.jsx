@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import "./index.css";
 import Logo from "../../assets/image/Logo.svg"
@@ -10,7 +9,7 @@ const NavBar = () => {
     return (
         <Navbar expand="lg" className="bg-body-tertiary" style={{ maxHeight: '100px' }}>
             <Container >
-                <Navbar.Brand href="#home">
+                <Navbar.Brand href="/">
                     <img
                         src={Logo}
                         alt=""
