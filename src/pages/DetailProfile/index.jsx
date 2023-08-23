@@ -1,5 +1,5 @@
-import React, { Component, useEffect } from "react"
-import { getSkill, getUserById } from "../../redux/actions/userAction";
+import { useEffect } from "react"
+import { getUserById } from "../../redux/actions/userAction";
 import './style.css'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
