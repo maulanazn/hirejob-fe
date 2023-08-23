@@ -36,7 +36,7 @@ const CardBody = (props) => {
                         </div>
                     </div>
                     <div className="d-block d-md-flex align-items-md-center mt-3 mt-md-0">
-                        <Button className="btn-sm px-3 border-0 py-2 rounded-0 custom-button d-block mx-auto">
+                        <Button className="btn-sm px-3 border-0 py-2 rounded-0 custom-button d-block mx-auto" href="/detail-profile/:id">
                             Lihat Profile
                         </Button>
                     </div>

@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { getUserById } from "../../redux/actions/userAction";
+import { getUserById, getUserPortfolio } from "../../redux/actions/userAction";
 import './style.css'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -13,15 +13,16 @@ import defaultPhotoProfile from './assets/pp.jpg'
 const DetailProfile = () => {
   const dispatch = useDispatch();
 
-  const {id} = useParams('id')
+  const {id} = useParams()
 
-  const {user} = useSelector((state)=>state.user)
-
-
+  const {user} = useSelector((state)=>state)
 
   useEffect(()=> {
-    dispatch(getUserById(id))
-    console.log(user,'ini user')
+    dispatch(getUserById(localStorage.getItem("token")))
+  },[])
+
+  useEffect(()=> {
+    dispatch(getUserPortfolio(id))
   },[])
 
   return (
@@ -29,7 +30,6 @@ const DetailProfile = () => {
       <div className="bio">
           <img src={user.photo_profile ? user.photo_profile : defaultPhotoProfile} alt={user.photo_profile} className="photo-profile"/>
         
-
           <h1 className='name' >{user.user_name}</h1>
           <h3 className='job'>Web Developer</h3>
           <div className="address">
