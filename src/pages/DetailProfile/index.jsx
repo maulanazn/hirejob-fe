@@ -21,10 +21,11 @@ const DetailProfile = () => {
     const tanggal = new Date(inputDate).toLocaleDateString('id-ID', options);
     return tanggal;
   }
-
+  const skills = 'html,css,php,js,react,express,postgre'
   const workStart = formatDate(worker.working_start_at)
   const workEnd = formatDate(worker.working_end_at)
-
+  // const skillsArr = worker.user_skill.split(',');
+  const skillsArr = skills.split(',');
   return (
     <div id='detail-profile'>
       <div className="bio">
@@ -37,15 +38,17 @@ const DetailProfile = () => {
             <h3 className="text-address">{worker.user_domicile}</h3>
           </div>
 
-          <h3 className="type-job">{worker.user_position}</h3>
+          <h3 className="type-job">{worker.user_position}Leader</h3>
 
           <p className="description">{worker.user_description}</p>
 
           <div className="skill">
-            <h2 className="head-skill">Skill</h2>
+            <h2 className="head-skill">Skills</h2>
 
             <div className="list-skill">
-              <p className="name-skill">{worker.user_skill}</p>   
+              {skillsArr.map((skill)=>(
+                <p className="name-skill">{skill}</p>   
+              ))}
             </div>  
           </div>
 
@@ -82,7 +85,7 @@ const DetailProfile = () => {
 
             <div className="list-portfolio">
               <div className="card-portfolio">
-                <img src={worker.portfolio_photo} className="image-portfolio"/>
+                <div className="image-portfolio" style={{backgroundImage:`url("${worker.portfolio_photo}")`}}/>
                 <h5 className="title">{worker.portfolio_name}</h5>
               </div>
 
@@ -96,7 +99,7 @@ const DetailProfile = () => {
           <div className="list-pengalaman">
 
             <div className="card-pengalaman">
-              <img src="/image/logo-tokopedia.png" alt="" className="image-pengalaman" />
+              <img src="/image/company.svg" alt="" className="image-pengalaman" />
               <div className="info-pengalaman">
                 <h3 className="job">{worker.work_position}</h3>
                 <h4 className="company">{worker.company_name}</h4>
