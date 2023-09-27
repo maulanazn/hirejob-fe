@@ -2,6 +2,7 @@
   font-family: Open Sans;
   display: flex;
   padding: 60px;
+  gap:30px;
   background-color: #F6F7F8;
   position: relative;
 }
@@ -11,12 +12,13 @@
 #detail-profile
 .bio {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 357px;
   height: fit-content;
   border-radius: 8px;
   background: #FFF;
   padding:30px;
-  margin-right: 60px;
   box-shadow: -8px 8px 10px rgba(0, 0, 0, .1);
   z-index:3;
 }
@@ -25,7 +27,7 @@
 .bio .photo-profile {
   width: 150px;
   border-radius:50%;
-  margin-bottom: 30px;
+  margin:0 auto 30px;
 }
 
 #detail-profile
@@ -123,9 +125,10 @@
 }
 
 #detail-profile
-.bio .media-social .icon {
+.bio .media-social .icon-sos {
   display: inline-block;
   margin-right: 20px;
+  width: 30px;
 }
 
 #detail-profile
@@ -138,6 +141,7 @@
 #detail-profile 
 .bio .hire-button {
   border-radius: 4px;
+  padding: 10px;
   background: #5E50A1;
   color: #FFF;
   font-size: 16px;
@@ -297,7 +301,6 @@
     width: 300px;
     background: #FFF;
     padding:28px;
-    margin-right: 40px;
   }
   
   #detail-profile
@@ -372,7 +375,7 @@
   }
   
   #detail-profile
-  .bio .media-social .icon {
+  .bio .media-social .icon-sos {
     margin-right: 18px;
   }
   
@@ -479,7 +482,6 @@
   .bio {
     width: 100%;
     padding:30px;
-    margin-right: 0;
     margin-bottom: 30px;
   }
   
@@ -557,7 +559,7 @@
   }
   
   #detail-profile
-  .bio .media-social .icon {
+  .bio .media-social .icon-sos {
     margin-right: 18px;
   }
   
@@ -668,7 +670,7 @@
   #detail-profile
   .bio .photo-profile {
     width: 100px;
-    margin-bottom: 10px;
+    margin: 20px auto;
   }
   
   #detail-profile
@@ -737,7 +739,7 @@
   }
   
   #detail-profile
-  .bio .media-social .icon {
+  .bio .media-social .icon-sos {
     margin-right: 18px;
   }
   
@@ -749,6 +751,7 @@
   #detail-profile 
   .bio .hire-button {
     font-size: 15px;
+    padding: 10px;
   }
   
   

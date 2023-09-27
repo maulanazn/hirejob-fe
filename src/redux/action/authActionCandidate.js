@@ -4,8 +4,9 @@ import {URL} from '../../pages/config/URL.js';
 export const loginAction = (data, navigate) =>
     async (dispatch) => {
         try{
+            console.log(data)
             dispatch({type: 'LOGIN_PENDING'})
-            const result = await axios.post(`${URL}/user/login/`,data)
+            const result = await axios.post(`${URL}/login`,data)
             localStorage.setItem("token", result.data.data)
             localStorage.setItem("email", result.data.data.email)
             localStorage.setItem("password", result.data.data.password)
@@ -23,7 +24,7 @@ export const registerAction = (data) =>
         try {
             dispatch({type: 'REGISTER_PENDING'})
 
-            const result = await axios.post(`${URL}/user/`, data);
+            const result = await axios.post(`${URL}/register`, data);
             dispatch({payload: result.data.data, type: 'REGISTER_SUCCESS'})
         } catch (error) {
             dispatch({payload: error.response.data.message, type: 'REGISTER_FAILED'})

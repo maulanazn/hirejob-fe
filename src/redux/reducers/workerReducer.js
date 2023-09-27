@@ -1,28 +1,30 @@
 const initialState = {
-  users: [],
+  workers: [],
   totalCount:null,
-  user:{},
+  worker:{},
   isError:false,
   isLoading : false,
   showModal:false,
   modalMessage:{}
 };
 
-const userReducer = (state = initialState, action) => {
+const workerReducer = (state = initialState, action) => {
   switch (action.type) {
       case 'PENDING':
         return {
             ...state,
             isLoading:true,
         };
-      //get user by id
-      case 'GET_USER_SUCCESS':
+      //get worker by id
+      case 'GET_WORKER_SUCCESS':
+        console.log('get worker success')
         return {
             ...state,
-            user: action.payload,
+            worker: action.payload.data[0],
             isLoading:false
         };
-      case 'GET_USER_FAILED':
+      case 'GET_WORKER_FAILED':
+        console.log('get worker fail')
         return {
           ...state,
           isError: true,
@@ -39,4 +41,4 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-export default userReducer;
+export default workerReducer;
