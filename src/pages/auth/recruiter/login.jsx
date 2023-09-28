@@ -3,7 +3,7 @@ import './assets/login.css';
 import bg from './assets/true-agency-o4UhdLv5jbQ-unsplash 1.png';
 import logo from './assets/Group 978.svg';
 import txt from './assets/Temukan developer berbakat & terbaik di berbagai bidang keahlian.svg';
-import { loginAction } from '../../../redux/action/authActionRecruiter';
+import { loginAction } from '../../../redux/actions/authActionRecruiter';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Alert from '../../component/alert';

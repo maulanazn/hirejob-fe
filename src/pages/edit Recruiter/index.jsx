@@ -5,8 +5,6 @@ import {
   Row,
   Col,
   Form,
-  FloatingLabel,
-  Navbar,
 } from "react-bootstrap";
 import "./editReqruiter.css";
 import { CiLocationOn } from "react-icons/ci";
@@ -14,13 +12,14 @@ import recruiter from "../../assets/images/imgrecruiter.png";
 import { BsPencilFill } from "react-icons/bs";
 import NavBar from "../../component/navbar";
 import Footer from "../../component/footer";
-import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateRecBioAction } from "../../redux/actions/bioActions";
 
 const Index = () => {
-  const { id } = useParams();
-  const [data, setData] = useState([]);
-  const [inputData, setInputData] = useState({
+  const {id} = useParams();
+  const dispatch = useDispatch();
+  const [userData, setUserData] = useState({
     company_name: "",
     company_field: "",
     province: "",
@@ -28,71 +27,45 @@ const Index = () => {
     company_info: "",
     email: "",
     company_email: "",
-    phone: "",
+    company_phone: "",
     linkedin_url: "",
+    photo: ""
   });
+
   useEffect(() => {
-    const getDetail = async () => {
-      try {
-        const getDetailRecruiter = await axios.get(
-          import.meta.env.VITE_BASE_URL + `/workers/photo/profil`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        console.log(getDetailRecruiter);
-        setData(getDetailRecruiter.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getDetail();
-  }, []);
-  useEffect(() => {
-    data &&
-      setInputData({
-        ...inputData,
-        company_name: inputData.company_name,
-        company_field: inputData.company_field,
-        province: inputData.province,
-        city: inputData.city,
-        company_info: inputData.company_info,
-        email: inputData.email,
-        company_email: inputData.company_email,
-        phone: inputData.phone,
-        linkedin_url: inputData.linkedin_url,
-      });
+    setUserData({
+      ...inputData,
+      company_name: userData.company_name,
+      company_field: userData.company_field,
+      province: userData.province,
+      city: userData.city,
+      company_info: userData.company_info,
+      email: userData.email,
+      company_email: userData.company_email,
+      company_phone: userData.company_phone,
+      linkedin_url: userData.linkedin_url,
+      photo: userData.photo
+    });
   }, [data]);
+
   const putRecruiter = async (event) => {
     event.preventDefault();
     let bodyIndex = new FormData();
-    bodyIndex.append("company_name", inputData.company_name);
-    bodyIndex.append("company_field", inputData.company_field);
-    bodyIndex.append("province", inputData.province);
-    bodyIndex.append("city", inputData.city);
-    bodyIndex.append("company_info", inputData.company_info);
-    bodyIndex.append("email", inputData.email);
-    bodyIndex.append("company_email", inputData.company_email);
-    bodyIndex.append("phone", inputData.phone);
-    bodyIndex.append("linkedin_url", inputData.linkedin_url);
+    bodyIndex.append("company_name", userData.company_name);
+    bodyIndex.append("company_field", userData.company_field);
+    bodyIndex.append("province", userData.province);
+    bodyIndex.append("city", userData.city);
+    bodyIndex.append("company_info", userData.company_info);
+    bodyIndex.append("email", userData.email);
+    bodyIndex.append("company_email", userData.company_email);
+    bodyIndex.append("phone", userData.phone);
+    bodyIndex.append("linkedin_url", userData.linkedin_url);
+    bodyIndex.append("photo", userData.photo);
 
-    try {
-      const editRecruiter = await axios.post(
-        import.meta.env.VITE_BASE_URL + "/recruiter/bio-recruiter",
-        bodyIndex, // tambah bodyindex buat simpen token
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      );
-      console.log(localStorage.getItem("token"));
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(updateRecBioAction(bodyIndex));
   };
   const handleInput = (e) => {
-    setInputData({ ...inputData, [e.target.name]: e.target.value });
+    setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -116,7 +89,7 @@ const Index = () => {
                   >
                     <img
                       className="picture"
-                      src={data?.data?.photo_profile || recruiter}
+                      src={data?.data?.photo || recruiter}
                       alt=""
                       width={150}
                       height={150}
@@ -164,7 +137,7 @@ const Index = () => {
               <div style={{ backgroundColor: "white" }} className="p-5 rounded">
                 <h2 className="fw-bold"> Data diri</h2>
                 <hr />
-                <form onSubmit={putRecruiter}>
+                <form onSubmit={putRecruiter} encType="multipart/form-data">
                   <div className="mt-4">
                     <Form.Label>Nama Perusahaan</Form.Label>
                     <Form.Control

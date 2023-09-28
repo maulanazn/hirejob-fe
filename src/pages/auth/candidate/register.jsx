@@ -3,8 +3,8 @@ import './assets/register.css';
 import bg from './assets/true-agency-o4UhdLv5jbQ-unsplash 1.png';
 import logo from './assets/Group 978.svg';
 import txt from './assets/Temukan developer berbakat & terbaik di berbagai bidang keahlian.svg';
-import { registerAction } from '../../../redux/action/authActionCandidate';
-import { Link } from 'react-router-dom';
+import { registerAction } from '../../../redux/actions/authActionCandidate';
+import { Link, useNavigate } from 'react-router-dom';
 import Alert from '../../component/alert';
 import { BounceLoader } from 'react-spinners';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function RegisterPage() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { isError, errorMessage, isLoading } = useSelector(state => state.register_candidate);
     const [userData, setUserData] = useState({
         name: '',
@@ -43,7 +44,7 @@ export default function RegisterPage() {
             setConfirmError("Kata Sandi tidak cocok"); // 3. Menampilkan pesan error
             return;
         }
-        dispatch(registerAction(userData))
+        dispatch(registerAction(userData,navigate))
     }
 
     const handleButtonClick = (e) => {

@@ -3,7 +3,7 @@ import './assets/register.css';
 import bg from './assets/true-agency-o4UhdLv5jbQ-unsplash 1.png';
 import logo from './assets/Group 978.svg';
 import txt from './assets/Temukan developer berbakat & terbaik di berbagai bidang keahlian.svg';
-import { registerAction } from '../../../redux/action/authActionRecruiter';
+import { registerAction } from '../../../redux/actions/authActionRecruiter';
 import { Link } from 'react-router-dom';
 import Alert from '../../component/alert';
 import { BounceLoader } from 'react-spinners';

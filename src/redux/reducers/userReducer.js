@@ -1,16 +1,8 @@
-const initialState = {
-  users: [],
-  totalCount:null,
-  user:{},
-  isError:false,
-  isLoading : false,
-  showModal:false,
-  modalMessage:{}
-};
+import initialState from './../config/initialState';
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-      case 'PENDING':
+      case 'GET_USER_PENDING':
         return {
             ...state,
             isLoading:true,
@@ -19,7 +11,7 @@ const userReducer = (state = initialState, action) => {
       case 'GET_USER_SUCCESS':
         return {
             ...state,
-            user: action.payload,
+            data: action.payload,
             isLoading:false
         };
       case 'GET_USER_FAILED':

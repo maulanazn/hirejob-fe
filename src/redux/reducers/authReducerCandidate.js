@@ -1,4 +1,4 @@
-import initialState from '../../pages/config/initialState';
+import initialState from './../config/initialState';
 
 export const loginReducer = (state = initialState, action) => {
     if (action.type === 'LOGIN_PENDING') {

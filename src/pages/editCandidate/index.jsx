@@ -8,23 +8,26 @@ import NavBar from "../../component/navbar";
 import Footer from "../../component/footer";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateCandidateBioAction } from "../../redux/actions/bioActions";
+import { getUserById } from "../../redux/actions/userAction";
 
 const Index = () => {
   const { id } = useParams();
-  const [data, setData] = useState([]);
-  const [inputData, setInputData] = useState({
-    user_name: "",
-    province: "",
-    city: "",
+  const {data} = useSelector(state => state.user)
+  const dispatch = useDispatch();
+  const [userData, setUserData] = useState({
+    photo: "",
+    name: "",
+    domicile: "",
     last_work: "",
     description: "",
-  });
-  const [skill, setSkill] = useState({
     skill_name: "",
   });
-  const [experince, setExperience] = useState({
+  const [experience, setExperience] = useState({
     position: "",
     company_name: "",
+    work_experience_photo: "",
     working_start_at: "",
     working_end_at: "",
     description: "",
@@ -35,126 +38,50 @@ const Index = () => {
     app_type: "",
     photo: "",
   });
+
   useEffect(() => {
-    const getDetail = async () => {
-      try {
-        const getDetailCandidate = await axios.get(
-          import.meta.env.VITE_BASE_URL + `/workers/photo/profil`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        console.log(getDetailCandidate);
-        setData(getDetailCandidate.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getDetail();
-  }, []);
-  useEffect(() => {
-    data &&
-      setInputData({
-        ...inputData,
-        user_name: inputData.user_name,
-        province: inputData.province,
-        city: inputData.city,
-        last_work: inputData.last_work,
-        description: inputData.description,
-      });
-  }, [data]);
+    dispatch(getUserById())
+  }, [])
+
   const putCandidate = async (event) => {
     event.preventDefault();
     let bodyIndex = new FormData();
-    bodyIndex.append("user_name", inputData.user_name);
-    bodyIndex.append("province", inputData.province);
-    bodyIndex.append("city", inputData.city);
-    bodyIndex.append("last_work", inputData.last_work);
-    bodyIndex.append("description", inputData.description);
 
-    try {
-      const editCandidate = await axios.post(
-        import.meta.env.VITE_BASE_URL + "/recruiter/bio-recruiter",
-        bodyIndex, // tambah bodyindex buat simpen token
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      );
-      console.log(editCandidate);
-    } catch (error) {
-      console.log(error);
-    }
+    bodyIndex.append("photo", userData.photo);
+    bodyIndex.append("name", userData.name);
+    bodyIndex.append("domicile", userData.domicile);
+    bodyIndex.append("last_work", userData.last_work);
+    bodyIndex.append("description", userData.description);
+    bodyIndex.append("skill_name", userData.skill_name);
+
+    dispatch(updateCandidateBioAction(bodyIndex));
   };
 
-  const handleSkillChange = (event) => {
-    setSkill({
-      ...skill,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const handleSkill = (event) => {
-    event.preventDefault();
-
-    // Lakukan POST request menggunakan Axios
-    axios
-      .post(import.meta.env.VITE_BASE_URL + "/skill", skill, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-
-      .then((response) => {
-        console.log("Skill berhasil ditambahkan:", response.data);
-        // Reset form setelah berhasil ditambahkan
-        setSkill(response.data.data);
-      })
-      .catch((error) => {
-        console.error("Gagal menambahkan skill:", error);
-      });
-  };
-  const handleExperienceChange = (event) => {
-    setExperience({
-      ...experince,
-      [event.target.name]: event.target.value,
-    });
+  const handleInput = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
   const handleExperience = (event) => {
     event.preventDefault();
 
-    // Lakukan POST request menggunakan Axios
     axios
-      .post(import.meta.env.VITE_BASE_URL + "/workers/workexp", skill, {
+      .post(import.meta.env.VITE_BASE_URL + "/worker/workexp", experience, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
+  };
 
-      .then((response) => {
-        console.log("Skill berhasil ditambahkan:", response.data);
-        // Reset form setelah berhasil ditambahkan
-        setExperience({
-          position: "",
-          company_name: "",
-          working_start_at: "",
-          working_end_at: "",
-          description: "",
-        });
-      })
-      .catch((error) => {
-        console.error("Gagal menambahkan skill:", error);
-      });
+  const handleExperienceChange = (event) => {
+    setExperience({
+      ...experience,
+      [event.target.name]: event.target.value,
+    });
   };
-  const handlePortfolioChange = (e) => {
-    setInputData({ ...Portofolio, [e.target.name]: e.target.value });
-  };
+
   const handlePortofolio = (event) => {
     event.preventDefault();
 
-    // Lakukan POST request menggunakan Axios
     axios
       .post(import.meta.env.VITE_BASE_URL + "/workers/portofolio", Portofolio, {
         headers: {
@@ -163,8 +90,6 @@ const Index = () => {
       })
 
       .then((response) => {
-        console.log("Skill berhasil ditambahkan:", response.data);
-        // Reset form setelah berhasil ditambahkan
         setPortofolio({
           portfolio_name: "",
           repository_link: "",
@@ -176,8 +101,9 @@ const Index = () => {
         console.error("Gagal menambahkan skill:", error);
       });
   };
-  const handleInput = (e) => {
-    setInputData({ ...inputData, [e.target.name]: e.target.value });
+
+  const handlePortfolioChange = (e) => {
+    setInputData({ ...Portofolio, [e.target.name]: e.target.value });
   };
 
   return (
@@ -199,7 +125,7 @@ const Index = () => {
                   >
                     <img
                       className="picture"
-                      src={data?.data?.photo_profile || Candidate}
+                      src={data?.data?.photo || Candidate}
                       alt=""
                       width={150}
                       height={150}
@@ -215,16 +141,17 @@ const Index = () => {
                   </span>
                 </div>
                 <div>
-                  <h4> {data?.data?.user_name} </h4>
-                  <h6>Financial</h6>
+                  <h4> {data?.data?.name || 'Microsoft'} </h4>
+                  <h6>{data?.data?.last_work || 'Financial'}</h6>
                   <div className="d-flex mt-">
                     <CiLocationOn size={20} />
-                    <p>Purwokerto, Jawa Tengah</p>
+                    <p>{data?.domicile || 'World'}</p>
                   </div>
                 </div>
               </div>
               <div className="my-3">
                 <button
+                  onClick={putCandidate}
                   style={{ backgroundColor: " #5E50A1" }}
                   className=" text-white border border-0 w-100 p-2 fw-bold rounded  "
                 >
@@ -247,11 +174,12 @@ const Index = () => {
               <div style={{ backgroundColor: "white" }} className="p-5 rounded">
                 <h2 className="fw-bold"> Data diri</h2>
                 <hr />
-                <form>
+                <form onSubmit={putCandidate} encType="multipart/form-data">
                   <div className="mt-4">
                     <Form.Label>Nama Lengkap</Form.Label>
                     <Form.Control
                       type="text"
+                      defaultValue={data?.data?.name}
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan nama lengkap"
                       onChange={handleInput}
@@ -263,6 +191,7 @@ const Index = () => {
                       type="text"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan job desk"
+                      defaultValue={data?.data?.last_work}
                       onChange={handleInput}
                     />
                   </div>
@@ -272,6 +201,7 @@ const Index = () => {
                       type="text"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan domisili"
+                      defaultValue={data?.data?.domicile}
                       onChange={handleInput}
                     />
                   </div>
@@ -281,6 +211,7 @@ const Index = () => {
                       type="text"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan tempat kerja"
+                      defaultValue={data?.data?.last_work}
                       onChange={handleInput}
                     />
                   </div>
@@ -292,22 +223,11 @@ const Index = () => {
                       placeholder="Masukan Deskripsi Pekerjaan"
                       style={{ height: "200px" }}
                       className="form-focus"
+                      defaultValue={data?.data?.description}
                       onChange={handleInput}
                     />
                   </div>
                 </form>
-                <button
-                  style={{
-                    backgroundColor: "white",
-                    borderColor: "#FBB017",
-                    color: "#FBB017",
-                  }}
-                  className=" w-100 p-2 fw-bold rounded mt-3 "
-                  onClick={putCandidate}
-                >
-                  Simpan
-                </button>{" "}
-                <form />
               </div>
               <div
                 style={{ backgroundColor: "white" }}
@@ -315,14 +235,15 @@ const Index = () => {
               >
                 <h2 className="fw-bold">Skill</h2>
                 <hr />
-                <form onSubmit={handleSkill}>
+                <form onSubmit={putCandidate}>
                   <div className="mt-4 d-flex gap-4">
                     <Form.Control
                       className="w-75"
                       type="text"
+                      defaultValue={data?.data?.skill_name}
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan Skill anda"
-                      onChange={handleSkillChange}
+                      onChange={handleInput}
                     />
                     <button className="bg-warning rounded border border-0 text-white fw-bold ">
                       Simpan

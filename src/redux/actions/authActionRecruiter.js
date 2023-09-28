@@ -1,14 +1,13 @@
 import axios from "axios";
-import {URL} from '../../pages/config/URL.js';
+import {URL} from './../config/URL.js';
 
 export const loginAction = (data, navigate) =>
     async (dispatch) => {
         try{
             dispatch({type: 'LOGIN_PENDING'})
-            const result = await axios.post(`${URL}/user/login/`,data)
+            const result = await axios.post(`${URL}/recruiter/login`,data)
+
             localStorage.setItem("token", result.data.data)
-            localStorage.setItem("email", result.data.data.email)
-            localStorage.setItem("password", result.data.data.password)
 
             dispatch({payload: result.data.data, type: 'LOGIN_SUCCESS'})
             navigate('/')
@@ -23,7 +22,8 @@ export const registerAction = (data) =>
         try {
             dispatch({type: 'REGISTER_PENDING'})
 
-            const result = await axios.post(`${URL}/user/`, data);
+            const result = await axios.post(`${URL}/recruiter/register`, data);
+            
             dispatch({payload: result.data.data, type: 'REGISTER_SUCCESS'})
         } catch (error) {
             dispatch({payload: error.response.data.message, type: 'REGISTER_FAILED'})

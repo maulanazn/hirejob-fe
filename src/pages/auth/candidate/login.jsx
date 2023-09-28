@@ -3,7 +3,7 @@ import './assets/login.css';
 import bg from './assets/true-agency-o4UhdLv5jbQ-unsplash 1.png';
 import logo from './assets/Group 978.svg';
 import txt from './assets/Temukan developer berbakat & terbaik di berbagai bidang keahlian.svg';
-import { loginAction } from '../../../redux/action/authActionCandidate';
+import { loginAction } from '../../../redux/actions/authActionCandidate';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Alert from '../../component/alert';
@@ -17,7 +17,6 @@ export default function LoginPage() {
         email: '',
         password: ''
     });
-    const [passwordError, setPasswordError] = useState("");
 
     const isValidPassword = (password) => {
         const regex = /^(?=.*[A-Z])(?=.*[!@#$&*]).{8,}$/;
@@ -26,8 +25,8 @@ export default function LoginPage() {
 
     const loginUser = (e) => {
         e.preventDefault();
-        if (!isValidPassword(dataLogin.password)) {
-            setPasswordError("Password harus memiliki huruf kapital dan karakter unik");
+        if (!isValidPassword(dataLogin.password) && isError) {
+            errorMessage += "Password harus memiliki huruf kapital dan karakter unik";
         }
         dispatch(loginAction(dataLogin, navigate));
     }
@@ -37,7 +36,7 @@ export default function LoginPage() {
             ...dataLogin,
             [e.target.name]: e.target.value
         });
-        if (e.target.name === "password") setPasswordError("");  // reset passwordError jika user mengetik di input password
+        if (e.target.name === "password") errorMessage += "";  // reset passwordError jika user mengetik di input password
     }
 
     return (
@@ -83,7 +82,7 @@ export default function LoginPage() {
                                     value={dataLogin.password}
                                     onChange={onLogin}
                                 />
-                                {passwordError && <span className="error">{passwordError}</span>}
+                                {isError && <span className="error">{errorMessage}</span>}
                             </div>
                             <p className="forgot" >Lupa kata sandi?</p>
                             <button type="submit" className="tolog" onClick={loginUser}>Masuk</button>

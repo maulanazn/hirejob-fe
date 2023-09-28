@@ -1,10 +1,4 @@
-const initialState = {
-  user:{},
-  isError:false,
-  isLoading : false,
-  showModal:false,
-  modalMessage:{}
-};
+import initialState from './../config/initialState';
 
 const hireReducer = (state = initialState, action) => {
   switch (action.type) {

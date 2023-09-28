@@ -3,9 +3,11 @@ import "./index.css";
 import Logo from "../../assets/image/Logo.svg"
 import mail from "../../assets/image/mail.svg";
 import bell from "../../assets/image/bell.svg";
-import photo from "../../assets/image/photo.svg";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
+    const {data} = useSelector(state => state.user)
+
     return (
         <Navbar expand="lg" className="bg-body-tertiary" style={{ maxHeight: '100px' }}>
             <Container >
@@ -36,9 +38,9 @@ const NavBar = () => {
                                 style={{ width: "40px" }}
                             />
                         </Nav.Link>
-                        <Nav.Link href="#profile">
+                        <Nav.Link href="/edit-candidate">
                             <img
-                                src={photo}
+                                src={data?.data?.photo}
                                 alt=""
                                 className="profile"
                                 style={{ width: "40px" }}
