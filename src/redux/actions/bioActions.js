@@ -17,16 +17,32 @@ export const updateCandidateBioAction = (data) => async (dispatch) => {
     }
 }
 
-export const updateRecBioAction = (data) => async (dispatch) => {
+export const updateWorkExpAction = (data) => async (dispatch) => {
     try {
-        dispatch({type: "BIO_UPDATE_PENDING"})
-        const editRec = await axios.post(`${URL}/recruiter/update`, data,
-            {
-            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-            }
-        );
-        dispatch({type: "BIO_UPDATE_SUCCESS", payload: editRec.data})
+        dispatch({type: 'BIO_UPDATE_PENDING'})
+        const result = axios.post(`${import.meta.env.VITE_BASE_URL}/worker/workexp`, data, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    "Content-Type": "multipart/form-data"
+                },
+            })
+        dispatch({type: 'BIO_UPDATE_FAILED', error: result.data})
     } catch (error) {
-        dispatch({type: "BIO_UPDATE_FAILED", error: error.response.data.message})
+        dispatch({type: 'BIO_UPDATE_FAILED', error: error.message})
+    }
+}
+
+export const updatePortfolioAction = (data) => async (dispatch) => {
+    try {
+        dispatch({type: 'BIO_UPDATE_PENDING'})
+        const result = axios.post(`${import.meta.env.VITE_BASE_URL}/worker/portfolio`, data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "multipart/form-data"
+            },
+        })
+        dispatch({type: 'BIO_UPDATE_FAILED', error: result.data})
+    } catch (error) {
+        dispatch({type: 'BIO_UPDATE_FAILED', error: error.message})
     }
 }

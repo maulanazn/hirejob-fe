@@ -1,4 +1,4 @@
-import { Fragment, useState, useRef, useEffect } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import "./editCandidate.css";
 import { CiLocationOn } from "react-icons/ci";
@@ -7,9 +7,9 @@ import { BsPencilFill } from "react-icons/bs";
 import NavBar from "../../component/navbar";
 import Footer from "../../component/footer";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import {useParams} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { updateCandidateBioAction } from "../../redux/actions/bioActions";
+import {updateCandidateBioAction, updatePortfolioAction, updateWorkExpAction} from "../../redux/actions/bioActions";
 import { getUserById } from "../../redux/actions/userAction";
 
 const Index = () => {
@@ -17,6 +17,8 @@ const Index = () => {
   const {data} = useSelector(state => state.user)
   const dispatch = useDispatch();
   const [photo, setPhoto] = useState([]);
+  const [portfolioPhoto, setPortfolioPhoto] = useState([]);
+  const [work_experience_photo, setWorkExpPhoto] = useState([]);
   const [userData, setUserData] = useState({
     photo: "",
     name: "",
@@ -58,7 +60,7 @@ const Index = () => {
     })
   }, [data])
 
-  const putCandidate = async (event) => {
+  const putCandidate = async () => {
     let bodyIndex = new FormData();
 
     bodyIndex.append("photo", photo);
@@ -83,13 +85,16 @@ const Index = () => {
 
   const handleExperience = (event) => {
     event.preventDefault();
+    let bodyIndex = new FormData();
 
-    axios
-      .post(import.meta.env.VITE_BASE_URL + "/worker/workexp", experience, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+    bodyIndex.append("position", experience.position);
+    bodyIndex.append("company_name", experience.company_name);
+    bodyIndex.append("work_experience_photo", work_experience_photo);
+    bodyIndex.append("working_start_at", experience.working_start_at);
+    bodyIndex.append("working_end_at", experience.working_end_at);
+    bodyIndex.append("description", experience.description);
+
+    dispatch(updateWorkExpAction(bodyIndex))
   };
 
   const handleExperienceChange = (event) => {
@@ -99,32 +104,31 @@ const Index = () => {
     });
   };
 
-  const handlePortofolio = (event) => {
-    event.preventDefault();
+  function setPhotoWork(e) {
+    setWorkExpPhoto(e.target.files[0])
+    e.target.files[0] && setExperience({...experience, work_experience_photo: URL.createObjectURL(e.target.files[0])})
+  }
 
-    axios
-      .post(import.meta.env.VITE_BASE_URL + "/workers/portofolio", Portofolio, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+  const handlePortofolio = (e) => {
+    e.preventDefault();
+    let bodyIndex = new FormData();
 
-      .then((response) => {
-        setPortofolio({
-          portfolio_name: "",
-          repository_link: "",
-          app_type: "",
-          photo: "",
-        });
-      })
-      .catch((error) => {
-        console.error("Gagal menambahkan skill:", error);
-      });
+    bodyIndex.append("portfolio_name", Portofolio.portfolio_name);
+    bodyIndex.append("repository_link", Portofolio.repository_link);
+    bodyIndex.append("app_type", Portofolio.app_type);
+    bodyIndex.append("photo", portfolioPhoto);
+
+    dispatch(updatePortfolioAction(bodyIndex));
   };
 
   const handlePortfolioChange = (e) => {
-    setInputData({ ...Portofolio, [e.target.name]: e.target.value });
+    setPortofolio({ ...Portofolio, [event.target.name]: event.target.value });
   };
+
+  const handlePortfolioPhoto = (e) => {
+    setPortfolioPhoto(e.target.files[0])
+    e.target.files[0] && setPortofolio({...Portofolio, photo: URL.createObjectURL(e.target.files[0])})
+  }
 
   return (
     <Fragment>
@@ -133,10 +137,11 @@ const Index = () => {
         style={{ height: "280px", backgroundColor: " #5E50A1" }}
         className="W-100 position-relative"> </div>
         <div className="position-absolute w-100" style={{ top: "200px" }}>
+
+        {/*  FORM USER EDIT */}
         <Container className="">
           <Row>
             <Col md={4}>
-              {/* Di Gabung sama form */}
               <div className="rounded p-3" style={{ backgroundColor: "white" }}>
                 <div className="d-flex justify-content-center">
                   <label
@@ -261,28 +266,29 @@ const Index = () => {
               >
                 <h2 className="fw-bold">Skill</h2>
                 <hr />
-                <form encType="multipart/form-data">
-                  <div className="mt-4 d-flex gap-4">
-                    <Form.Control
-                      className="w-75"
-                      type="text"
-                      defaultValue={userData?.skill_name}
-                      name="skill_name"
-                      aria-describedby="passwordHelpBlock"
-                      placeholder="Masukan Skill anda"
-                      onChange={handleInput}
-                    />
-                    <button onClick={putCandidate} className="bg-warning rounded border border-0 text-white fw-bold ">
-                      Simpan
-                    </button>
-                  </div>
-                </form>
+                <div className="mt-4 d-flex gap-4">
+                  <Form.Control
+                    className="w-75"
+                    type="text"
+                    defaultValue={userData?.skill_name}
+                    name="skill_name"
+                    aria-describedby="passwordHelpBlock"
+                    placeholder="Masukan Skill anda"
+                    onChange={handleInput}
+                  />
+                  <button onClick={putCandidate} className="bg-warning rounded border border-0 text-white fw-bold ">
+                    Simpan
+                  </button>
+                </div>
               </div>
+              {/*  END FORM USER EDIT */}
+
+              {/* FORM WORK EXPERIENCE */}
               <div
                 style={{ backgroundColor: "white" }}
                 className="p-5 mt-5 rounded"
               >
-                <Form onSubmit={handleExperience}>
+                <Form encType="multipart/form-data">
                   <h2>Pengalaman Kerja</h2>
                   <hr />
                   <div className="mt-4">
@@ -291,6 +297,7 @@ const Index = () => {
                       type="text"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Web Developer"
+                      name="position"
                       onChange={handleExperienceChange}
                     />
                     <div>
@@ -304,6 +311,7 @@ const Index = () => {
                               type="text"
                               aria-describedby="passwordHelpBlock"
                               placeholder=" Nama Perusahaan"
+                              name="company_name"
                               onChange={handleExperienceChange}
                             />
                           </div>
@@ -315,6 +323,7 @@ const Index = () => {
                             </Form.Label>
                             <Form.Control
                               type="date"
+                              name="working_start_at"
                               aria-describedby="passwordHelpBlock"
                               placeholder="Januari 2019"
                               onChange={handleExperienceChange}
@@ -328,13 +337,23 @@ const Index = () => {
                             </Form.Label>
                             <Form.Control
                               type="date"
+                              name="working_end_at"
                               aria-describedby="passwordHelpBlock"
                               placeholder="Masukan tempat kerja"
+                              onChange={handleExperienceChange}
                             />
                           </div>
                         </Col>
                       </Row>
                     </div>
+                    <Form.Control
+                        className="my-5"
+                        type="file"
+                        aria-describedby="passwordHelpBlock"
+                        placeholder="Masukan tempat kerja"
+                        name="work_experience_photo"
+                        onChange={setPhotoWork}
+                    />
                     <div className="my-3">
                       <Form.Label>Deskripsi Singkat</Form.Label>
                       <Form.Control
@@ -343,10 +362,12 @@ const Index = () => {
                         placeholder="Masukan Deskripsi Pekerjaan"
                         style={{ height: "200px" }}
                         className="form-focus"
+                        name="description"
                         onChange={handleExperienceChange}
                       />
                     </div>
                     <button
+                      onClick={handleExperience}
                       style={{
                         backgroundColor: "white",
                         borderColor: "#FBB017",
@@ -359,12 +380,15 @@ const Index = () => {
                   </div>
                 </Form>
               </div>
+              {/* END FORM WORK EXPERIENCE */}
+
+              {/* PORTFOLIO EXPERIENCE */}
               <div
                 style={{ backgroundColor: "white" }}
                 className="p-5 mt-5 rounded"
               >
                 <h2>Portofolio</h2>
-                <form onSubmit={handlePortofolio}>
+                <form encType="multipart/form-data">
                   <div className="mt-4">
                     <Form.Label>Nama aplikasi</Form.Label>
                     <Form.Control
@@ -372,6 +396,7 @@ const Index = () => {
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan nama aplikasi"
                       onChange={handlePortfolioChange}
+                      name="portfolio_name"
                     />
                   </div>
                   <div className="mt-4">
@@ -381,6 +406,7 @@ const Index = () => {
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan Link repository"
                       onChange={handlePortfolioChange}
+                      name="repository_link"
                     />
                   </div>
                   <div className="d-flex gap-5 mt-3">
@@ -388,8 +414,10 @@ const Index = () => {
                       <input
                         className="form-check-input"
                         type="radio"
-                        name="flexRadioDefault"
                         id="flexRadioDefault1"
+                        value="Mobile App"
+                        name="app_type"
+                        onChange={handlePortfolioChange}
                       />
                       <label
                         className="form-check-label"
@@ -402,8 +430,10 @@ const Index = () => {
                       <input
                         className="form-check-input"
                         type="radio"
-                        name="flexRadioDefault"
                         id="flexRadioDefault1"
+                        value="Web App"
+                        name="app_type"
+                        onChange={handlePortfolioChange}
                       />
                       <label
                         className="form-check-label"
@@ -417,10 +447,12 @@ const Index = () => {
                     className="my-5"
                     type="file"
                     aria-describedby="passwordHelpBlock"
-                    placeholder="Masukan tempat kerja"
-                    onChange={handlePortfolioChange}
+                    placeholder="Masukan Foto"
+                    name="portfolioPhoto"
+                    onChange={handlePortfolioPhoto}
                   />
                   <button
+                    onClick={handlePortofolio}
                     style={{
                       backgroundColor: "white",
                       borderColor: "#FBB017",
@@ -432,6 +464,8 @@ const Index = () => {
                   </button>{" "}
                 </form>
               </div>
+              {/* END FORM PORTFOLIO */}
+
             </Col>
           </Row>
         </Container>

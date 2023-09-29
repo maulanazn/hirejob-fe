@@ -14,7 +14,7 @@ import NavBar from "../../component/navbar";
 import Footer from "../../component/footer";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updateRecBioAction } from "../../redux/actions/bioActions";
+import { updateRecBioAction } from "../../redux/actions/bioRecActions";
 
 const Index = () => {
   const {id} = useParams();
