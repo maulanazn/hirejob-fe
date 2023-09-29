@@ -13,7 +13,7 @@ export const updateCandidateBioAction = (data) => async (dispatch) => {
         );
         dispatch({type: "BIO_UPDATE_SUCCESS", payload: editCandidate.data})
     } catch (error) {
-        dispatch({type: "BIO_UPDATE_FAILED", error: error.response.data.message})
+        dispatch({type: "BIO_UPDATE_FAILED", error: error.message})
     }
 }
 

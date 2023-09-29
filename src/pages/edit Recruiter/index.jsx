@@ -19,6 +19,7 @@ import { updateRecBioAction } from "../../redux/actions/bioActions";
 const Index = () => {
   const {id} = useParams();
   const dispatch = useDispatch();
+  const [photo, setPhoto] = useState([]);
   const [userData, setUserData] = useState({
     company_name: "",
     company_field: "",
@@ -80,6 +81,7 @@ const Index = () => {
         <Container className="my-5">
           <Row>
             <Col md={4}>
+              {/* Di gabung sama form */}
               <div className="rounded p-3" style={{ backgroundColor: "white" }}>
                 <div className="d-flex justify-content-center">
                   <label
@@ -90,6 +92,7 @@ const Index = () => {
                     <img
                       className="picture"
                       src={data?.data?.photo || recruiter}
+                      value={userData?.photo}
                       alt=""
                       width={150}
                       height={150}

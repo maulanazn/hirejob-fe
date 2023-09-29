@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useRef, useEffect } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import "./editCandidate.css";
 import { CiLocationOn } from "react-icons/ci";
@@ -16,11 +16,13 @@ const Index = () => {
   const { id } = useParams();
   const {data} = useSelector(state => state.user)
   const dispatch = useDispatch();
+  const [photo, setPhoto] = useState([]);
   const [userData, setUserData] = useState({
     photo: "",
     name: "",
     domicile: "",
     last_work: "",
+    position: "",
     description: "",
     skill_name: "",
   });
@@ -43,14 +45,27 @@ const Index = () => {
     dispatch(getUserById())
   }, [])
 
+  useEffect(() => {
+    data && setUserData({
+      ...userData,
+      photo: data?.data?.photo,
+      name: data?.data?.name,
+      domicile: data?.data?.domicile,
+      last_work: data?.data?.last_work,
+      position: data?.data?.position,
+      description: data?.data?.description,
+      skill_name: data?.data?.skill_name,
+    })
+  }, [data])
+
   const putCandidate = async (event) => {
-    event.preventDefault();
     let bodyIndex = new FormData();
 
-    bodyIndex.append("photo", userData.photo);
+    bodyIndex.append("photo", photo);
     bodyIndex.append("name", userData.name);
     bodyIndex.append("domicile", userData.domicile);
     bodyIndex.append("last_work", userData.last_work);
+    bodyIndex.append("position", userData.position);
     bodyIndex.append("description", userData.description);
     bodyIndex.append("skill_name", userData.skill_name);
 
@@ -60,6 +75,11 @@ const Index = () => {
   const handleInput = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
+
+  function setOnPhoto(e) {
+    setPhoto(e.target.files[0])
+    e.target.files[0] && setUserData({...userData, photo: URL.createObjectURL(e.target.files[0])})
+  }
 
   const handleExperience = (event) => {
     event.preventDefault();
@@ -116,6 +136,7 @@ const Index = () => {
         <Container className="">
           <Row>
             <Col md={4}>
+              {/* Di Gabung sama form */}
               <div className="rounded p-3" style={{ backgroundColor: "white" }}>
                 <div className="d-flex justify-content-center">
                   <label
@@ -125,7 +146,7 @@ const Index = () => {
                   >
                     <img
                       className="picture"
-                      src={data?.data?.photo || Candidate}
+                      src={userData?.photo || Candidate}
                       alt=""
                       width={150}
                       height={150}
@@ -137,15 +158,15 @@ const Index = () => {
                     </div>
                   </label>
                   <span>
-                    <input className="input-edit" type="file" id="addImage" />
+                    <input className="input-edit" name="photo" onChange={setOnPhoto} accept="image/*" type="file" id="addImage" />
                   </span>
                 </div>
                 <div>
-                  <h4> {data?.data?.name || 'Microsoft'} </h4>
-                  <h6>{data?.data?.last_work || 'Financial'}</h6>
+                  <h4> {userData?.name || 'Microsoft'} </h4>
+                  <h6>{userData?.position || 'Financial'}</h6>
                   <div className="d-flex mt-">
                     <CiLocationOn size={20} />
-                    <p>{data?.domicile || 'World'}</p>
+                    <p>{userData?.domicile || 'World'}</p>
                   </div>
                 </div>
               </div>
@@ -174,14 +195,15 @@ const Index = () => {
               <div style={{ backgroundColor: "white" }} className="p-5 rounded">
                 <h2 className="fw-bold"> Data diri</h2>
                 <hr />
-                <form onSubmit={putCandidate} encType="multipart/form-data">
+                <form encType="multipart/form-data">
                   <div className="mt-4">
                     <Form.Label>Nama Lengkap</Form.Label>
                     <Form.Control
                       type="text"
-                      defaultValue={data?.data?.name}
+                      defaultValue={userData?.name}
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan nama lengkap"
+                      name="name"
                       onChange={handleInput}
                     />
                   </div>
@@ -191,7 +213,8 @@ const Index = () => {
                       type="text"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan job desk"
-                      defaultValue={data?.data?.last_work}
+                      defaultValue={userData?.position}
+                      name="position"
                       onChange={handleInput}
                     />
                   </div>
@@ -201,7 +224,8 @@ const Index = () => {
                       type="text"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan domisili"
-                      defaultValue={data?.data?.domicile}
+                      defaultValue={userData?.domicile}
+                      name="domicile"
                       onChange={handleInput}
                     />
                   </div>
@@ -211,7 +235,8 @@ const Index = () => {
                       type="text"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan tempat kerja"
-                      defaultValue={data?.data?.last_work}
+                      defaultValue={userData?.last_work}
+                      name="last_work"
                       onChange={handleInput}
                     />
                   </div>
@@ -223,7 +248,8 @@ const Index = () => {
                       placeholder="Masukan Deskripsi Pekerjaan"
                       style={{ height: "200px" }}
                       className="form-focus"
-                      defaultValue={data?.data?.description}
+                      defaultValue={userData?.description}
+                      name="description"
                       onChange={handleInput}
                     />
                   </div>
@@ -235,17 +261,18 @@ const Index = () => {
               >
                 <h2 className="fw-bold">Skill</h2>
                 <hr />
-                <form onSubmit={putCandidate}>
+                <form encType="multipart/form-data">
                   <div className="mt-4 d-flex gap-4">
                     <Form.Control
                       className="w-75"
                       type="text"
-                      defaultValue={data?.data?.skill_name}
+                      defaultValue={userData?.skill_name}
+                      name="skill_name"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan Skill anda"
                       onChange={handleInput}
                     />
-                    <button className="bg-warning rounded border border-0 text-white fw-bold ">
+                    <button onClick={putCandidate} className="bg-warning rounded border border-0 text-white fw-bold ">
                       Simpan
                     </button>
                   </div>
