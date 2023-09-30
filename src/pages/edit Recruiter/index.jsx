@@ -13,20 +13,22 @@ import { BsPencilFill } from "react-icons/bs";
 import NavBar from "../../component/navbar";
 import Footer from "../../component/footer";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateRecBioAction } from "../../redux/actions/bioRecActions";
+import { getUserRecById } from "../../redux/actions/userAction";
 
 const Index = () => {
   const {id} = useParams();
   const dispatch = useDispatch();
+  const data = useSelector(state => state.user_rec.data);
   const [photo, setPhoto] = useState([]);
+  // state user
   const [userData, setUserData] = useState({
     company_name: "",
     company_field: "",
     province: "",
     city: "",
     company_info: "",
-    email: "",
     company_email: "",
     company_phone: "",
     linkedin_url: "",
@@ -34,21 +36,25 @@ const Index = () => {
   });
 
   useEffect(() => {
-    setUserData({
-      ...inputData,
-      company_name: userData.company_name,
-      company_field: userData.company_field,
-      province: userData.province,
-      city: userData.city,
-      company_info: userData.company_info,
-      email: userData.email,
-      company_email: userData.company_email,
-      company_phone: userData.company_phone,
-      linkedin_url: userData.linkedin_url,
-      photo: userData.photo
+    getUserRecById();
+  }, [])
+  // loop data
+  useEffect(() => {
+    data && setUserData({
+      ...userData,
+      company_name: data?.data?.company_name,
+      company_field: data?.data?.company_field,
+      province: data?.data?.province,
+      city: data?.data?.city,
+      company_info: data?.data?.company_info,
+      company_email: data?.data?.company_email,
+      company_phone: data?.data?.company_phone,
+      linkedin_url: data?.data?.linkedin_url,
+      photo: data?.data?.photo
     });
   }, [data]);
 
+  // put the data into action
   const putRecruiter = async (event) => {
     event.preventDefault();
     let bodyIndex = new FormData();
@@ -57,17 +63,23 @@ const Index = () => {
     bodyIndex.append("province", userData.province);
     bodyIndex.append("city", userData.city);
     bodyIndex.append("company_info", userData.company_info);
-    bodyIndex.append("email", userData.email);
     bodyIndex.append("company_email", userData.company_email);
     bodyIndex.append("phone", userData.phone);
     bodyIndex.append("linkedin_url", userData.linkedin_url);
-    bodyIndex.append("photo", userData.photo);
+    bodyIndex.append("photo", photo);
 
     dispatch(updateRecBioAction(bodyIndex));
   };
+
+  // change the value after each typing
   const handleInput = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+    setUserData({ ...userData, [e.target.name]:e.target.value });
   };
+
+  const onPhotoChange = (e) => {
+    setPhoto(e.target.files[0])
+    e.target.files[0] && setUserData({...userData, photo: URL.createObjectURL(e.target.files[0])})
+  }
 
   return (
     <Fragment>
@@ -81,7 +93,6 @@ const Index = () => {
         <Container className="my-5">
           <Row>
             <Col md={4}>
-              {/* Di gabung sama form */}
               <div className="rounded p-3" style={{ backgroundColor: "white" }}>
                 <div className="d-flex justify-content-center">
                   <label
@@ -91,9 +102,8 @@ const Index = () => {
                   >
                     <img
                       className="picture"
-                      src={data?.data?.photo || recruiter}
-                      value={userData?.photo}
-                      alt=""
+                      src={userData?.photo || recruiter}
+                      alt={userData?.company_name}
                       width={150}
                       height={150}
                     />
@@ -103,15 +113,15 @@ const Index = () => {
                     </div>
                   </label>
                   <span>
-                    <input className="input-edit" type="file" id="addImage" />
+                    <input onChange={onPhotoChange} name="photo" className="input-edit" type="file" id="addImage" />
                   </span>
                 </div>
                 <div>
-                  <h4> {data?.user_name} </h4>
-                  <h6>Financial</h6>
+                  <h4> {userData?.company_name || 'Fill your company name'}  </h4>
+                  <h6>{userData?.company_field || 'Fill your field'}</h6>
                   <div className="d-flex mt-">
                     <CiLocationOn size={20} />
-                    <p>Purwokerto, Jawa Tengah</p>
+                    <p>{userData?.province || 'Your province'}, {userData?.city || 'Your city'}</p>
                   </div>
                 </div>
               </div>
@@ -145,9 +155,10 @@ const Index = () => {
                     <Form.Label>Nama Perusahaan</Form.Label>
                     <Form.Control
                       type="text"
+                      name="company_name"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan Nama Perusahaan"
-                      defaultValue={inputData.company_name}
+                      defaultValue={userData?.company_name}
                       onChange={handleInput}
                     />
                   </div>
@@ -155,8 +166,10 @@ const Index = () => {
                     <Form.Label>Bidang</Form.Label>
                     <Form.Control
                       type="text"
+                      name="company_field"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan bidang perusahaan ex : Financial"
+                      defaultValue={userData?.company_field}
                       onChange={handleInput}
                     />
                   </div>
@@ -164,8 +177,10 @@ const Index = () => {
                     <Form.Label>Provinsi</Form.Label>
                     <Form.Control
                       type="text"
+                      name="province"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan Provinsi"
+                      defaultValue={userData?.province}
                       onChange={handleInput}
                     />
                   </div>
@@ -174,8 +189,10 @@ const Index = () => {
                     <Form.Label>Kota</Form.Label>
                     <Form.Control
                       type="text"
+                      name="city"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan Kota"
+                      defaultValue={userData?.city}
                       onChange={handleInput}
                     />
                   </div>
@@ -184,20 +201,12 @@ const Index = () => {
                     <Form.Label>Deskripsi Singkat</Form.Label>
                     <Form.Control
                       as="textarea"
+                      name="company_info"
                       rows={5}
                       placeholder="Masukan Deskripsi Pekerjaan"
                       style={{ height: "200px" }}
                       className="form-focus"
-                      onChange={handleInput}
-                    />
-                  </div>
-
-                  <div className="mt-4">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                      type="text"
-                      aria-describedby="passwordHelpBlock"
-                      placeholder="Masukan email"
+                      defaultValue={userData?.company_info}
                       onChange={handleInput}
                     />
                   </div>
@@ -206,8 +215,10 @@ const Index = () => {
                     <Form.Label>Email Perusahaan</Form.Label>
                     <Form.Control
                       type="text"
+                      name="company_email"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan email Perusahaan"
+                      defaultValue={userData?.company_email}
                       onChange={handleInput}
                     />
                   </div>
@@ -216,8 +227,10 @@ const Index = () => {
                     <Form.Label>Nomor Telepon</Form.Label>
                     <Form.Control
                       type="text"
+                      name="company_phone"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan nomor telepon"
+                      defaultValue={userData?.company_phone}
                       onChange={handleInput}
                     />
                   </div>
@@ -226,8 +239,10 @@ const Index = () => {
                     <Form.Label>Linkedin</Form.Label>
                     <Form.Control
                       type="text"
+                      name="linkedin_url"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan nama Linkedin"
+                      defaultValue={userData?.linkedin_url}
                       onChange={handleInput}
                     />
                   </div>

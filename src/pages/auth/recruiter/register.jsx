@@ -12,19 +12,18 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function RegisterPage() {
-
     const dispatch = useDispatch();
     const { isError, errorMessage, isLoading } = useSelector(state => state.register_recruiter);
     const [userData, setUserData] = useState({
-        name: '',
         email: '',
-        company: '',
-        role: '',
-        number: '',
+        name: '',
         password: '',
+        phone: '',
+        position: '',
+        company_name: '',
         confirm: '',
     });
-    
+
     const allFieldsFilled = () => {
         return Object.values(userData).every(field => field !== "");
     }
@@ -85,16 +84,6 @@ export default function RegisterPage() {
                         <form className="authlog" onSubmit={registerUser}>
                             <h2>Halo, Pewpeople</h2>
                             <p className="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.</p>
-                            <div className="name">
-                                <p>Nama</p>
-                                <input
-                                    type="text"
-                                    placeholder="Masukan nama panjang"
-                                    name='name'
-                                    value={userData.name}
-                                    onChange={onUserChange}
-                                />
-                            </div>
                             <div className="email">
                                 <p>Email</p>
                                 <input
@@ -105,33 +94,13 @@ export default function RegisterPage() {
                                     onChange={onUserChange}
                                 />
                             </div>
-                            <div className="company">
-                                <p>Perusahaan</p>
+                            <div className="name">
+                                <p>Nama</p>
                                 <input
                                     type="text"
-                                    placeholder="Masukan nama perusahaan"
-                                    name='company'
-                                    value={userData.company}
-                                    onChange={onUserChange}
-                                />
-                            </div>
-                            <div className="lead">
-                                <p>Jabatan</p>
-                                <input
-                                    type="text"
-                                    placeholder="Posisi anda di perusahaan"
-                                    name='role'
-                                    value={userData.role}
-                                    onChange={onUserChange}
-                                />
-                            </div>
-                            <div className="number">
-                                <p>No. Handphone</p>
-                                <input
-                                    type="text"
-                                    placeholder="Masukan no. handphone"
-                                    name='number'
-                                    value={userData.number}
+                                    placeholder="Masukan nama panjang"
+                                    name='name'
+                                    value={userData.name}
                                     onChange={onUserChange}
                                 />
                             </div>
@@ -156,6 +125,36 @@ export default function RegisterPage() {
                                     onChange={onUserChange}
                                 />
                                 {confirmError && <span className="error1">{confirmError}</span>}
+                            </div>
+                            <div className="number">
+                                <p>No. Handphone</p>
+                                <input
+                                    type="text"
+                                    placeholder="Masukan no. handphone"
+                                    name='phone'
+                                    value={userData.phone}
+                                    onChange={onUserChange}
+                                />
+                            </div>
+                            <div className="lead">
+                                <p>Jabatan</p>
+                                <input
+                                    type="text"
+                                    placeholder="Posisi anda di perusahaan"
+                                    name='position'
+                                    value={userData.position}
+                                    onChange={onUserChange}
+                                />
+                            </div>
+                            <div className="company">
+                                <p>Perusahaan</p>
+                                <input
+                                    type="text"
+                                    placeholder="Masukan nama perusahaan"
+                                    name='company_name'
+                                    value={userData.company_name}
+                                    onChange={onUserChange}
+                                />
                             </div>
                             <button type="submit" className="tolog" onClick={afterRegister} disabled={!allFieldsFilled() || !isValidPassword(userData.password) || userData.password !== userData.confirm}>Daftar</button>
                             <p className="account">Anda sudah punya akun? <Link to={'/login/recruiter'} className="href">Masuk disini</Link></p>

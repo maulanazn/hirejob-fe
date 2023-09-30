@@ -38,7 +38,7 @@ const NavBar = () => {
                                 style={{ width: "40px" }}
                             />
                         </Nav.Link>
-                        <Nav.Link href="/edit-candidate">
+                        <Nav.Link href={localStorage.getItem("company_name") ? '/edit-recruiter' : '/edit-candidate'}>
                             <img
                                 src={data?.data?.photo}
                                 alt=""

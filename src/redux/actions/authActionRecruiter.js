@@ -7,7 +7,8 @@ export const loginAction = (data, navigate) =>
             dispatch({type: 'LOGIN_PENDING'})
             const result = await axios.post(`${URL}/recruiter/login`,data)
 
-            localStorage.setItem("token", result.data.data)
+            localStorage.setItem("token", result.data.access_token)
+            localStorage.setItem("company_name", result.data.data);
 
             dispatch({payload: result.data.data, type: 'LOGIN_SUCCESS'})
             navigate('/')
@@ -23,7 +24,7 @@ export const registerAction = (data) =>
             dispatch({type: 'REGISTER_PENDING'})
 
             const result = await axios.post(`${URL}/recruiter/register`, data);
-            
+
             dispatch({payload: result.data.data, type: 'REGISTER_SUCCESS'})
         } catch (error) {
             dispatch({payload: error.response.data.message, type: 'REGISTER_FAILED'})

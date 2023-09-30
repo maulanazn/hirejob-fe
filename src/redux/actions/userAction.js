@@ -16,6 +16,21 @@ export const getUserById = () => {
     };
 };
 
+export const getUserRecById = () => {
+    return async(dispatch) => {
+        try {
+          dispatch({type:'GET_USER_REC_PENDING'})
+          const res = await axios.get(`${URL}/recruiter/in`, {headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json"
+          }})
+          dispatch({type:'GET_USER_REC_SUCCESS',payload:res.data});
+        }catch(err){
+          dispatch({type:'GET_USER_REC_FAILED',error:err.response.data.message})
+        }
+    };
+};
+
 export const getUserPortfolio = (id) => {
   return async(dispatch) => {
       try {
