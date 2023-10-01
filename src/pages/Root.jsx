@@ -4,8 +4,8 @@ import NavBar from '../component/navbar'
 export default function Root() {
   const navigate = useNavigate();
   function logoutUser() {
-    localStorage.clear();
     localStorage.getItem("company_name") ? navigate('/login/recruiter') : navigate('/login/candidate');
+    localStorage.clear();
   }
   return (
     <>
@@ -15,7 +15,12 @@ export default function Root() {
         <div className='mt-5 d-flex justify-content-center'>
             <Link to={'/login/candidate'} className='btn btn-danger' >LOGIN AS USER</Link>
             <Link to={'/login/recruiter'} className='btn btn-danger ms-5' >LOGIN AS RECRUITER</Link>
-            <button onClick={logoutUser}>Log Out</button>
+            {
+              localStorage.getItem("token") ?
+              <button onClick={logoutUser}>Log Out</button>
+              :
+              undefined
+            }
         </div>
     </>
   )

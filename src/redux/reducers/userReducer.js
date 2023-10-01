@@ -7,7 +7,6 @@ export const userReducer = (state = initialState, action) => {
             ...state,
             isLoading:true,
         };
-      //get user by id
       case 'GET_USER_SUCCESS':
         return {
             ...state,
@@ -38,7 +37,6 @@ export const userRecReducer = (state = initialState, action) => {
             ...state,
             isLoading:true,
         };
-      //get user by id
       case 'GET_USER_REC_SUCCESS':
         return {
             ...state,

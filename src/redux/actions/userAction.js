@@ -35,7 +35,9 @@ export const getUserPortfolio = (id) => {
   return async(dispatch) => {
       try {
         dispatch({type:'PENDING'})
-        const res = await axios.get(`${URL}/portfolio-view/${id}`, {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}})
+        const res = await axios.get(`${URL}/portfolio-view/${id}`, {headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }})
         dispatch({type:'GET_USER_SUCCESS',payload:res.data.data});
       }catch(err){
         dispatch({type:'GET_USER_FAILED',error:err.response.data.message})

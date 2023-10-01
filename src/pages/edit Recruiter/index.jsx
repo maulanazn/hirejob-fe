@@ -18,12 +18,11 @@ import { updateRecBioAction } from "../../redux/actions/bioRecActions";
 import { getUserRecById } from "../../redux/actions/userAction";
 
 const Index = () => {
-  const {id} = useParams();
   const dispatch = useDispatch();
-  const data = useSelector(state => state.user_rec.data);
+  const {data} = useSelector(state => state.user_rec);
   const [photo, setPhoto] = useState([]);
-  // state user
   const [userData, setUserData] = useState({
+    photo: "",
     company_name: "",
     company_field: "",
     province: "",
@@ -32,13 +31,12 @@ const Index = () => {
     company_email: "",
     company_phone: "",
     linkedin_url: "",
-    photo: ""
   });
 
   useEffect(() => {
-    getUserRecById();
+    dispatch(getUserRecById());
   }, [])
-  // loop data
+
   useEffect(() => {
     data && setUserData({
       ...userData,
@@ -50,7 +48,7 @@ const Index = () => {
       company_email: data?.data?.company_email,
       company_phone: data?.data?.company_phone,
       linkedin_url: data?.data?.linkedin_url,
-      photo: data?.data?.photo
+      photo: data?.data?.photo,
     });
   }, [data]);
 
@@ -58,16 +56,16 @@ const Index = () => {
   const putRecruiter = async (event) => {
     event.preventDefault();
     let bodyIndex = new FormData();
+    bodyIndex.append("photo", photo);
     bodyIndex.append("company_name", userData.company_name);
     bodyIndex.append("company_field", userData.company_field);
     bodyIndex.append("province", userData.province);
     bodyIndex.append("city", userData.city);
     bodyIndex.append("company_info", userData.company_info);
     bodyIndex.append("company_email", userData.company_email);
-    bodyIndex.append("phone", userData.phone);
+    bodyIndex.append("company_phone", userData.company_phone);
     bodyIndex.append("linkedin_url", userData.linkedin_url);
-    bodyIndex.append("photo", photo);
-
+    
     dispatch(updateRecBioAction(bodyIndex));
   };
 
@@ -113,7 +111,7 @@ const Index = () => {
                     </div>
                   </label>
                   <span>
-                    <input onChange={onPhotoChange} name="photo" className="input-edit" type="file" id="addImage" />
+                    <input onChange={onPhotoChange} name="photo" className="input-edit" defaultValue={userData?.photo} type="file" id="addImage" />
                   </span>
                 </div>
                 <div>
@@ -150,7 +148,7 @@ const Index = () => {
               <div style={{ backgroundColor: "white" }} className="p-5 rounded">
                 <h2 className="fw-bold"> Data diri</h2>
                 <hr />
-                <form onSubmit={putRecruiter} encType="multipart/form-data">
+                <form encType="multipart/form-data">
                   <div className="mt-4">
                     <Form.Label>Nama Perusahaan</Form.Label>
                     <Form.Control
@@ -246,14 +244,6 @@ const Index = () => {
                       onChange={handleInput}
                     />
                   </div>
-                  <button
-                    style={{ backgroundColor: " #5E50A1" }}
-                    className=" text-white border border-0 w-100 p-2 fw-bold rounded my-4 "
-                    type="submit"
-                  >
-                    {" "}
-                    Simpan
-                  </button>
                 </form>
               </div>
             </Col>

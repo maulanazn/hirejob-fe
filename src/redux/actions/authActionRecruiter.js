@@ -7,13 +7,14 @@ export const loginAction = (data, navigate) =>
             dispatch({type: 'LOGIN_PENDING'})
             const result = await axios.post(`${URL}/recruiter/login`,data)
 
-            localStorage.setItem("token", result.data.access_token)
-            localStorage.setItem("company_name", result.data.data);
+            localStorage.setItem("token", result.data.access_token);
+            localStorage.setItem("company_name", result.data.data.company_name);
+            localStorage.setItem("id", result.data.data.id);
 
             dispatch({payload: result.data.data, type: 'LOGIN_SUCCESS'})
             navigate('/')
         } catch(err){
-            dispatch({payload:err.response.data.message, type: 'LOGIN_FAILED'})
+            dispatch({payload:err.message, type: 'LOGIN_FAILED'})
             console.error(err.message)
         }
     }

@@ -18,10 +18,10 @@ export default function RegisterPage() {
         email: '',
         name: '',
         password: '',
+        confirm: '',
         phone: '',
         position: '',
         company_name: '',
-        confirm: '',
     });
 
     const allFieldsFilled = () => {

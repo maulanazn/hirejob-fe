@@ -3,6 +3,8 @@ import "./index.css";
 import Logo from "../../assets/image/Logo.svg"
 import mail from "../../assets/image/mail.svg";
 import bell from "../../assets/image/bell.svg";
+import home from "../../assets/image/home.svg";
+import homerec from "../../assets/image/home-recruiter.svg";
 import { useSelector } from "react-redux";
 
 const NavBar = () => {
@@ -38,15 +40,20 @@ const NavBar = () => {
                                 style={{ width: "40px" }}
                             />
                         </Nav.Link>
+                        {
+                          localStorage.getItem("token") ?
                         <Nav.Link href={localStorage.getItem("company_name") ? '/edit-recruiter' : '/edit-candidate'}>
                             <img
-                                src={data?.data?.photo}
+                                src={localStorage.getItem("company_name") ? homerec : home}
                                 alt=""
                                 className="profile"
                                 style={{ width: "40px" }}
                             />
 
                         </Nav.Link>
+                          :
+                          undefined
+                        }
                     </Nav>
                 </Navbar.Collapse>
             </Container>

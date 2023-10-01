@@ -18,8 +18,8 @@ export default function RegisterPage() {
     const [userData, setUserData] = useState({
         name: '',
         email: '',
-        number: '',
         password: '',
+        phone: '',
         confirm: '',
     });
 
@@ -108,7 +108,7 @@ export default function RegisterPage() {
                             <div className="email">
                                 <p>Email</p>
                                 <input
-                                    type="text"
+                                    type="email"
                                     placeholder="Masukan alamat Email"
                                     required
                                     name='email'
@@ -122,7 +122,7 @@ export default function RegisterPage() {
                                     type="text"
                                     placeholder="Masukan no. handphone"
                                     required
-                                    name='number'
+                                    name='phone'
                                     value={userData.number}
                                     onChange={onUserChange}
                                 />

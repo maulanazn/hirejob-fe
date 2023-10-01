@@ -2,19 +2,19 @@ import { Fragment, useState, useEffect } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import "./editCandidate.css";
 import { CiLocationOn } from "react-icons/ci";
-import Candidate from "../../assets/images/imgrecruiter.png";
 import { BsPencilFill } from "react-icons/bs";
 import NavBar from "../../component/navbar";
 import Footer from "../../component/footer";
-import axios from "axios";
 import {useParams} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import {updateCandidateBioAction, updatePortfolioAction, updateWorkExpAction} from "../../redux/actions/bioActions";
+import {getPortfolioUserById, getWorkExpUserId, updateCandidateBioAction, updatePortfolioAction, updateWorkExpAction} from "../../redux/actions/bioActions";
 import { getUserById } from "../../redux/actions/userAction";
+import WorkExpView from "./WorkExpView";
+import PortfolioView from "./PortfolioView";
 
 const Index = () => {
   const { id } = useParams();
-  const {data} = useSelector(state => state.user)
+  const data = useSelector(state => state.user.data)
   const dispatch = useDispatch();
   const [photo, setPhoto] = useState([]);
   const [portfolioPhoto, setPortfolioPhoto] = useState([]);
@@ -151,8 +151,8 @@ const Index = () => {
                   >
                     <img
                       className="picture"
-                      src={userData?.photo || Candidate}
-                      alt=""
+                      src={userData?.photo || ''}
+                      alt={userData?.name}
                       width={150}
                       height={150}
                     />
@@ -163,7 +163,7 @@ const Index = () => {
                     </div>
                   </label>
                   <span>
-                    <input className="input-edit" name="photo" onChange={setOnPhoto} accept="image/*" type="file" id="addImage" />
+                    <input className="input-edit" name="photo" onChange={setOnPhoto} defaultValue={userData?.photo} type="file" id="addImage" />
                   </span>
                 </div>
                 <div>
@@ -282,7 +282,7 @@ const Index = () => {
                 </div>
               </div>
               {/*  END FORM USER EDIT */}
-
+              <WorkExpView/>
               {/* FORM WORK EXPERIENCE */}
               <div
                 style={{ backgroundColor: "white" }}
@@ -381,7 +381,7 @@ const Index = () => {
                 </Form>
               </div>
               {/* END FORM WORK EXPERIENCE */}
-
+              <PortfolioView/>
               {/* PORTFOLIO EXPERIENCE */}
               <div
                 style={{ backgroundColor: "white" }}

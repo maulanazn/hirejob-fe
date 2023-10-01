@@ -9,6 +9,11 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:markdown"
+  ],
   "dependencies": {
     "axios": "^1.4.0",
     "axios-mock-adapter": "^1.21.5",
