@@ -1,11 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-} from "react-bootstrap";
+import { Container,Row,Col,Form,FloatingLabel, Navbar,} from "react-bootstrap";
 import "./editReqruiter.css";
 import { CiLocationOn } from "react-icons/ci";
 import recruiter from "../../assets/images/imgrecruiter.png";
@@ -18,6 +12,7 @@ import { updateRecBioAction } from "../../redux/actions/bioRecActions";
 import { getUserRecById } from "../../redux/actions/userAction";
 
 const Index = () => {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const {data} = useSelector(state => state.user_rec);
   const [photo, setPhoto] = useState([]);
@@ -52,7 +47,6 @@ const Index = () => {
     });
   }, [data]);
 
-  // put the data into action
   const putRecruiter = async (event) => {
     event.preventDefault();
     let bodyIndex = new FormData();
@@ -69,7 +63,6 @@ const Index = () => {
     dispatch(updateRecBioAction(bodyIndex));
   };
 
-  // change the value after each typing
   const handleInput = (e) => {
     setUserData({ ...userData, [e.target.name]:e.target.value });
   };
@@ -86,7 +79,6 @@ const Index = () => {
         style={{ height: "280px", backgroundColor: " #5E50A1" }}
         className="W-100 position-relative"
       ></div>
-
       <div className="position-absolute w-100" style={{ top: "100px" }}>
         <Container className="my-5">
           <Row>
@@ -121,9 +113,7 @@ const Index = () => {
                     <CiLocationOn size={20} />
                     <p>{userData?.province || 'Your province'}, {userData?.city || 'Your city'}</p>
                   </div>
-                </div>
-              </div>
-              <div className="my-3">
+                  <div className="my-3">
                 <button
                   style={{ backgroundColor: " #5E50A1" }}
                   className=" text-white border border-0 w-100 p-2 fw-bold rounded  "
@@ -142,6 +132,8 @@ const Index = () => {
                 >
                   Batal
                 </button>
+              </div>
+                </div>
               </div>
             </Col>
             <Col md={8}>
@@ -182,7 +174,6 @@ const Index = () => {
                       onChange={handleInput}
                     />
                   </div>
-
                   <div className="mt-4">
                     <Form.Label>Kota</Form.Label>
                     <Form.Control
@@ -194,7 +185,6 @@ const Index = () => {
                       onChange={handleInput}
                     />
                   </div>
-
                   <div className="mb-3 mt-4">
                     <Form.Label>Deskripsi Singkat</Form.Label>
                     <Form.Control
@@ -208,7 +198,6 @@ const Index = () => {
                       onChange={handleInput}
                     />
                   </div>
-
                   <div className="mt-4">
                     <Form.Label>Email Perusahaan</Form.Label>
                     <Form.Control
