@@ -62,6 +62,21 @@ export const getWorkExpUserId = () => async (dispatch) => {
     }
 }
 
+export const deleteWorkExpId = (id) => async (dispatch) => {
+    try {
+        dispatch({type: 'WORKEXP_DELETE_PENDING'})
+        const result = await axios.delete(`${import.meta.env.VITE_BASE_URL}/worker/workexp/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json"
+            },
+        })
+        dispatch({type: 'WORKEXP_DELETE_SUCCESS', payload: result.data})
+    } catch (error) {
+        dispatch({type: 'WORKEXP_DELETE_FAILED', error: error.message})
+    }
+}
+
 export const getPortfolioUserById = () => async (dispatch) => {
     try {
         dispatch({type: 'PORTFOLIO_GET_PENDING'})
@@ -74,5 +89,20 @@ export const getPortfolioUserById = () => async (dispatch) => {
         dispatch({type: 'PORTFOLIO_GET_SUCCESS', payload: result.data.data})
     } catch (error) {
         dispatch({type: 'PORTFOLIO_GET_FAILED', error: error.message})
+    }
+}
+
+export const deletePortofolioId = (id) => async (dispatch) => {
+    try {
+        dispatch({type: 'PORTOFOLIO_DELETE_PENDING'})
+        const result = await axios.delete(`${import.meta.env.VITE_BASE_URL}/worker/portfolio/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json"
+            },
+        })
+        dispatch({type: 'PORTOFOLIO_DELETE_SUCCESS', payload: result.data})
+    } catch (error) {
+        dispatch({type: 'PORTOFOLIO_DELETE_FAILED', error: error.message})
     }
 }

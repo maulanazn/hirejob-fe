@@ -210,7 +210,6 @@ const Index = () => {
                       placeholder="Masukan nama lengkap"
                       name="name"
                       onChange={handleInput}
-                      // value={dataWorker.name}
                     />
                   </div>
                   <div className="mt-4">
@@ -222,7 +221,6 @@ const Index = () => {
                       defaultValue={userData?.position}
                       name="position"
                       onChange={handleInput}
-                      // value={dataWorker.jobdesk}
                     />
                   </div>
                   <div className="mt-4 my-3">
@@ -234,7 +232,6 @@ const Index = () => {
                       defaultValue={userData?.domicile}
                       name="domicile"
                       onChange={handleInput}
-                      // value={dataWorker.domicile}
                     />
                   </div>
                   <div className="mt-4 my-3">
@@ -246,7 +243,6 @@ const Index = () => {
                       defaultValue={userData?.last_work}
                       name="last_work"
                       onChange={handleInput}
-                      // value={dataWorker.last_work}
                     />
                   </div>
                   <div className="mb-3 my-3">
@@ -260,7 +256,6 @@ const Index = () => {
                       defaultValue={userData?.description}
                       name="description"
                       onChange={handleInput}
-                      // value={dataWorker.description}
                     />
                   </div>
                 </form>
@@ -287,7 +282,7 @@ const Index = () => {
                 </div>
               </div>
               {/*  END FORM USER EDIT */}
-              <WorkExpView/>
+
               {/* FORM WORK EXPERIENCE */}
               <div
                 style={{ backgroundColor: "white" }}
@@ -296,64 +291,9 @@ const Index = () => {
                 <Form encType="multipart/form-data">
                   <h2>Pengalaman Kerja</h2>
                   <hr />
-                  {/* showing experience */}
-                  {getExperience?.data?.data?.map((experience, index) => (
-                  <div
-                    className="d-flex justify-content-between mb-3"
-                    key={index}
-                  >
-                    <div className="d-flex gap-3">
-                      <img
-                        style={{ height: "70px", width: "70px" }}
-                        src={tokopedia}
-                        alt="tokopedia"
-                      />
-                      <div>
-                        <h4 className="text-dark">{experience.position}</h4>
-                        <p className="mb-0">{experience.company_name}</p>
-                        <p className="mb-0">
-                          {experience.from_month} - {experience.to_month}
-                        </p>
-                        <p className="pb-0 text-dark">
-                          {experience.description}
-                        </p>
-                      </div>
-                      {/* <div className="">
-                      </div> */}
-                    </div>
-                    <div className="d-flex flex-sm-column flex-lg-row gap-2">
-                      <div>
-                        <Button
-                          onClick={() => getExperienceId(experience.id)}
-                          variant="warning"
-                          className="d-flex justify-content-center align-items-center"
-                        >
-                          <box-icon
-                            type="solid"
-                            name="edit"
-                            color="white"
-                            size="sm"
-                          ></box-icon>
-                        </Button>
-                      </div>
-                      <div>
-                        <Button
-                          onClick={() => deleteMyExperience(experience.id)}
-                          variant="danger"
-                          className="d-flex justify-content-center align-items-center"
-                        >
-                          <box-icon
-                            type="solid"
-                            name="trash-alt"
-                            color="white"
-                            size="sm"
-                          ></box-icon>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-
+                  <WorkExpView/>
+                  <hr />
+                  
                   <div className="mt-4">
                     <Form.Label style={{ color: "#858D96" }}>Posisi</Form.Label>
                     <Form.Control
@@ -362,7 +302,6 @@ const Index = () => {
                       placeholder="Web Developer"
                       name="position"
                       onChange={handleExperienceChange}
-                      // value={experince.position}
                     />
                     <div>
                       <Row>
@@ -377,7 +316,6 @@ const Index = () => {
                               placeholder=" Nama Perusahaan"
                               name="company_name"
                               onChange={handleExperienceChange}
-                              // value={experince.company_name}
                             />
                           </div>
                         </Col>
@@ -392,7 +330,6 @@ const Index = () => {
                               aria-describedby="passwordHelpBlock"
                               placeholder="Januari 2019"
                               onChange={handleExperienceChange}
-                              // value={experince.date}
                             />
                           </div>
                         </Col>
@@ -430,7 +367,7 @@ const Index = () => {
                         className="form-focus"
                         name="description"
                         onChange={handleExperienceChange}
-                        value={experince.description}
+                        defaultValue={experience.description}
                       />
                     </div>
                     <button
@@ -448,70 +385,17 @@ const Index = () => {
                 </Form>
               </div>
               {/* END FORM WORK EXPERIENCE */}
-              <PortfolioView/>
+
               {/* PORTFOLIO EXPERIENCE */}
               <div
                 style={{ backgroundColor: "white" }}
                 className="p-5 mt-5 rounded"
+                onSubmit={handlePortofolio}
               >
                 <h2>Portofolio</h2>
                 <form encType="multipart/form-data">
-                {getPortofolio?.data?.data?.map((portofolio, index) => (
-                  <div
-                    className="d-flex justify-content-between mb-3"
-                    key={index}
-                  >
-                    <div className="d-flex gap-3">
-                      {portofolio.photo ? (
-                        <img
-                          style={{ height: "100px", width: "150px" }}
-                          src={portofolio.photo}
-                          alt="porto"
-                        />
-                      ) : (
-                        <img
-                          style={{ height: "100px", width: "150px" }}
-                          src={porto}
-                          alt="porto"
-                        />
-                      )}
-                      <div>
-                        <h6 className="text-dark">{portofolio.name}</h6>
-                        <p className="mb-0">{portofolio.link_repo}</p>
-                      </div>
-                    </div>
-                    <div className="d-flex flex-sm-column flex-lg-row gap-2">
-                      <div>
-                        <Button
-                          onClick={() => getPortofolioId(portofolio.id)}
-                          variant="warning"
-                          className="d-flex justify-content-center align-items-center"
-                        >
-                          <box-icon
-                            type="solid"
-                            name="edit"
-                            color="white"
-                            size="sm"
-                          ></box-icon>
-                        </Button>
-                      </div>
-                      <div>
-                        <Button
-                          onClick={() => deleteMyPortofolio(portofolio.id)}
-                          variant="danger"
-                          className="d-flex justify-content-center align-items-center"
-                        >
-                          <box-icon
-                            type="solid"
-                            name="trash-alt"
-                            color="white"
-                            size="sm"
-                          ></box-icon>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                  <PortfolioView/>  
+                
                   <div className="mt-4">
                     <Form.Label>Nama aplikasi</Form.Label>
                     <Form.Control
@@ -575,7 +459,7 @@ const Index = () => {
                     onChange={handlePortfolioPhoto}                  
                   />
                   <button
-                    onClick={handlePortofolio}
+                    type="submit"
                     style={{
                       backgroundColor: "white",
                       borderColor: "#FBB017",
@@ -584,7 +468,7 @@ const Index = () => {
                     className=" w-100 p-2 fw-bold rounded mt-3 "
                   >
                     Tambah Portofolio
-                  </button>{handlePortofolio}
+                  </button>
                 </form>
               </div>
               {/* END FORM PORTFOLIO */}
