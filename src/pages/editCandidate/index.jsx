@@ -11,17 +11,56 @@ import { useParams } from "react-router-dom";
 
 const Index = () => {
   const { id } = useParams();
+  console.log(id)
   const [data, setData] = useState([]);
+     // usestate input data dan skill nanti digabung dengan data user biasa 
   const [inputData, setInputData] = useState({
     user_name: "",
     province: "",
     city: "",
     last_work: "",
     description: "",
-  });
-  const [skill, setSkill] = useState({
     skill: "",
+
   });
+  // const [skill, setSkill] = useState({
+  //   skill: "",
+  // });
+
+    const getExperience = async () => {
+      try {
+        const getExperienceDetail = await axios.get(
+          import.meta.env.VITE_BASE_URL + `/worker/workexp`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        console.log(getExperience);
+        setExperience(getExperienceDetail.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const getPortofolio = async () => {
+      try {
+        const getPortofolioId = await axios.get(
+          import.meta.env.VITE_BASE_URL + `/worker/portfolio`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        console.log(getPortofolio);
+        setPortofolio(getPortofolioId.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
   const [experince, setExperience] = useState({
     position: "",
     company_name: "",
@@ -39,7 +78,7 @@ const Index = () => {
     const getDetail = async () => {
       try {
         const getDetailCandidate = await axios.get(
-          import.meta.env.VITE_BASE_URL + `/workers/photo/profil`,
+          import.meta.env.VITE_BASE_URL + `/worker/workexp/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -73,11 +112,13 @@ const Index = () => {
     bodyIndex.append("city", inputData.city);
     bodyIndex.append("last_work", inputData.last_work);
     bodyIndex.append("description", inputData.description);
+    bodyIndex.append("skill", inputData.skill);
+
 
     try {
       const editCandidate = await axios.post(
-        import.meta.env.VITE_BASE_URL + "/recruiter/bio-recruiter",
-        bodyIndex, // tambah bodyindex buat simpen token
+        import.meta.env.VITE_BASE_URL + "/update",
+        bodyIndex,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
@@ -88,35 +129,34 @@ const Index = () => {
     }
   };
 
-  const handleSkillChange = (event) => {
-    setSkill({
-      ...skill,
-      [event.target.name]: event.target.value,
-    });
-  };
+  // const handleSkillChange = (event) => {
+  //   setSkill({
+  //     ...skill,
+  //     [event.target.name]: event.target.value,
+  //   });
+  // };
 
-  const handleSkill = (event) => {
-    event.preventDefault();
+  // const handleSkill = (event) => {
+  //   event.preventDefault();
 
-    // Lakukan POST request menggunakan Axios
-    axios
-      .post(import.meta.env.VITE_BASE_URL + "/skill", skill, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+  //   // Lakukan POST request menggunakan Axios
+  //   axios.post(import.meta.env.VITE_BASE_URL + "/skill", skill, {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //       },
+  //     })
 
-      .then((response) => {
-        console.log("Skill berhasil ditambahkan:", response.data);
-        // Reset form setelah berhasil ditambahkan
-        setSkill({
-          skill: "",
-        });
-      })
-      .catch((error) => {
-        console.error("Gagal menambahkan skill:", error);
-      });
-  };
+  //     .then((response) => {
+  //       console.log("Skill berhasil ditambahkan:", response.data);
+  //       // Reset form setelah berhasil ditambahkan
+  //       setSkill({
+  //         skill: "",
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.error("Gagal menambahkan skill:", error);
+  //     });
+  // };
   const handleExperienceChange = (event) => {
     setExperience({
       ...experince,
@@ -128,8 +168,7 @@ const Index = () => {
     event.preventDefault();
 
     // Lakukan POST request menggunakan Axios
-    axios
-      .post(import.meta.env.VITE_BASE_URL + "/workers/workexp", skill, {
+    axios.post(import.meta.env.VITE_BASE_URL + "/workers/workexp", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -150,8 +189,7 @@ const Index = () => {
     event.preventDefault();
 
     // Lakukan POST request menggunakan Axios
-    axios
-      .post(import.meta.env.VITE_BASE_URL + "/workers/portofolio", Portofolio, {
+    axios.post(import.meta.env.VITE_BASE_URL + "/worker/portfolio", Portofolio, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -216,12 +254,11 @@ const Index = () => {
                     <CiLocationOn size={20} />
                     <p>Purwokerto, Jawa Tengah</p>
                   </div>
-                </div>
-              </div>
-              <div className="my-3">
+                  <div className="my-3">
                 <button
                   style={{ backgroundColor: " #5E50A1" }}
                   className=" text-white border border-0 w-100 p-2 fw-bold rounded  "
+                  onClick={putCandidate}
                 >
                   {" "}
                   Simpan
@@ -237,6 +274,8 @@ const Index = () => {
                   Batal
                 </button>
               </div>
+                </div>
+              </div>
             </Col>
             <Col md={8}>
               <div style={{ backgroundColor: "white" }} className="p-5 rounded">
@@ -250,6 +289,7 @@ const Index = () => {
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan nama lengkap"
                       onChange={handleInput}
+                      // value={dataWorker.name}
                     />
                   </div>
                   <div className="mt-4">
@@ -259,6 +299,7 @@ const Index = () => {
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan job desk"
                       onChange={handleInput}
+                      // value={dataWorker.jobdesk}
                     />
                   </div>
                   <div className="mt-4 my-3">
@@ -268,6 +309,7 @@ const Index = () => {
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan domisili"
                       onChange={handleInput}
+                      // value={dataWorker.domicile}
                     />
                   </div>
                   <div className="mt-4 my-3">
@@ -277,6 +319,7 @@ const Index = () => {
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan tempat kerja"
                       onChange={handleInput}
+                      // value={dataWorker.last_work}
                     />
                   </div>
                   <div className="mb-3 my-3">
@@ -288,10 +331,11 @@ const Index = () => {
                       style={{ height: "200px" }}
                       className="form-focus"
                       onChange={handleInput}
+                      // value={dataWorker.description}
                     />
                   </div>
                 </form>
-                <button
+                {/* <button
                   style={{
                     backgroundColor: "white",
                     borderColor: "#FBB017",
@@ -301,7 +345,7 @@ const Index = () => {
                   onClick={putCandidate}
                 >
                   Simpan
-                </button>{" "}
+                </button>{" "} */}
                 <form />
               </div>
               <div
@@ -310,18 +354,19 @@ const Index = () => {
               >
                 <h2 className="fw-bold">Skill</h2>
                 <hr />
-                <form onSubmit={handleSkill}>
+                <form onSubmit={''}>
                   <div className="mt-4 d-flex gap-4">
                     <Form.Control
-                      className="w-75"
+                      className="w-100"
                       type="text"
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan Skill anda"
-                      onChange={handleSkillChange}
+                      onChange={handleInput}
+                      // value={dataWorker.skill_name}
                     />
-                    <button className="bg-warning rounded border border-0 text-white fw-bold ">
+                    {/* <button className="bg-warning rounded border border-0 text-white fw-bold ">
                       Simpan
-                    </button>
+                    </button> */}
                   </div>
                 </form>
               </div>
@@ -332,6 +377,64 @@ const Index = () => {
                 <Form onSubmit={handleExperience}>
                   <h2>Pengalaman Kerja</h2>
                   <hr />
+                  {/* showing experience */}
+                  {getExperience?.data?.data?.map((experience, index) => (
+                  <div
+                    className="d-flex justify-content-between mb-3"
+                    key={index}
+                  >
+                    <div className="d-flex gap-3">
+                      <img
+                        style={{ height: "70px", width: "70px" }}
+                        src={tokopedia}
+                        alt="tokopedia"
+                      />
+                      <div>
+                        <h4 className="text-dark">{experience.position}</h4>
+                        <p className="mb-0">{experience.company_name}</p>
+                        <p className="mb-0">
+                          {experience.from_month} - {experience.to_month}
+                        </p>
+                        <p className="pb-0 text-dark">
+                          {experience.description}
+                        </p>
+                      </div>
+                      {/* <div className="">
+                      </div> */}
+                    </div>
+                    <div className="d-flex flex-sm-column flex-lg-row gap-2">
+                      <div>
+                        <Button
+                          onClick={() => getExperienceId(experience.id)}
+                          variant="warning"
+                          className="d-flex justify-content-center align-items-center"
+                        >
+                          <box-icon
+                            type="solid"
+                            name="edit"
+                            color="white"
+                            size="sm"
+                          ></box-icon>
+                        </Button>
+                      </div>
+                      <div>
+                        <Button
+                          onClick={() => deleteMyExperience(experience.id)}
+                          variant="danger"
+                          className="d-flex justify-content-center align-items-center"
+                        >
+                          <box-icon
+                            type="solid"
+                            name="trash-alt"
+                            color="white"
+                            size="sm"
+                          ></box-icon>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
                   <div className="mt-4">
                     <Form.Label style={{ color: "#858D96" }}>Posisi</Form.Label>
                     <Form.Control
@@ -339,6 +442,7 @@ const Index = () => {
                       aria-describedby="passwordHelpBlock"
                       placeholder="Web Developer"
                       onChange={handleExperienceChange}
+                      // value={experince.position}
                     />
                     <div>
                       <Row>
@@ -352,6 +456,7 @@ const Index = () => {
                               aria-describedby="passwordHelpBlock"
                               placeholder=" Nama Perusahaan"
                               onChange={handleExperienceChange}
+                              // value={experince.company_name}
                             />
                           </div>
                         </Col>
@@ -365,6 +470,7 @@ const Index = () => {
                               aria-describedby="passwordHelpBlock"
                               placeholder="Januari 2019"
                               onChange={handleExperienceChange}
+                              // value={experince.date}
                             />
                           </div>
                         </Col>
@@ -391,6 +497,7 @@ const Index = () => {
                         style={{ height: "200px" }}
                         className="form-focus"
                         onChange={handleExperienceChange}
+                        value={experince.description}
                       />
                     </div>
                     <button
@@ -411,6 +518,64 @@ const Index = () => {
                 className="p-5 mt-5 rounded"
               >
                 <h2>Portofolio</h2>
+
+                {getPortofolio?.data?.data?.map((portofolio, index) => (
+                  <div
+                    className="d-flex justify-content-between mb-3"
+                    key={index}
+                  >
+                    <div className="d-flex gap-3">
+                      {portofolio.photo ? (
+                        <img
+                          style={{ height: "100px", width: "150px" }}
+                          src={portofolio.photo}
+                          alt="porto"
+                        />
+                      ) : (
+                        <img
+                          style={{ height: "100px", width: "150px" }}
+                          src={porto}
+                          alt="porto"
+                        />
+                      )}
+                      <div>
+                        <h6 className="text-dark">{portofolio.name}</h6>
+                        <p className="mb-0">{portofolio.link_repo}</p>
+                      </div>
+                    </div>
+                    <div className="d-flex flex-sm-column flex-lg-row gap-2">
+                      <div>
+                        <Button
+                          onClick={() => getPortofolioId(portofolio.id)}
+                          variant="warning"
+                          className="d-flex justify-content-center align-items-center"
+                        >
+                          <box-icon
+                            type="solid"
+                            name="edit"
+                            color="white"
+                            size="sm"
+                          ></box-icon>
+                        </Button>
+                      </div>
+                      <div>
+                        <Button
+                          onClick={() => deleteMyPortofolio(portofolio.id)}
+                          variant="danger"
+                          className="d-flex justify-content-center align-items-center"
+                        >
+                          <box-icon
+                            type="solid"
+                            name="trash-alt"
+                            color="white"
+                            size="sm"
+                          ></box-icon>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
                 <form onSubmit={handleExperience}>
                   <div className="mt-4">
                     <Form.Label>Nama aplikasi</Form.Label>
@@ -419,6 +584,7 @@ const Index = () => {
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan nama aplikasi"
                       onChange={handleExperienceChange}
+                      // value={portofolio.aplikasi_name}
                     />
                   </div>
                   <div className="mt-4">
@@ -428,6 +594,7 @@ const Index = () => {
                       aria-describedby="passwordHelpBlock"
                       placeholder="Masukan Link repository"
                       onChange={handleExperienceChange}
+                      // value={portofolio.link_repo}
                     />
                   </div>
                   <div className="d-flex gap-5 mt-3">
@@ -466,6 +633,7 @@ const Index = () => {
                     aria-describedby="passwordHelpBlock"
                     placeholder="Masukan tempat kerja"
                     onChange={handleExperienceChange}
+                    // value={portofolio.file}
                   />
                   <button
                     style={{
@@ -476,7 +644,7 @@ const Index = () => {
                     className=" w-100 p-2 fw-bold rounded mt-3 "
                   >
                     Tambah Portofolio
-                  </button>{" "}
+                  </button>{handlePortofolio}
                 </form>
               </div>
             </Col>

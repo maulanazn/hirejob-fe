@@ -1,13 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  FloatingLabel,
-  Navbar,
-} from "react-bootstrap";
+import { Container,Row,Col,Form,FloatingLabel, Navbar,} from "react-bootstrap";
 import "./editReqruiter.css";
 import { CiLocationOn } from "react-icons/ci";
 import recruiter from "../../assets/images/imgrecruiter.png";
@@ -19,8 +11,9 @@ import { useParams } from "react-router-dom";
 
 const Index = () => {
   const { id } = useParams();
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [inputData, setInputData] = useState({
+    // dijadiiin 1
     company_name: "",
     company_field: "",
     province: "",
@@ -35,7 +28,7 @@ const Index = () => {
     const getDetail = async () => {
       try {
         const getDetailRecruiter = await axios.get(
-          import.meta.env.VITE_BASE_URL + `/workers/photo/profil`,
+          import.meta.env.VITE_BASE_URL + `/recruiter/in`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -51,8 +44,8 @@ const Index = () => {
     getDetail();
   }, []);
   useEffect(() => {
-    data &&
       setInputData({
+        //digabung
         ...inputData,
         company_name: inputData.company_name,
         company_field: inputData.company_field,
@@ -64,9 +57,10 @@ const Index = () => {
         phone: inputData.phone,
         linkedin_url: inputData.linkedin_url,
       });
-  }, [data]);
+  }, []);
   const putRecruiter = async (event) => {
     event.preventDefault();
+    // digabung 
     let bodyIndex = new FormData();
     bodyIndex.append("company_name", inputData.company_name);
     bodyIndex.append("company_field", inputData.company_field);
@@ -80,8 +74,8 @@ const Index = () => {
 
     try {
       const editRecruiter = await axios.post(
-        import.meta.env.VITE_BASE_URL + "/recruiter/bio-recruiter",
-        bodyIndex, // tambah bodyindex buat simpen token
+        import.meta.env.VITE_BASE_URL + "/recruiter/update",
+        bodyIndex, 
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
@@ -102,7 +96,6 @@ const Index = () => {
         style={{ height: "280px", backgroundColor: " #5E50A1" }}
         className="W-100 position-relative"
       ></div>
-
       <div className="position-absolute w-100" style={{ top: "100px" }}>
         <Container className="my-5">
           <Row>
@@ -137,9 +130,7 @@ const Index = () => {
                     <CiLocationOn size={20} />
                     <p>Purwokerto, Jawa Tengah</p>
                   </div>
-                </div>
-              </div>
-              <div className="my-3">
+                  <div className="my-3">
                 <button
                   style={{ backgroundColor: " #5E50A1" }}
                   className=" text-white border border-0 w-100 p-2 fw-bold rounded  "
@@ -158,6 +149,8 @@ const Index = () => {
                 >
                   Batal
                 </button>
+              </div>
+                </div>
               </div>
             </Col>
             <Col md={8}>
@@ -193,7 +186,6 @@ const Index = () => {
                       onChange={handleInput}
                     />
                   </div>
-
                   <div className="mt-4">
                     <Form.Label>Kota</Form.Label>
                     <Form.Control
@@ -203,7 +195,6 @@ const Index = () => {
                       onChange={handleInput}
                     />
                   </div>
-
                   <div className="mb-3 mt-4">
                     <Form.Label>Deskripsi Singkat</Form.Label>
                     <Form.Control
@@ -215,7 +206,6 @@ const Index = () => {
                       onChange={handleInput}
                     />
                   </div>
-
                   <div className="mt-4">
                     <Form.Label>Email</Form.Label>
                     <Form.Control
@@ -225,7 +215,6 @@ const Index = () => {
                       onChange={handleInput}
                     />
                   </div>
-
                   <div className="mt-4">
                     <Form.Label>Email Perusahaan</Form.Label>
                     <Form.Control
@@ -255,14 +244,14 @@ const Index = () => {
                       onChange={handleInput}
                     />
                   </div>
-                  <button
+                  {/* <button
                     style={{ backgroundColor: " #5E50A1" }}
                     className=" text-white border border-0 w-100 p-2 fw-bold rounded my-4 "
                     type="submit"
                   >
                     {" "}
                     Simpan
-                  </button>
+                  </button> */}
                 </form>
               </div>
             </Col>
