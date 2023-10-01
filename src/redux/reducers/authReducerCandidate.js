@@ -11,7 +11,7 @@ export const loginReducer = (state = initialState, action) => {
     if (action.type === 'LOGIN_SUCCESS') {
         return {
             ...state,
-            data: action.payload,
+            data: action.payload.data,
             isLoading: false,
             isError: false,
             errorMessage: ''

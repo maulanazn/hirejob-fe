@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import DetailProfile from './pages/DetailProfile';
+import DetailWorker from './pages/DetailWorker';
 import Hire from './pages/Hire';
 import Chat from './pages/Chat';
 import LoginCandidate from './pages/auth/candidate/login'
@@ -21,7 +21,7 @@ const App = () => {
           <Route path='/register/candidate' element={<RegisterCandidate />} />
           <Route path='/register/recruiter' element={<RegisterRecruiter />} />
           <Route path='/login/recruiter' element={<LoginRecruiter />} />
-          <Route path='/detail-profile/:id' element={ < DetailProfile />}/>
+          <Route path='/detail-candidate/:id' element={ < DetailWorker />}/>
           <Route path='/hire/:id' element={ < Hire />}/>
           <Route path='/chat' element={ <Chat/> } />
           <Route path='/home' element={<Home />} />

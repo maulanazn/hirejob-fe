@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import { loginReducer, registerReducer } from "./authReducerCandidate";
 import { loginReducerRecruiter, registerReducerRecruiter } from "./authReducerRecruiter";
-import hireReducer from './hireReducer';
 import workerReducer from "./workerReducer";
+import chatReducer from "./chatReducer";
 
 const rootReducer = combineReducers({
   login_candidate: loginReducer,
@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
 	login_recruiter: loginReducerRecruiter,
 	register_recruiter: registerReducerRecruiter,
   worker: workerReducer,
-  hire : hireReducer
+  chat : chatReducer
 })
 
 export default rootReducer;

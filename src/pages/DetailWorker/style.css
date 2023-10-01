@@ -27,6 +27,7 @@
 #detail-profile
 .bio .photo-profile {
   width: 150px;
+  height: 150px;
   border-radius:50%;
   margin:0 auto 30px;
 }
@@ -326,6 +327,7 @@
   #detail-profile
   .bio .photo-profile {
     width: 130px;
+    height: 130px;
     margin-bottom: 20px;
   }
   
@@ -508,6 +510,7 @@
   #detail-profile
   .bio .photo-profile {
     width: 130px;
+    height: 130px;
     margin-bottom: 20px;
   }
   
@@ -683,6 +686,7 @@
   #detail-profile
   .bio .photo-profile {
     width: 100px;
+    height: 100px;
     margin: 20px auto;
   }
   

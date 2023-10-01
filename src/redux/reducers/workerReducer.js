@@ -5,7 +5,8 @@ const initialState = {
   isError:false,
   isLoading : false,
   showModal:false,
-  modalMessage:{}
+  modalMessage:{},
+  formId:''
 };
 
 const workerReducer = (state = initialState, action) => {
@@ -20,11 +21,26 @@ const workerReducer = (state = initialState, action) => {
         console.log('get worker success')
         return {
             ...state,
-            worker: action.payload.data[0],
+            worker: action.payload.data,
             isLoading:false
         };
       case 'GET_WORKER_FAILED':
         console.log('get worker fail')
+        return {
+          ...state,
+          isError: true,
+          isLoading:false
+        };
+      //CREATE FORM CHAT
+      case 'CREATE_FORM_SUCCESS':
+        console.log('create success',action.payload)
+        return {
+            ...state,
+            formId: action.payload.data.id,
+            isLoading:false
+        };
+      case 'CREATE_FORM_FAILED':
+        console.log('create fail')
         return {
           ...state,
           isError: true,

@@ -1,0 +1,383 @@
+/* bio */
+.bio {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 357px;
+  height: fit-content;
+  border-radius: 8px;
+  background: #FFF;
+  padding:30px;
+  box-shadow: -8px 8px 10px rgba(0, 0, 0, .1);
+  z-index:3;
+}
+
+.bio .photo-profile {
+  width: 150px;
+  border-radius:50%;
+  margin:0 auto 30px;
+}
+
+.bio .name {
+  color: #1F2A36;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.bio .job {
+  color: #1F2A36;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.bio .address {
+  display: flex;
+  margin: 15px 0;
+  text-transform: capitalize;
+}
+
+.bio .address .icon-location {
+  width: 16px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.bio .address .text-address {
+  color: #7d7d7e;
+  font-size: 14px;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.bio .type-job {
+  font-size: 14px;
+  font-weight: 500;
+  color: #9EA0A5;
+  text-align: left;
+  margin-bottom: 18px;
+}
+ 
+.bio .description {
+  color: #6f727a;
+  font-size: 16px;
+  text-align: left;
+  margin-bottom: 50px;
+} 
+
+/* skill */ 
+.bio .skill .head-skill{
+  color: #1F2A36;
+  font-size: 22px;
+  text-align: left;
+  margin-bottom: 20px;
+} 
+ 
+.bio .skill .list-skill{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 10px;
+} 
+ 
+.bio .skill .list-skill .name-skill{
+  padding: 6px 14px;
+  color: #FFF;
+  border-radius: 4px;
+  background: rgba(251, 176, 23, 1);
+  font-size: 14px;
+  margin: 0;
+  text-transform: capitalize;
+} 
+
+/* media social */
+.bio .media-social {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 50px 0;
+  row-gap: 0px;
+}
+
+.bio .media-social .icon-sos {
+  display: inline-block;
+  margin-right: 20px;
+  width: 30px;
+}
+
+.bio .media-social p {
+  color: #767a83;
+  font-size: 15px;
+  display: inline-block;
+}
+ 
+.bio .hire-button {
+  border-radius: 8px;
+  padding: 10px;
+  background: #5E50A1;
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 700;
+  width: 100%;
+  margin-bottom: 0;
+  outline: none;
+}
+ 
+.bio .hire-button:hover {
+  color:#5E50A1;
+  background-color: #fff;
+}
+
+
+/* Small Desk */
+@media (max-width: 1100px) {
+  /* bio */
+  .bio {
+    width: 300px;
+    background: #FFF;
+    padding:28px;
+  }
+  
+  .bio .photo-profile {
+    width: 130px;
+    margin-bottom: 20px;
+  }
+  
+  .bio .name {
+    font-size: 20px;
+  }
+  
+  .bio .job {
+    font-size: 13px;
+  }
+  
+  .bio .address {
+    margin: 12px 0;
+  }
+  
+  .bio .address .icon-location {
+    width: 14px;
+    margin-right: 8px;
+  }
+  
+  .bio .address .text-address {
+    font-size: 13px;
+    margin: 0;
+  }
+  
+  .bio .type-job {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+   
+  .bio .description {
+    font-size: 14px;
+    margin-bottom: 40px;
+  } 
+  
+  /* skill */ 
+  .bio .skill .head-skill{
+    font-size: 20px;
+    margin-bottom: 18px;
+  } 
+   
+  .bio .skill .list-skill{
+    gap:9px;
+  
+  } 
+   
+  .bio .skill .list-skill .name-skill{
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+  }
+  
+  /* media social */
+  .bio .media-social {
+    margin: 40px 0;
+  }
+  
+  .bio .media-social .icon-sos {
+    margin-right: 18px;
+  }
+  
+  .bio .media-social p {
+    font-size: 14px;
+  }
+   
+  .bio .hire-button {
+    font-size: 15px;
+  }
+
+}
+
+
+/* Tablet */
+@media (max-width: 768px) {
+  /* bio */
+  .bio {
+    width: 100%;
+    padding:30px;
+    margin-bottom: 30px;
+  }
+  
+  .bio .photo-profile {
+    width: 130px;
+    margin-bottom: 20px;
+  }
+  
+  .bio .name {
+    font-size: 20px;
+  }
+  
+  .bio .job {
+    font-size: 15px;
+  }
+  
+  .bio .address {
+    margin: 15px 0;
+  }
+  
+  .bio .address .icon-location {
+    width: 15px;
+    margin-right: 13px;
+  }
+  
+  .bio .address .text-address {
+    font-size: 15px;
+    margin: 0;
+  }
+  
+  .bio .type-job {
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+   
+  .bio .description {
+    font-size: 15px;
+    margin-bottom: 40px;
+  } 
+  
+  /* skill */ 
+  .bio .skill .head-skill{
+    font-size: 20px;
+    margin-bottom: 18px;
+  } 
+   
+  .bio .skill .list-skill{
+    gap:9px;
+  
+  } 
+   
+  .bio .skill .list-skill .name-skill{
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+  }
+  
+  /* media social */
+  .bio .media-social {
+    margin: 40px 0;
+  }
+  
+  .bio .media-social .icon-sos {
+    margin-right: 18px;
+  }
+  
+  .bio .media-social p {
+    font-size: 14px;
+  }
+   
+  .bio .hire-button {
+    font-size: 15px;
+  }
+
+}
+
+/* Smartphone */
+@media (max-width: 480px) {
+  
+  /* bio */
+  .bio {
+    padding:20px;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+  
+  .bio .photo-profile {
+    width: 100px;
+    margin: 20px auto;
+  }
+  
+  .bio .name {
+    font-size: 18px;
+  }
+  
+  .bio .job {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .bio .address {
+    margin: 12px 0;
+  }
+  
+  .bio .address .icon-location {
+    width: 14px;
+    margin-right: 10px;
+  }
+  
+  .bio .address .text-address {
+    font-size: 14px;
+  }
+  
+  .bio .type-job {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+   
+  .bio .description {
+    font-size: 14px;
+    margin-bottom: 40px;
+  } 
+  
+  /* skill */ 
+  .bio .skill .head-skill{
+    font-size: 18px;
+    margin-bottom: 18px;
+  } 
+   
+  .bio .skill .list-skill{
+    gap:9px;
+  
+  } 
+   
+  .bio .skill .list-skill .name-skill{
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+  }
+  
+  /* media social */
+  .bio .media-social {
+    margin: 20px 0;
+  }
+  
+  .bio .media-social .icon-sos {
+    margin-right: 18px;
+  }
+  
+  .bio .media-social p {
+    font-size: 14px;
+  }
+   
+  .bio .hire-button {
+    font-size: 15px;
+    padding: 10px;
+  }
+  
+}
