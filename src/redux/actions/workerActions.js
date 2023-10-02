@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {URL} from '../../pages/config/URL.js';
+import {URL} from './../config/URL.js';
 const token = localStorage.getItem('token')
 
 export const getWorkerById = (id) => {
