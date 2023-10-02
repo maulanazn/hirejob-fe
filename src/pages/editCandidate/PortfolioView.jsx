@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import {useParams} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { deletePortofolioId, getPortfolioUserById } from '../../redux/actions/bioActions';
 import { Button } from 'react-bootstrap';
+import {IoRemoveCircleOutline, IoPencilSharp} from 'react-icons/io5'
 
 export default function PortfolioView() {
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ export default function PortfolioView() {
                 variant="warning"
                 className="d-flex justify-content-center align-items-center"
               >
-                Edit
+                <IoPencilSharp size={20} />
               </Button>
             </div>
             <div>
@@ -59,7 +59,7 @@ export default function PortfolioView() {
                 variant="danger"
                 className="d-flex justify-content-center align-items-center"
               >
-                X
+                <IoRemoveCircleOutline size={20}/>
               </Button>
             </div>
           </div>
