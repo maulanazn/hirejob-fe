@@ -118,7 +118,7 @@ Contributions are what make the open source community such an amazing place to b
 
 * Github: [@Aryanda](https://github.com/)
 * LinkedIn: [@Aryanda](https://www.linkedin.com/in/)
-* 
+
 ### Show your support
 
 Give a ⭐️ if this project helped you!
