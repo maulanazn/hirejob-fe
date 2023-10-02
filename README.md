@@ -87,7 +87,7 @@ Contributions are what make the open source community such an amazing place to b
 * [`Hirejob BE`](https://github.com/maulanazn/hirejob-be)
 
 
-### Our Team
+### 🤝🏻 Our Team
 
  **Maulana - Team Leader**
 
