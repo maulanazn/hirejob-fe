@@ -89,32 +89,32 @@ Contributions are what make the open source community such an amazing place to b
 
 ### Our Team
 
-* **Maulana - Team Leader**
+ **Maulana - Team Leader**
 
 * Github: [@Maulana](https://github.com/maulanazn)
 * LinkedIn: [@Maulana](https://www.linkedin.com/in/)
 
-* **Arya Julianda - Front End Leader**
+ **Arya Julianda - Front End Leader**
 
 * Github: [@AryaJulianda](https://github.com/AryaJulianda)
 * LinkedIn: [@Arya Julianda](https://www.linkedin.com/in/aryajulianda)
 
-* **Damas - Front End Developer** 
+ **Damas - Front End Developer** 
 
 * Github: [@Damas](https://github.com/)
 * LinkedIn: [@Damas](https://www.linkedin.com/in/)
 
-* **Wicak - Front End Developer**
+ **Wicak - Front End Developer**
 
 * Github: [@Wicak](https://github.com/)
 * LinkedIn: [@Wicak](https://www.linkedin.com/in/)
 
-* **FIkry - Front End Developer**
+ **FIkry - Front End Developer**
 
 * Github: [@Fikry](https://github.com/)
 * LinkedIn: [@Fikry](https://www.linkedin.com/in/)
 
-* **Aryanda - Back End Developer**
+ **Aryanda - Back End Developer**
 
 * Github: [@Aryanda](https://github.com/)
 * LinkedIn: [@Aryanda](https://www.linkedin.com/in/)
