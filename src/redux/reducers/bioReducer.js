@@ -28,6 +28,34 @@ export const bioReducer = (state = initialState, action) => {
     }
 }
 
+export const countWorkExpData = (state = initialState, action) => {
+    switch(action.type) {
+        case 'WORKEXP_COUNT_PENDING':
+            return {
+                ...state,
+                isLoading: true
+            }
+        case 'WORKEXP_COUNT_SUCCESS':
+            return {
+                ...state,
+                data: action.payload,
+                isLoading: false,
+                isError: false,
+                errorMessage: ''
+            }
+        case 'WORKEXP_COUNT_FAILED':
+            return {
+                ...state,
+                data: null,
+                isLoading: false,
+                isError: true,
+                errorMessage: action.payload
+            }
+        default:
+            return state
+    }
+}
+
 export const getWorkData = (state = initialState, action) => {
     switch(action.type) {
         case 'WORKEXP_GET_PENDING':
@@ -72,6 +100,34 @@ export const deleteWorkData = (state = initialState, action) => {
                 errorMessage: ''
             }
         case 'WORKEXP_DELETE_FAILED':
+            return {
+                ...state,
+                data: null,
+                isLoading: false,
+                isError: true,
+                errorMessage: action.payload
+            }
+        default:
+            return state
+    }
+}
+
+export const countPortfolioData = (state = initialState, action) => {
+    switch(action.type) {
+        case 'PORTFOLIO_COUNT_PENDING':
+            return {
+                ...state,
+                isLoading: true
+            }
+        case 'PORTFOLIO_COUNT_SUCCESS':
+            return {
+                ...state,
+                data: action.payload,
+                isLoading: false,
+                isError: false,
+                errorMessage: ''
+            }
+        case 'PORTFOLIO_COUNT_FAILED':
             return {
                 ...state,
                 data: null,

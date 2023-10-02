@@ -7,7 +7,7 @@ import NavBar from "../../component/navbar";
 import Footer from "../../component/footer";
 import {useParams} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import {updateCandidateBioAction, updatePortfolioAction, updateWorkExpAction} from "../../redux/actions/bioActions";
+import {countPortfolioUser, countWorkExpUser, updateCandidateBioAction, updatePortfolioAction, updateWorkExpAction} from "../../redux/actions/bioActions";
 import { getUserById } from "../../redux/actions/userAction";
 import WorkExpView from "./WorkExpView";
 import PortfolioView from "./PortfolioView";
@@ -15,6 +15,8 @@ import PortfolioView from "./PortfolioView";
 const Index = () => {
   const { id } = useParams();
   const data = useSelector(state => state.user.data)
+  const workexpdata = useSelector(state => state.workexp_count.data)
+  const portofoliodata = useSelector(state => state.portofolio_count.data)
   const dispatch = useDispatch();
   const [photo, setPhoto] = useState([]);
   const [portfolioPhoto, setPortfolioPhoto] = useState([]);
@@ -45,6 +47,11 @@ const Index = () => {
 
   useEffect(() => {
     dispatch(getUserById())
+  }, [])
+
+  useEffect(() => {
+    dispatch(countWorkExpUser())
+    dispatch(countPortfolioUser())
   }, [])
 
   useEffect(() => {
@@ -291,7 +298,12 @@ const Index = () => {
                 <Form encType="multipart/form-data">
                   <h2>Pengalaman Kerja</h2>
                   <hr />
-                  <WorkExpView/>
+                  {
+                    workexpdata?.data?.count > 0 ?
+                      <WorkExpView/>
+                    :
+                      undefined
+                  }
                   <hr />
                   
                   <div className="mt-4">
@@ -394,7 +406,12 @@ const Index = () => {
               >
                 <h2>Portofolio</h2>
                 <form encType="multipart/form-data">
-                  <PortfolioView/>  
+                  {
+                    portofoliodata?.data?.count > 0 ?
+                      <PortfolioView/>  
+                    :
+                      undefined
+                  }
                 
                   <div className="mt-4">
                     <Form.Label>Nama aplikasi</Form.Label>

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import {useNavigate, useParams} from 'react-router-dom'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { deleteWorkExpId, getWorkExpUserId } from '../../redux/actions/bioActions';
 import { Button } from 'react-bootstrap';
+import { IoPencilSharp, IoRemoveCircleOutline } from 'react-icons/io5';
 
 function formatDate(inputDate) {
   const options = { month: 'long', year: 'numeric' };
@@ -10,16 +10,14 @@ function formatDate(inputDate) {
   return tanggal;
 }
 
-// function countDate(inputStartDate, inputEndDate) {
-//   const options = { month: 'long'};
-//   const tanggal1 = new Date(inputStartDate);
-//   const tanggal2 = new Date(inputEndDate);
-//   return tanggal1.getMonth() - tanggal2.getMonth();
-// }
+function countDate(inputStartDate, inputEndDate) {
+  const tanggal1 = new Date(inputStartDate);
+  const tanggal2 = new Date(inputEndDate);
+  return tanggal1.getMonth() - tanggal2.getMonth() + (12 * (tanggal1.getFullYear() - tanggal2.getFullYear()));
+}
 
 export default function WorkExpView() {
   const dispatch = useDispatch();
-  const [openEdit, setOpenEdit] = useState(false);
   const {workexp_get} = useSelector(state => state);
   const {data} = workexp_get;
 
@@ -42,13 +40,13 @@ export default function WorkExpView() {
             <img
               style={{ height: "70px", width: "70px" }}
               src={experience.work_experience_photo}
-              alt="tokopedia"
+              alt={experience.company_name}
             />
             <div>
               <h4 className="text-dark">{experience.position}</h4>
               <p className="mb-0">{experience.company_name}</p>
               <p className="mb-0">
-                {formatDate(experience.working_start_at)} - {formatDate(experience.working_end_at)}
+                {formatDate(experience.working_start_at)} - {formatDate(experience.working_end_at)} | {countDate(formatDate(experience.working_end_at), formatDate(experience.working_start_at))} months
               </p>
               <p className="pb-0 text-dark">
                 {experience.description}
@@ -62,7 +60,7 @@ export default function WorkExpView() {
                 variant="warning"
                 className="d-flex justify-content-center align-items-center"
               >
-                Edit
+                <IoPencilSharp size={20} />
               </Button>
             </div>
             <div>
@@ -71,7 +69,7 @@ export default function WorkExpView() {
                 variant="danger"
                 className="d-flex justify-content-center align-items-center"
               >
-               X
+               <IoRemoveCircleOutline size={20}/>
               </Button>
             </div>
           </div>
