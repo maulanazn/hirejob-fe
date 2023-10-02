@@ -5,14 +5,14 @@ const token = localStorage.getItem('token')
 export const getWorkerById = (id) => {
     return async(dispatch) => {
         try {
-          // console.log('get worker by id')
           dispatch({type:'PENDING'})
           const res = await axios.get(`${URL}/portfolio-view/` + id, {
             headers: {
-              Authorization: `Bearer ${token}`
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json"
             }
           })
-          dispatch({type:'GET_WORKER_SUCCESS',payload:res.data});
+          dispatch({type:'GET_WORKER_SUCCESS',payload:res.data.data});
         }catch(err){
           dispatch({type:'GET_WORKER_FAILED',error:err.response.data.message})
         }

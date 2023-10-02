@@ -21,7 +21,7 @@ const workerReducer = (state = initialState, action) => {
         console.log('get worker success')
         return {
             ...state,
-            worker: action.payload.data,
+            worker: action.payload,
             isLoading:false
         };
       case 'GET_WORKER_FAILED':

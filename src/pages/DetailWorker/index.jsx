@@ -16,7 +16,6 @@ const DetailWorker = () => {
   console.log({user,portfolio,sosmed,workexp})
   
   useEffect(()=> {
-    // console.log('ini useef')
     dispatch(getWorkerById(id))
   },[])
 
@@ -30,7 +29,7 @@ const DetailWorker = () => {
   sosmed?.forEach(item => {
     sosmedObj[item.social_media_name.toLowerCase()] = item.link;
   });
-  // console.log(sosmedObj)
+
   const skillsArr = user?.skill_name.split(',');
 
   const handleHire = () => {
