@@ -50,7 +50,7 @@ height: 500px;
 #chat
 .nav-chat .list-chat .receiver img{
   width: 40px;
-  height: auto;
+  height: 40px;
   border-radius: 50%;
   margin: 10px;
 }
@@ -278,7 +278,7 @@ height: 500px;
   #chat
   .nav-chat .list-chat .receiver img{
     width: 34px;
-    height: auto;
+    height: 34px;
     border-radius: 50%;
     margin: 8px;
   }
@@ -415,7 +415,7 @@ height: 500px;
   #chat
   .nav-chat .list-chat .receiver img{
     width: 34px;
-    height: auto;
+    height: 34px;
     border-radius: 50%;
     margin: 8px;
   }
@@ -554,7 +554,7 @@ height: 500px;
   #chat
   .nav-chat .list-chat .receiver img{
     width: 34px;
-    height: auto;
+    height: 34px;
     border-radius: 50%;
     margin: 8px;
   }
