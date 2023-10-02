@@ -1,8 +1,9 @@
 import React, { useState } from "react"
 import './style.css'
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { hire } from "../../redux/actions/hireActions";
+import { useDispatch ,useSelector} from "react-redux";
+import BioWorker from "../../component/BioWorker";
+import {hire} from "../../redux/actions/chatAction"
 
 const Hire = () => {
 
@@ -11,7 +12,14 @@ const Hire = () => {
 
   const params = useParams("id");
 
-  console.log(params.id)
+  const sosmed = useSelector((state)=> state.worker.worker.sosmed)
+  const userArr = useSelector((state)=> state.worker.worker.user)
+  const user = userArr ? userArr[0] : undefined
+  const skillsArr = user?.skill_name.split(',');
+  const sosmedObj = {}
+  sosmed?.forEach(item => {
+    sosmedObj[item.social_media_name.toLowerCase()] = item.link;
+  });
 
 
   const [message,setMessage] = useState({
@@ -19,8 +27,6 @@ const Hire = () => {
     position:'',
     message_detail:''
 });
-
-  // console.log(message)
 
 const handleChange = (event) => {
   const {name,value} = event.target;
@@ -32,44 +38,13 @@ const handleChange = (event) => {
 
 const handleSubmit = (event) => {
   event.preventDefault();
-
   console.log(message)
-
-  dispatch(hire(message))
+  dispatch(hire(message,navigate))
 }
 
   return (
     <div id='hire'>
-      <div className="bio">
-          <img src="./images/img-profile.svg" alt="" className="photo-profile"/>
-          <h1 className='name' >Louis Tomlinson</h1>
-          <h3 className='job'>Web Developer</h3>
-          <div className="address">
-            <img src="./images/icon-location.svg" alt="" className="icon-location" />
-            <h3 className="text-address">Purwokero, Jawa Tengah</h3>
-          </div>
-
-          <h3 className="type-job">Freelancer</h3>
-
-          <p className="description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo quidem voluptatum debitis repellat nemo? Natus doloremque
-          </p>
-
-          <div className="skill">
-            <h2 className="head-skill">Skill</h2>
-
-            <div className="list-skill">
-              <p className="name-skill">Phyton</p>  
-              <p className="name-skill">Javascript</p>  
-              <p className="name-skill">Laravel</p>  
-              <p className="name-skill">Html</p>  
-              <p className="name-skill">Bootstrap</p>  
-              <p className="name-skill">Phyton</p>  
-              <p className="name-skill">Phyton</p>  
-            </div>  
-          </div>
-
-      </div>
+       <BioWorker user={user} skillsArr={skillsArr} sosmedObj={sosmedObj} />
 
       <div className="hire-section">
         <h1 className="head">Hubungi Lous Tomlinson</h1>

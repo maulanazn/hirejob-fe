@@ -2,8 +2,10 @@
   font-family: Open Sans;
   display: flex;
   padding: 60px;
+  gap:30px;
   background-color: #F6F7F8;
   position: relative;
+  justify-content: center;
 }
 
 
@@ -11,12 +13,13 @@
 #detail-profile
 .bio {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 357px;
   height: fit-content;
   border-radius: 8px;
   background: #FFF;
   padding:30px;
-  margin-right: 60px;
   box-shadow: -8px 8px 10px rgba(0, 0, 0, .1);
   z-index:3;
 }
@@ -24,8 +27,9 @@
 #detail-profile
 .bio .photo-profile {
   width: 150px;
+  height: 150px;
   border-radius:50%;
-  margin-bottom: 30px;
+  margin:0 auto 30px;
 }
 
 #detail-profile
@@ -33,22 +37,24 @@
   color: #1F2A36;
   font-size: 22px;
   font-weight: 600;
-  text-align: left;
+  text-align: center;
+  text-transform: capitalize;
 }
 
 #detail-profile
 .bio .job {
   color: #1F2A36;
   font-size: 14px;
-  font-weight: 400;
-  text-align: left;
+  font-weight: 500;
+  text-align: center;
+  text-transform: capitalize;
 }
 
 #detail-profile
 .bio .address {
   display: flex;
-  align-items: center;
   margin: 15px 0;
+  text-transform: capitalize;
 }
 
 #detail-profile
@@ -60,15 +66,16 @@
 
 #detail-profile
 .bio .address .text-address {
-  color: #9EA0A5;
+  color: #7d7d7e;
   font-size: 14px;
   margin: 0;
+  text-transform: capitalize;
 }
 
 #detail-profile
 .bio .type-job {
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   color: #9EA0A5;
   text-align: left;
   margin-bottom: 18px;
@@ -76,8 +83,8 @@
 
 #detail-profile 
 .bio .description {
-  color: #9EA0A5;
-  font-size: 14px;
+  color: #6f727a;
+  font-size: 16px;
   text-align: left;
   margin-bottom: 50px;
 } 
@@ -94,22 +101,21 @@
 #detail-profile 
 .bio .skill .list-skill{
   display: flex;
+  width: 100%;
   flex-wrap: wrap;
-  /* background-color: yellowgreen; */
-  gap:10px;
-
+  flex-direction: row;
+  gap: 10px;
 } 
 
 #detail-profile 
 .bio .skill .list-skill .name-skill{
-  display: block;
   padding: 6px 14px;
   color: #FFF;
   border-radius: 4px;
-  border: 1px solid #FBB017;
-  background: rgba(251, 176, 23, 0.60);
-  font-size: 12px;
+  background: rgba(251, 176, 23, 1);
+  font-size: 14px;
   margin: 0;
+  text-transform: capitalize;
 } 
 
 /* media social */
@@ -123,27 +129,36 @@
 }
 
 #detail-profile
-.bio .media-social .icon {
+.bio .media-social .icon-sos {
   display: inline-block;
   margin-right: 20px;
+  width: 30px;
 }
 
 #detail-profile
 .bio .media-social p {
-  color: #9EA0A5;
-  font-size: 14px;
+  color: #767a83;
+  font-size: 15px;
   display: inline-block;
 }
 
 #detail-profile 
 .bio .hire-button {
-  border-radius: 4px;
+  border-radius: 8px;
+  padding: 10px;
   background: #5E50A1;
   color: #FFF;
   font-size: 16px;
   font-weight: 700;
   width: 100%;
   margin-bottom: 0;
+  outline: none;
+}
+
+#detail-profile 
+.bio .hire-button:hover {
+  color:#5E50A1;
+  background-color: #fff;
 }
 
 
@@ -194,12 +209,19 @@
 .etalase .portfolio .list-portfolio .image-portfolio{
   width: 220px;
   height: 150px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 12px;
 }
 
 #detail-profile
 .etalase .portfolio .list-portfolio .title{
   font-size: 18px;
-  margin-top: 5px;
+  margin-top: 10px;
+  text-transform: capitalize;
+  color:#1F2A36;
+  font-weight: 600;
+  text-align: center;
 }
 
 /* pengalaman */
@@ -245,6 +267,7 @@
   color: #1F2A36;
   font-size: 20px;
   font-weight: 600;
+  text-transform: capitalize;
 } 
 
 #detail-profile
@@ -252,6 +275,7 @@
   color: #46505C;
   font-size: 18px;
   font-weight: 400;
+  text-transform: capitalize;
 } 
 
 #detail-profile
@@ -285,9 +309,10 @@
 
 
 /* Small Desk */
-@media (max-width: 1040px) {
+@media (max-width: 1100px) {
   #detail-profile{
     padding: 40px;
+    gap:20px;
   }
   
   
@@ -297,12 +322,12 @@
     width: 300px;
     background: #FFF;
     padding:28px;
-    margin-right: 40px;
   }
   
   #detail-profile
   .bio .photo-profile {
     width: 130px;
+    height: 130px;
     margin-bottom: 20px;
   }
   
@@ -372,7 +397,7 @@
   }
   
   #detail-profile
-  .bio .media-social .icon {
+  .bio .media-social .icon-sos {
     margin-right: 18px;
   }
   
@@ -413,13 +438,13 @@
   #detail-profile
   .etalase .portfolio .list-portfolio .image-portfolio{
     width: 200px;
-    height: auto;
+    height: 140px;
   }
 
   #detail-profile
   .etalase .portfolio .list-portfolio .title{
     font-size: 14px;
-    margin-top: 5px;
+    margin-top: 10px;
   }
   
   /* pengalaman */
@@ -479,26 +504,24 @@
   .bio {
     width: 100%;
     padding:30px;
-    margin-right: 0;
     margin-bottom: 30px;
   }
   
   #detail-profile
   .bio .photo-profile {
     width: 130px;
+    height: 130px;
     margin-bottom: 20px;
   }
   
   #detail-profile
   .bio .name {
     font-size: 20px;
-    text-align: center;
   }
   
   #detail-profile
   .bio .job {
     font-size: 15px;
-    text-align: center;
   }
   
   #detail-profile
@@ -557,7 +580,7 @@
   }
   
   #detail-profile
-  .bio .media-social .icon {
+  .bio .media-social .icon-sos {
     margin-right: 18px;
   }
   
@@ -595,11 +618,6 @@
     gap: 14px;
   }
   
-  #detail-profile
-  .etalase .portfolio .list-portfolio .image-portfolio{
-    width: 200px;
-    height: auto;
-  }
 
   #detail-profile
   .etalase .portfolio .list-portfolio .title{
@@ -668,7 +686,8 @@
   #detail-profile
   .bio .photo-profile {
     width: 100px;
-    margin-bottom: 10px;
+    height: 100px;
+    margin: 20px auto;
   }
   
   #detail-profile
@@ -737,7 +756,7 @@
   }
   
   #detail-profile
-  .bio .media-social .icon {
+  .bio .media-social .icon-sos {
     margin-right: 18px;
   }
   
@@ -749,6 +768,7 @@
   #detail-profile 
   .bio .hire-button {
     font-size: 15px;
+    padding: 10px;
   }
   
   
@@ -779,13 +799,13 @@
   #detail-profile
   .etalase .portfolio .list-portfolio .image-portfolio{
     width: 300px;
-    height: auto;
+    height: 160px;
   }
 
   #detail-profile
   .etalase .portfolio .list-portfolio .title{
     font-size: 14px;
-    margin-top: 10px;
+    margin-top: 13px;
   }
   
   /* pengalaman */

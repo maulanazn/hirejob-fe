@@ -9,6 +9,7 @@ export const loginReducerRecruiter = (state = initialState, action) => {
     }
 
     if (action.type === 'LOGIN_SUCCESS') {
+        console.log('login recruiter success',action.payload)
         return {
             ...state,
             data: action.payload,

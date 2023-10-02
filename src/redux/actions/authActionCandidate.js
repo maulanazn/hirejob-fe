@@ -4,6 +4,7 @@ import {URL} from './../config/URL.js';
 export const loginAction = (data, navigate) =>
     async (dispatch) => {
         try{
+            console.log(data)
             dispatch({type: 'LOGIN_PENDING'})
             const result = await axios.post(`${URL}/login/`,data)
             localStorage.setItem("token", result.data.access_token)
