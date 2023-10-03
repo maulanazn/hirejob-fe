@@ -79,7 +79,7 @@ export default function PortfolioEditView() {
               value="Mobile App"
               name="app_type"
               onChange={handlePortfolioChange}
-              checked={portofolio_get_id?.data[0].app_type ? portofolio_get_id?.data[0].app_type : ''}
+              checked={portofolio_get_id?.data[0].app_type ? true : false}
             />
             <label
               className="form-check-label"
@@ -96,7 +96,7 @@ export default function PortfolioEditView() {
               value="Web App"
               name="app_type"
               onChange={handlePortfolioChange}
-              checked={portofolio_get_id?.data[0].app_type ? portofolio_get_id?.data[0].app_type : ''}
+              checked={portofolio_get_id?.data[0].app_type ? true : false}
             />
             <label
               className="form-check-label"
