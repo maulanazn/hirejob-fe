@@ -84,6 +84,34 @@ export const getWorkData = (state = initialState, action) => {
     }
 }
 
+export const getWorkDataId = (state = initialState, action) => {
+    switch(action.type) {
+        case 'WORKEXP_GET_ID_PENDING':
+            return {
+                ...state,
+                isLoading: true
+            }
+        case 'WORKEXP_GET_ID_SUCCESS':
+            return {
+                ...state,
+                data: action.payload,
+                isLoading: false,
+                isError: false,
+                errorMessage: ''
+            }
+        case 'WORKEXP_GET_ID_FAILED':
+            return {
+                ...state,
+                data: null,
+                isLoading: false,
+                isError: true,
+                errorMessage: action.payload
+            }
+        default:
+            return state
+    }
+}
+
 export const deleteWorkData = (state = initialState, action) => {
     switch(action.type) {
         case 'WORKEXP_DELETE_PENDING':
@@ -100,6 +128,34 @@ export const deleteWorkData = (state = initialState, action) => {
                 errorMessage: ''
             }
         case 'WORKEXP_DELETE_FAILED':
+            return {
+                ...state,
+                data: null,
+                isLoading: false,
+                isError: true,
+                errorMessage: action.payload
+            }
+        default:
+            return state
+    }
+}
+
+export const updateWorkDataId = (state = initialState, action) => {
+    switch(action.type) {
+        case 'WORKEXP_UPDATE_ID_PENDING':
+            return {
+                ...state,
+                isLoading: true
+            }
+        case 'WORKEXP_UPDATE_ID_SUCCESS':
+            return {
+                ...state,
+                data: action.payload,
+                isLoading: false,
+                isError: false,
+                errorMessage: ''
+            }
+        case 'WORKEXP_UPDATE_ID_FAILED':
             return {
                 ...state,
                 data: null,
@@ -184,6 +240,62 @@ export const deletePortofolioId = (state = initialState, action) => {
                 errorMessage: ''
             }
         case 'PORTOFOLIO_DELETE_FAILED':
+            return {
+                ...state,
+                data: null,
+                isLoading: false,
+                isError: true,
+                errorMessage: action.payload
+            }
+        default:
+            return state
+    }
+}
+
+export const getPortofolioDataId = (state = initialState, action) => {
+    switch(action.type) {
+        case 'PORTOFOLIO_GET_ID_PENDING':
+            return {
+                ...state,
+                isLoading: true
+            }
+        case 'PORTOFOLIO_GET_ID_SUCCESS':
+            return {
+                ...state,
+                data: action.payload,
+                isLoading: false,
+                isError: false,
+                errorMessage: ''
+            }
+        case 'PORTOFOLIO_GET_ID_FAILED':
+            return {
+                ...state,
+                data: null,
+                isLoading: false,
+                isError: true,
+                errorMessage: action.payload
+            }
+        default:
+            return state
+    }
+}
+
+export const updatePortofolioDataId = (state = initialState, action) => {
+    switch(action.type) {
+        case 'PORTOFOLIO_UPDATE_ID_PENDING':
+            return {
+                ...state,
+                isLoading: true
+            }
+        case 'PORTOFOLIO_UPDATE_ID_SUCCESS':
+            return {
+                ...state,
+                data: action.payload,
+                isLoading: false,
+                isError: false,
+                errorMessage: ''
+            }
+        case 'PORTOFOLIO_UPDATE_ID_FAILED':
             return {
                 ...state,
                 data: null,

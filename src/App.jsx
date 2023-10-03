@@ -11,6 +11,8 @@ import EditRecruiter from "./pages/edit Recruiter/index"
 import EditCandidate from "./pages/editCandidate/index"
 import Home from './pages/Home'
 import Root from './pages/Root';
+import WorkExpEditView from './pages/editCandidate/WorkExpEditView';
+import PortfolioEditView from './pages/editCandidate/PortfolioEditView';
 const App = () => {
   return (
     <>
@@ -27,6 +29,8 @@ const App = () => {
           <Route path='/home' element={<Home />} />
           <Route path='/edit-recruiter' element={<EditRecruiter />} />
           <Route path='/edit-candidate' element={<EditCandidate />} />
+          <Route path='/edit-candidate/:id' element={<WorkExpEditView />} />
+          <Route path='/edit-portofolio/:id' element={<PortfolioEditView />} />
         </Routes>
       </Router>
     </>
