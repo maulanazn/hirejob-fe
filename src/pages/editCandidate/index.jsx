@@ -7,7 +7,7 @@ import NavBar from "../../component/navbar";
 import Footer from "../../component/footer";
 import {useParams} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import {countPortfolioUser, countWorkExpUser, updateCandidateBioAction, updatePortfolioAction, updateWorkExpAction} from "../../redux/actions/bioActions";
+import {updateCandidateBioAction} from "../../redux/actions/bioActions";
 import { getUserById } from "../../redux/actions/userAction";
 import WorkExpView from "./WorkExpView";
 import PortfolioView from "./PortfolioView";
@@ -15,12 +15,8 @@ import PortfolioView from "./PortfolioView";
 const Index = () => {
   const { id } = useParams();
   const data = useSelector(state => state.user.data)
-  const workexpdata = useSelector(state => state.workexp_count.data)
-  const portofoliodata = useSelector(state => state.portofolio_count.data)
   const dispatch = useDispatch();
   const [photo, setPhoto] = useState([]);
-  const [portfolioPhoto, setPortfolioPhoto] = useState([]);
-  const [work_experience_photo, setWorkExpPhoto] = useState([]);
   const [userData, setUserData] = useState({
     photo: "",
     name: "",
@@ -30,28 +26,9 @@ const Index = () => {
     description: "",
     skill_name: "",
   });
-  const [experience, setExperience] = useState({
-    position: "",
-    company_name: "",
-    work_experience_photo: "",
-    working_start_at: "",
-    working_end_at: "",
-    description: "",
-  });
-  const [Portofolio, setPortofolio] = useState({
-    portfolio_name: "",
-    repository_link: "",
-    app_type: "",
-    photo: "",
-  });
-
+  
   useEffect(() => {
     dispatch(getUserById())
-  }, [])
-
-  useEffect(() => {
-    dispatch(countWorkExpUser())
-    dispatch(countPortfolioUser())
   }, [])
 
   useEffect(() => {
@@ -88,53 +65,6 @@ const Index = () => {
   function setOnPhoto(e) {
     setPhoto(e.target.files[0])
     e.target.files[0] && setUserData({...userData, photo: URL.createObjectURL(e.target.files[0])})
-  }
-
-  const handleExperience = (event) => {
-    event.preventDefault();
-    let bodyIndex = new FormData();
-
-    bodyIndex.append("position", experience.position);
-    bodyIndex.append("company_name", experience.company_name);
-    bodyIndex.append("work_experience_photo", work_experience_photo);
-    bodyIndex.append("working_start_at", experience.working_start_at);
-    bodyIndex.append("working_end_at", experience.working_end_at);
-    bodyIndex.append("description", experience.description);
-
-    dispatch(updateWorkExpAction(bodyIndex))
-  };
-
-  const handleExperienceChange = (event) => {
-    setExperience({
-      ...experience,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  function setPhotoWork(e) {
-    setWorkExpPhoto(e.target.files[0])
-    e.target.files[0] && setExperience({...experience, work_experience_photo: URL.createObjectURL(e.target.files[0])})
-  }
-
-  const handlePortofolio = (e) => {
-    e.preventDefault();
-    let bodyIndex = new FormData();
-
-    bodyIndex.append("portfolio_name", Portofolio.portfolio_name);
-    bodyIndex.append("repository_link", Portofolio.repository_link);
-    bodyIndex.append("app_type", Portofolio.app_type);
-    bodyIndex.append("photo", portfolioPhoto);
-
-    dispatch(updatePortfolioAction(bodyIndex));
-  };
-
-  const handlePortfolioChange = (e) => {
-    setPortofolio({ ...Portofolio, [event.target.name]: event.target.value });
-  };
-
-  const handlePortfolioPhoto = (e) => {
-    setPortfolioPhoto(e.target.files[0])
-    e.target.files[0] && setPortofolio({...Portofolio, photo: URL.createObjectURL(e.target.files[0])})
   }
 
   return (
@@ -288,207 +218,8 @@ const Index = () => {
                   </button>
                 </div>
               </div>
-              {/*  END FORM USER EDIT */}
-
-              {/* FORM WORK EXPERIENCE */}
-              <div
-                style={{ backgroundColor: "white" }}
-                className="p-5 mt-5 rounded"
-              >
-                <Form encType="multipart/form-data">
-                  <h2>Pengalaman Kerja</h2>
-                  <hr />
-                  {
-                    workexpdata?.data?.count > 0 ?
-                      <WorkExpView/>
-                    :
-                      undefined
-                  }
-                  <hr />
-                  
-                  <div className="mt-4">
-                    <Form.Label style={{ color: "#858D96" }}>Posisi</Form.Label>
-                    <Form.Control
-                      type="text"
-                      aria-describedby="passwordHelpBlock"
-                      placeholder="Web Developer"
-                      name="position"
-                      onChange={handleExperienceChange}
-                    />
-                    <div>
-                      <Row>
-                        <Col md={4}>
-                          <div className="mt-4 my-4">
-                            <Form.Label style={{ color: "#858D96" }}>
-                             Input Nama Perusahaan
-                            </Form.Label>
-                            <Form.Control
-                              type="text"
-                              aria-describedby="passwordHelpBlock"
-                              placeholder=" Nama Perusahaan"
-                              name="company_name"
-                              onChange={handleExperienceChange}
-                            />
-                          </div>
-                        </Col>
-                        <Col md={4}>
-                          <div className="mt-4">
-                            <Form.Label style={{ color: "#858D96" }}>
-                              Dari bulan/tahun
-                            </Form.Label>
-                            <Form.Control
-                              type="date"
-                              name="working_start_at"
-                              aria-describedby="passwordHelpBlock"
-                              placeholder="Januari 2019"
-                              onChange={handleExperienceChange}
-                            />
-                          </div>
-                        </Col>
-                        <Col md={4}>
-                          <div className="mt-4">
-                            <Form.Label style={{ color: "#858D96" }}>
-                              Sampai bulan/tahun
-                            </Form.Label>
-                            <Form.Control
-                              type="date"
-                              name="working_end_at"
-                              aria-describedby="passwordHelpBlock"
-                              placeholder="Masukan tempat kerja"
-                              onChange={handleExperienceChange}
-                            />
-                          </div>
-                        </Col>
-                      </Row>
-                    </div>
-                    <Form.Control
-                        className="my-5"
-                        type="file"
-                        aria-describedby="passwordHelpBlock"
-                        placeholder="Masukan tempat kerja"
-                        name="work_experience_photo"
-                        onChange={setPhotoWork}
-                    />
-                    <div className="my-3">
-                      <Form.Label>Deskripsi Singkat</Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        rows={5}
-                        placeholder="Masukan Deskripsi Pekerjaan"
-                        style={{ height: "200px" }}
-                        className="form-focus"
-                        name="description"
-                        onChange={handleExperienceChange}
-                        defaultValue={experience.description}
-                      />
-                    </div>
-                    <button
-                      onClick={handleExperience}
-                      style={{
-                        backgroundColor: "white",
-                        borderColor: "#FBB017",
-                        color: "#FBB017",
-                      }}
-                      className=" w-100 p-2 fw-bold rounded mt-3 "
-                    >
-                      Tambah Pengalaman Kerja
-                    </button>{" "}
-                  </div>
-                </Form>
-              </div>
-              {/* END FORM WORK EXPERIENCE */}
-
-              {/* PORTFOLIO EXPERIENCE */}
-              <div
-                style={{ backgroundColor: "white" }}
-                className="p-5 mt-5 rounded"
-                onSubmit={handlePortofolio}
-              >
-                <h2>Portofolio</h2>
-                <form encType="multipart/form-data">
-                  {
-                    portofoliodata?.data?.count > 0 ?
-                      <PortfolioView/>  
-                    :
-                      undefined
-                  }
-                
-                  <div className="mt-4">
-                    <Form.Label>Nama aplikasi</Form.Label>
-                    <Form.Control
-                      type="text"
-                      aria-describedby="passwordHelpBlock"
-                      placeholder="Masukan nama aplikasi"
-                      onChange={handlePortfolioChange}
-                      name="portfolio_name"
-                    />
-                  </div>
-                  <div className="mt-4">
-                    <Form.Label>Link Repository</Form.Label>
-                    <Form.Control
-                      type="text"
-                      aria-describedby="passwordHelpBlock"
-                      placeholder="Masukan Link repository"
-                      onChange={handlePortfolioChange}
-                      name="repository_link"
-                    />
-                  </div>
-                  <div className="d-flex gap-5 mt-3">
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        id="flexRadioDefault1"
-                        value="Mobile App"
-                        name="app_type"
-                        onChange={handlePortfolioChange}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault1"
-                      >
-                        Aplikasi mobile
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        id="flexRadioDefault1"
-                        value="Web App"
-                        name="app_type"
-                        onChange={handlePortfolioChange}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault1"
-                      >
-                        Aplikasi web
-                      </label>
-                    </div>
-                  </div>
-                  <Form.Control
-                    className="my-5"
-                    type="file"
-                    aria-describedby="passwordHelpBlock"
-                    placeholder="Masukan Foto"
-                    name="portfolioPhoto"
-                    onChange={handlePortfolioPhoto}                  
-                  />
-                  <button
-                    type="submit"
-                    style={{
-                      backgroundColor: "white",
-                      borderColor: "#FBB017",
-                      color: "#FBB017",
-                    }}
-                    className=" w-100 p-2 fw-bold rounded mt-3 "
-                  >
-                    Tambah Portofolio
-                  </button>
-                </form>
-              </div>
-              {/* END FORM PORTFOLIO */}
+              <WorkExpView/>
+              <PortfolioView/>
             </Col>
           </Row>
         </Container>

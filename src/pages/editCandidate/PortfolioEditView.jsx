@@ -1,70 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { countPortfolioUser, deletePortofolioId, getPortfolioUserById } from '../../redux/actions/bioActions';
-import { Button, Form } from 'react-bootstrap';
-import {IoRemoveCircleOutline, IoPencilSharp} from 'react-icons/io5'
-import { useNavigate } from 'react-router-dom';
+import { getPortofolioId, updatePortofolioIdAction } from '../../redux/actions/bioActions';
+import { Form } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 
-function PortofolioViewData() {
-  const navigate = useNavigate();
-  const {portfolio_get} = useSelector(state => state);
-  const {data} = portfolio_get;
-
-  return (
-    <div>
-      {data?.map((portofolio, index) => (
-        <div
-          className="d-flex justify-content-between mb-3"
-          key={index}
-        >
-          <div className="d-flex gap-3">
-            {portofolio.photo ? (
-              <img
-                style={{ height: "100px", width: "150px" }}
-                src={portofolio.photo}
-                alt="porto"
-              />
-            ) : (
-              <img
-                style={{ height: "100px", width: "150px" }}
-                src={porto}
-                alt="porto"
-              />
-            )}
-            <div>
-              <h6 className="text-dark">{portofolio.portfolio_name}</h6>
-              <p className="mb-0">{portofolio.repository_link}</p>
-            </div>
-          </div>
-          <div className="d-flex flex-sm-column flex-lg-row gap-2">
-            <div>
-              <Button
-                onClick={() => navigate(`/edit-portofolio/${portofolio.id}`)}
-                variant="warning"
-                className="d-flex justify-content-center align-items-center"
-              >
-                <IoPencilSharp size={20} />
-              </Button>
-            </div>
-            <div>
-              <Button
-                onClick={() => deletePortofolioId(portofolio.id)}
-                variant="danger"
-                className="d-flex justify-content-center align-items-center"
-              >
-                <IoRemoveCircleOutline size={20}/>
-              </Button>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-export default function PortfolioView() {
+export default function PortfolioEditView() {
   const dispatch = useDispatch();
-  const portofoliodata = useSelector(state => state.portofolio_count.data)
+  const {id} = useParams();
+  const portofolio_get_id = useSelector(state => state.portofolio_get_id.data);
   const [portfolioPhoto, setPortfolioPhoto] = useState([]);
   const [Portofolio, setPortofolio] = useState({
     portfolio_name: "",
@@ -73,7 +16,7 @@ export default function PortfolioView() {
     photo: "",
   });
 
-  const handlePortofolio = (e) => {
+  const updatePortofolio = (e) => {
     e.preventDefault();
     let bodyIndex = new FormData();
 
@@ -82,7 +25,7 @@ export default function PortfolioView() {
     bodyIndex.append("app_type", Portofolio.app_type);
     bodyIndex.append("photo", portfolioPhoto);
 
-    dispatch(updatePortfolioAction(bodyIndex));
+    dispatch(updatePortofolioIdAction(bodyIndex, id));
   };
 
   const handlePortfolioChange = (e) => {
@@ -95,28 +38,16 @@ export default function PortfolioView() {
   }
 
   useEffect(() => {
-    dispatch(getPortfolioUserById())
-  }, [])
-
-  useEffect(() => {
-    dispatch(countPortfolioUser())
+    dispatch(getPortofolioId(id))
   }, [])
 
   return (
     <div
       style={{ backgroundColor: "white" }}
-      className="p-5 mt-5 rounded"
-      onSubmit={handlePortofolio}
+      className="p-5 mt-5 rounded container mb-5"
     >
       <h2>Portofolio</h2>
       <form encType="multipart/form-data">
-        {
-          portofoliodata?.data?.count > 0 ?
-            <PortofolioViewData/>  
-          :
-            undefined
-        }
-      
         <div className="mt-4">
           <Form.Label>Nama aplikasi</Form.Label>
           <Form.Control
@@ -125,6 +56,7 @@ export default function PortfolioView() {
             placeholder="Masukan nama aplikasi"
             onChange={handlePortfolioChange}
             name="portfolio_name"
+            defaultValue={portofolio_get_id?.data[0].portfolio_name}
           />
         </div>
         <div className="mt-4">
@@ -135,6 +67,7 @@ export default function PortfolioView() {
             placeholder="Masukan Link repository"
             onChange={handlePortfolioChange}
             name="repository_link"
+            defaultValue={portofolio_get_id?.data[0].repository_link}
           />
         </div>
         <div className="d-flex gap-5 mt-3">
@@ -146,6 +79,7 @@ export default function PortfolioView() {
               value="Mobile App"
               name="app_type"
               onChange={handlePortfolioChange}
+              checked={portofolio_get_id?.data[0].app_type ? portofolio_get_id?.data[0].app_type : ''}
             />
             <label
               className="form-check-label"
@@ -162,6 +96,7 @@ export default function PortfolioView() {
               value="Web App"
               name="app_type"
               onChange={handlePortfolioChange}
+              checked={portofolio_get_id?.data[0].app_type ? portofolio_get_id?.data[0].app_type : ''}
             />
             <label
               className="form-check-label"
@@ -171,16 +106,22 @@ export default function PortfolioView() {
             </label>
           </div>
         </div>
+        <img
+          style={{ height: "120px", width: "150px", marginLeft: '30rem' }}
+          src={portofolio_get_id?.data[0].photo}
+          alt={portofolio_get_id?.data[0].portfolio_name}
+        />
         <Form.Control
           className="my-5"
           type="file"
           aria-describedby="passwordHelpBlock"
           placeholder="Masukan Foto"
           name="portfolioPhoto"
-          onChange={handlePortfolioPhoto}                  
+          onChange={handlePortfolioPhoto}   
+          defaultValue={portofolio_get_id?.data[0].photo}               
         />
         <button
-          type="submit"
+          onClick={updatePortofolio}
           style={{
             backgroundColor: "white",
             borderColor: "#FBB017",
