@@ -89,35 +89,35 @@ Contributions are what make the open source community such an amazing place to b
 
 ### 🤝🏻 Our Team
 
- **Maulana - Team Leader**
+ **Maulana Zulkifli Nugroho - Team Leader**
 
-* Github: [@Maulana](https://github.com/maulanazn)
-* LinkedIn: [@Maulana](https://www.linkedin.com/in/)
+* Github: [@Maulanazn](https://github.com/maulanazn)
+* LinkedIn: [@maulanazulkifli19](https://linkedin.com/in/maulanazulkifli19)
 
  **Arya Julianda - Front End Leader**
 
 * Github: [@AryaJulianda](https://github.com/AryaJulianda)
 * LinkedIn: [@Arya Julianda](https://www.linkedin.com/in/aryajulianda)
 
- **Damas - Front End Developer** 
+ **Damas Setiadi Sukardi - Front End Developer** 
 
-* Github: [@Damas](https://github.com/)
-* LinkedIn: [@Damas](https://www.linkedin.com/in/)
+* Github: [@Damassetiadi99](https://github.com/Damassetiadi99)
+* LinkedIn: [@Damas Setiadi Sukardi](https://www.linkedin.com/in/damas-setiadi-sukardi)
 
- **Wicak - Front End Developer**
+ **Wicak Saestu Mukti - Front End Developer**
 
-* Github: [@Wicak](https://github.com/)
-* LinkedIn: [@Wicak](https://www.linkedin.com/in/)
+* Github: [@Wicak20](https://github.com/Wicak20)
+* LinkedIn: [@Wicak Saestu](http://www.linkedin.com/in/wicak-saestu)
 
- **FIkry - Front End Developer**
+ **Mohamad Fikry Azhar - Front End Developer**
 
-* Github: [@Fikry](https://github.com/)
-* LinkedIn: [@Fikry](https://www.linkedin.com/in/)
+* Github: [@MohamadFikryAzhar](https://github.com/MohamadFikryAzhar)
+* LinkedIn: [@Mohamad Fikry Azhar](https://linkedin.com/in/mohamad-fikry-azhar)
 
  **Aryanda - Back End Developer**
 
-* Github: [@Aryanda](https://github.com/)
-* LinkedIn: [@Aryanda](https://www.linkedin.com/in/)
+* Github: [link github](https://github.com/)
+* LinkedIn: [link linkedin](https://www.linkedin.com/in/)
 
 ### Show your support
 
