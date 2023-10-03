@@ -91,7 +91,7 @@ Contributions are what make the open source community such an amazing place to b
 
  **Maulana Zulkifli Nugroho - Team Leader**
 
-* Github: [@Maulanazn](https://github.com/maulanazn)
+* Github: [@maulanazn](https://github.com/maulanazn)
 * LinkedIn: [@maulanazulkifli19](https://linkedin.com/in/maulanazulkifli19)
 
  **Arya Julianda - Front End Leader**
@@ -116,8 +116,8 @@ Contributions are what make the open source community such an amazing place to b
 
  **Aryanda - Back End Developer**
 
-* Github: [link github](https://github.com/)
-* LinkedIn: [link linkedin](https://www.linkedin.com/in/)
+* Github: [selemene112](https://github.com/selemene112)
+* LinkedIn: [Muhammad Ariyanda Zulyadiansyah](https://www.linkedin.com/in/muhammad-ariyanda-zulyadiansyah-18141426a/)
 
 ### Show your support
 
