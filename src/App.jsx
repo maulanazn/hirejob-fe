@@ -10,11 +10,13 @@ import RegisterRecruiter from './pages/auth/recruiter/register'
 import EditRecruiter from "./pages/edit Recruiter/index"
 import EditCandidate from "./pages/editCandidate/index"
 import Home from './pages/Home'
+import LandingPage from './pages/LandingPage';
 const App = () => {
   return (
     <>
       <Router>
         <Routes>
+        <Route path='/' element={<LandingPage />} />
           <Route path='/login/candidate' element={<LoginCandidate />} />
           <Route path='/register/candidate' element={<RegisterCandidate />} />
           <Route path='/register/recruiter' element={<RegisterRecruiter />} />
