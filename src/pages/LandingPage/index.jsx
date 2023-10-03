@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ListGroup } from "react-bootstrap";
 import pictone from "../../assets/image/gambar1.svg"
 import picttwo from "../../assets/image/gambar2.svg"
@@ -11,14 +11,34 @@ import Peworld from "../../assets/images/peworld.svg"
 import Footer from "../../component/footer";
 
 export default function LandingPage() {
+    const navigate = useNavigate();
+
+    function logoutUser() {
+      localStorage.getItem("company_name") ? navigate('/login/recruiter') : navigate('/login/candidate');
+      if (localStorage.getItem("company_name")) {
+        localStorage.clear();
+        navigate('/login/recruiter')
+      } else {
+        localStorage.clear();
+        navigate('/')
+      }
+    }
+
     return(
         <div className="bg-white">
         <nav className="container navbar navbar-light bg-light justify-content-between">
-          <a className="navbar-brand"><img src={Peworld} width={90} height={50} /></a>
-          <form className="d-flex gap-5">
-            <a href="/login/candidate" style={{color: '#5E50A1', fontFamily: 'OpenSans', padding: '0.8rem', outlineColor: '#5E50A1', outlineStyle: 'solid', textDecoration: 'none'}}>Login as Recruiter</a>
-            <a style={{color: '#FFFFFF', backgroundColor: '#5E50A1',  fontFamily: 'OpenSans', padding: '0.8rem', outlineColor: '#5E50A1', outlineStyle: 'solid', textDecoration: 'none'}} href="/login/recruiter">Login as Worker</a>
-          </form>
+          <a className="navbar-brand" href={
+            localStorage.getItem("token") && localStorage.getItem("company_name") ? '/home' : localStorage.getItem("token") ? '/edit-candidate' : '/'
+          }><img src={Peworld} width={90} height={50} /></a>
+          {
+            localStorage.getItem("token") ?
+              <button style={{color: '#5E50A1', fontFamily: 'OpenSans', padding: '0.8rem', outlineColor: '#5E50A1', outlineStyle: 'solid', textDecoration: 'none'}} onClick={logoutUser}>Log Out</button>
+            :
+              <form className="d-flex gap-5">
+                <a href="/login/candidate" style={{color: '#5E50A1', fontFamily: 'OpenSans', padding: '0.8rem', outlineColor: '#5E50A1', outlineStyle: 'solid', textDecoration: 'none'}}>Login as Worker</a>
+                <a style={{color: '#FFFFFF', backgroundColor: '#5E50A1',  fontFamily: 'OpenSans', padding: '0.8rem', outlineColor: '#5E50A1', outlineStyle: 'solid', textDecoration: 'none'}} href="/login/recruiter">Login as Recruiter</a>
+              </form>
+          }
         </nav>
         <main className="mb-5  bg-white">
         <div className="container">
