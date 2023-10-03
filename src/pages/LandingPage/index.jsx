@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { ListGroup } from "react-bootstrap";
 import pictone from "../../assets/image/gambar1.svg"
@@ -8,17 +7,19 @@ import pictthree from "../../assets/image/gambar3.svg"
 import listone from "../../assets/image/hary.svg"
 import listtwo from "../../assets/image/nial.svg"
 import listthree from "../../assets/image/louis.svg"
-import { BoxIconElement } from "boxicons";
-
+import Peworld from "../../assets/images/peworld.svg"
+import Footer from "../../component/footer";
 
 export default function LandingPage() {
-
-    const state = useSelector((state) => state)
-    const dispatch = useDispatch()
-  
-
     return(
-        <>
+        <div className="bg-white">
+        <nav className="container navbar navbar-light bg-light justify-content-between">
+          <a className="navbar-brand"><img src={Peworld} width={90} height={50} /></a>
+          <form className="d-flex gap-5">
+            <a href="/login/candidate" style={{color: '#5E50A1', fontFamily: 'OpenSans', padding: '0.8rem', outlineColor: '#5E50A1', outlineStyle: 'solid', textDecoration: 'none'}}>Login as Recruiter</a>
+            <a style={{color: '#FFFFFF', backgroundColor: '#5E50A1',  fontFamily: 'OpenSans', padding: '0.8rem', outlineColor: '#5E50A1', outlineStyle: 'solid', textDecoration: 'none'}} href="/login/recruiter">Login as Worker</a>
+          </form>
+        </nav>
         <main className="mb-5  bg-white">
         <div className="container">
           <div className="row flex-column-reverse flex-md-row justify-content-between align-items-center vh-100 py-4">
@@ -244,7 +245,7 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
-      
-        </>
+      <Footer/>
+        </div>
     )
 }
