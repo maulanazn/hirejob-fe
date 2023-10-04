@@ -16,7 +16,7 @@
 <!-- ABOUT THE PROJECT -->
 
 ## ✏️ About
-Mama Recipe is an application to help you cook delicious and simple meals. Mama Recipe is a web-based recipe sharing application that allow user to share their recipe. In this app, user could take a look into recipe including it's ingredients.
+Hirejob is a website to connect companies with workers, especially programmers. On this website, it will be easier for companies to find candidates who have the skills they need.
 
 ## 🔖 Build With
 This app was built with some technologies below:
