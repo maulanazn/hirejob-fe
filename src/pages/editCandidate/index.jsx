@@ -26,6 +26,44 @@ const Index = () => {
     description: "",
     skill_name: "",
   });
+
+  const [inputs, setInputs] = useState([{ link: '', image: null }]);
+
+  const domainToImage = {
+    'github.com': '../../../public/image/github-original.svg',
+    'instagram.com': 'https://www.svgrepo.com/show/452229/instagram-1.svg',
+    'twitter.com': 'https://github.com/devicons/devicon/blob/master/icons/twitter/twitter-original.svg',
+    'facebook.com': 'https://github.com/devicons/devicon/blob/master/icons/facebook/facebook-original.svg'
+  };
+
+  const addLinkInput = () => {
+    setInputs(prevInputs => [...prevInputs, { link: '', image: null }]);
+  };
+
+  const removeLinkInput = (indexToRemove) => {
+    setInputs(prevInputs => prevInputs.filter((_, index) => index !== indexToRemove));
+  };
+
+  const handleChange = (index, value) => {
+    const newInputs = [...inputs];
+    newInputs[index].link = value;
+    setInputs(newInputs);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const updatedInputs = inputs.map(input => {
+      for (const domain in domainToImage) {
+        if (input.link.includes(domain)) {
+          return { ...input, image: domainToImage[domain] };
+        }
+      }
+      return { ...input, image: null };
+    });
+
+    setInputs(updatedInputs);
+  };
   
   useEffect(() => {
     dispatch(getUserById())
@@ -130,6 +168,34 @@ const Index = () => {
                   Batal
                 </button>
               </div>
+                </div>
+              </div>
+              <div className="form-sosmed">
+                <div className="box1"></div>
+                <div className="Sosmed">
+                  <form onSubmit={handleSubmit} className="inputForm">
+                    {inputs.map((input, index) => (
+                      <div key={index} style={{ display: 'flex', alignItems: 'center' }} className="sosmedInput">
+                        <input
+                          placeholder="Input your social media link here"
+                          defaultValue={input.link}
+                          onChange={(e) => handleChange(index, e.target.value)}
+                          className="inputSosmed"
+                        />
+                        <button type="button" onClick={() => removeLinkInput(index)} className="removeSosmed">x</button>
+                      </div>
+                    ))}
+                    <button type="button" onClick={addLinkInput} className="addSosmed">Add</button>
+                    <button type="submit" className="submitSosmec">Submit</button>
+                  </form>
+
+                  {inputs.map((input, index) => (
+                    input.image && (
+                      <a href={input.link} key={index} target="_blank" rel="noopener noreferrer">
+                        <img src={input.image} alt="Social Media Icon" width="50" className="sosmedImage"/>
+                      </a>
+                    )
+                  ))}
                 </div>
               </div>
             </Col>

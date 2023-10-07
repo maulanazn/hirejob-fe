@@ -4,3 +4,47 @@ body {
   .input-edit {
     display: none;
   }
+
+.form-sosmed .box1{
+  position: absolute;
+  display: flex;
+  content: '';
+  background-color: aqua;
+  width: 420px;
+  height: 120px;
+  z-index: -1;
+}
+
+.form-sosmed .Sosmed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.form-sosmed .inputForm{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.form-sosmed .sosmedInput{
+  display: flex;
+  flex: row;
+}
+
+.form-sosmed .inputSosmed{
+  width: 280px;
+  height: 35px;
+  color: black;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  border-color: blue;
+}
+
+.form-sosmed .inputSosmed::placeholder{
+  padding-left: 5px;
+}
