@@ -6,6 +6,7 @@ import hireReducer from './hireReducer';
 import { countPortfolioData, countWorkExpData, deleteWorkData, getPortfolioData, getPortofolioDataId, getWorkData, getWorkDataId, updatePortofolioDataId, updateWorkDataId } from "./bioReducer";
 import workerReducer from "./workerReducer";
 import chatReducer from "./chatReducer";
+import { SosmedCreateReducer, SosmedDeleteReducer, SosmedUpdateReducer } from "./SocialMediaReducer";
 
 const rootReducer = combineReducers({
   login_candidate: loginReducer,
@@ -25,7 +26,10 @@ const rootReducer = combineReducers({
   portofolio_get_id: getPortofolioDataId,
   portofolio_update_id: updatePortofolioDataId,
   worker: workerReducer,
-  chat : chatReducer
+  chat : chatReducer,
+  create_sosmed: SosmedCreateReducer,
+  update_sosmed: SosmedUpdateReducer,
+  delete_sosmed: SosmedDeleteReducer
 })
 
 export default rootReducer;
