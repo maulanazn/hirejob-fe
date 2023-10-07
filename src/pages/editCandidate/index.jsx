@@ -32,8 +32,8 @@ const Index = () => {
   const domainToImage = {
     'github.com': '../../../public/image/github-original.svg',
     'instagram.com': 'https://www.svgrepo.com/show/452229/instagram-1.svg',
-    'twitter.com': 'https://github.com/devicons/devicon/blob/master/icons/twitter/twitter-original.svg',
-    'facebook.com': 'https://github.com/devicons/devicon/blob/master/icons/facebook/facebook-original.svg'
+    'twitter.com': '../../../public/image/twitter-original.svg',
+    'facebook.com': '../../../public/image/facebook-original.svg'
   };
 
   const addLinkInput = () => {
@@ -171,33 +171,29 @@ const Index = () => {
                 </div>
               </div>
               <div className="form-sosmed">
-                <div className="box1"></div>
                 <div className="Sosmed">
-                  <form onSubmit={handleSubmit} className="inputForm">
-                    {inputs.map((input, index) => (
-                      <div key={index} style={{ display: 'flex', alignItems: 'center' }} className="sosmedInput">
-                        <input
-                          placeholder="Input your social media link here"
-                          defaultValue={input.link}
-                          onChange={(e) => handleChange(index, e.target.value)}
-                          className="inputSosmed"
-                        />
-                        <button type="button" onClick={() => removeLinkInput(index)} className="removeSosmed">x</button>
-                      </div>
-                    ))}
-                    <button type="button" onClick={addLinkInput} className="addSosmed">Add</button>
-                    <button type="submit" className="submitSosmec">Submit</button>
-                  </form>
-
-                  {inputs.map((input, index) => (
-                    input.image && (
-                      <a href={input.link} key={index} target="_blank" rel="noopener noreferrer">
-                        <img src={input.image} alt="Social Media Icon" width="50" className="sosmedImage"/>
-                      </a>
-                    )
-                  ))}
+                    <form onSubmit={handleSubmit} className="inputForm">
+                        {inputs.map((input, index) => (
+                            <div key={index} style={{ display: 'flex', alignItems: 'center' }} className="sosmedInput">
+                                {input.image && (
+                                    <a href={input.link} key={index} target="_blank" rel="noopener noreferrer">
+                                        <img src={input.image} alt="Social Media Icon" width="50" className="sosmedImage"/>
+                                    </a>
+                                )}
+                                <input
+                                    placeholder="Input your social media link here"
+                                    defaultValue={input.link}
+                                    onChange={(e) => handleChange(index, e.target.value)}
+                                    className="inputSosmed"
+                                />
+                                <button type="button" onClick={() => removeLinkInput(index)} className="removeSosmed">x</button>
+                            </div>
+                        ))}
+                        <button type="button" onClick={addLinkInput} className="addSosmed">Add</button>
+                        <button type="submit" className="submitSosmed">Submit</button>
+                    </form>
                 </div>
-              </div>
+            </div>
             </Col>
             <Col md={8}>
               <div style={{ backgroundColor: "white" }} className="p-5 rounded">

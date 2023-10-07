@@ -5,22 +5,14 @@ body {
     display: none;
   }
 
-.form-sosmed .box1{
-  position: absolute;
-  display: flex;
-  content: '';
-  background-color: aqua;
-  width: 420px;
-  height: 120px;
-  z-index: -1;
-}
-
 .form-sosmed .Sosmed {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 25px;
+  background-color: white;
+  border-radius: 8px;
 }
 
 .form-sosmed .inputForm{
@@ -28,23 +20,74 @@ body {
   flex-direction: column;
   gap: 10px;
   margin-top: 20px;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-sosmed .sosmedInput{
   display: flex;
   flex: row;
+  gap: 5px;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-sosmed .inputSosmed{
-  width: 280px;
+  width: 260px;
   height: 35px;
   color: black;
   background-color: white;
-  border: none;
-  border-radius: 4px;
-  border-color: blue;
+  border-radius: 6px;
+  border: 2px solid #E2E5ED;
+  position: relative;
 }
 
 .form-sosmed .inputSosmed::placeholder{
   padding-left: 5px;
+}
+
+.form-sosmed .inputSosmed:focus{
+  padding-left: 10px;
+}
+
+.form-sosmed .removeSosmed{
+  font-size: 26px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 600;
+  color: red;
+  background: none;
+  border: none;
+  border-color: blue;
+  border-radius: 4px;
+  height: 35px;
+  z-index: 2;
+}
+
+.form-sosmed .sosmedImage{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+.form-sosmed .addSosmed{
+  width: 300px;
+  height: 35px;
+  color: white;
+  background-color: #5E50A1;
+  border-radius: 6px;
+  position: relative;
+  border: none;
+}
+
+.form-sosmed .submitSosmed{
+  width: 300px;
+  height: 35px;
+  color: white;
+  background-color: #5E50A1;
+  border-radius: 6px;
+  position: relative;
+  border: none;
 }
