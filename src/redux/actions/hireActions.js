@@ -1,8 +1,9 @@
 import axios from 'axios';
+import {URL} from './../config/URL.js';
 
 export const hire = (formData) => {
     return async(dispatch) => {
-        const url = import.meta.env.VITE_URL + '/chatting/createchat/' + formData.id
+        const url = `${URL}/chatting/createchat/${formData.id}`;
         const body = {
           "position" : formData.position,
           "message_detail" : formData.message_detail
