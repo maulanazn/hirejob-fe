@@ -3,9 +3,7 @@ import "./index.css";
 import { Container, FormControl, Button, Dropdown } from "react-bootstrap";
 
 const Search = () => {
-    const [category, setCategory] = useState('skill')
-
-
+    const [category, setCategory] = useState('')
 
     return (
         <Container className="my-4">

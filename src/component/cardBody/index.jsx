@@ -20,7 +20,7 @@ const CardBody = (props) => {
                 <div className="p-3 d-md-flex justify-content-between">
                     <div className="d-flex">
                         <img
-                            src={data?.photo_profile || image}
+                            src={data?.user_photo || image}
                             alt="photo profile"
                             className="rounded-circle"
                             style={{ width: 80, height: 80 }}
@@ -33,11 +33,7 @@ const CardBody = (props) => {
                                 <p className="ps-1">{data?.domicile}</p>
                             </div>
                             <div className="d-flex gap-2 flew-wrap flex-grow-1">
-                                {data?.skills?.map((element, index) => {
-                                    return (<Button variant="warning" className="btn-sm px-3 text-white" key={index}>
-                                        {element}
-                                    </Button>)
-                                })}
+                                {data?.skill_name}
                             </div>
                         </div>
                     </div>

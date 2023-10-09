@@ -13,9 +13,7 @@ import { URL } from "../../redux/config/URL";
 export default function HomePage() {
   const [data, setData] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
-  const [limit, setLimit] = useState(10)
-  const [totalPage, setTotalPage] = useState([1])
-
+  const [totalPage, setTotalPage] = useState([])
 
   const manipulateTotalPage = (totalPage) => {
     let rows = []
@@ -24,9 +22,10 @@ export default function HomePage() {
     }
     return setTotalPage(rows)
   }
+
   const token = localStorage.getItem('token')
   const getData = () => {
-    axios.get(`${URL}/candidates?offset=${currentPage}&limit=${limit}`, {
+    axios.get(`${URL}/candidates?offset=${currentPage}&limit=5`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -42,11 +41,11 @@ export default function HomePage() {
   }
 
   useEffect(() => {
-    getData(1)
+    getData()
   }, [])
 
   useEffect(() => {
-    getData(currentPage)
+    getData()
   }, [currentPage])
 
   return (
@@ -76,7 +75,6 @@ export default function HomePage() {
               <ul className="pagination gap-2">
                 <li className="page-item">
                   <button className="pagination-btn" onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage == 1}>
-
                     <span aria-hidden="true">&laquo;</span>
                   </button>
                 </li>
