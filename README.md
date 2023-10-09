@@ -86,6 +86,17 @@ Contributions are what make the open source community such an amazing place to b
 
 * [`Hirejob BE`](https://github.com/maulanazn/hirejob-be)
 
+### 🎴 ScreenShot
+
+| image    |    page    |
+|----------|------------|
+| ![login](public/screenshot/login.png) | Login | 
+| ![homepage](public/screenshot/landing.png) | HomePage |
+| ![all candidate](public/screenshot/all-candidate.png) | All Candidate | 
+| ![chat](public/screenshot/chat.png) | Chat | 
+| ![detail candidate](public/screenshot/detail-candidate.png) | Detail Candidate | 
+| ![edit candidate](public/screenshot/edit-candidate.png) | Edit Candidate | 
+| ![edit recruiter](public/screenshot/edit-recruiter.png) | Edit Recruiter | 
 
 ### 🤝🏻 Our Team
 
