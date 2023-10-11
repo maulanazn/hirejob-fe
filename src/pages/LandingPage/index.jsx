@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ListGroup } from "react-bootstrap";
 import pictone from "../../assets/image/gambar1.svg"
@@ -23,6 +23,10 @@ export default function LandingPage() {
         navigate('/')
       }
     }
+
+    useEffect(()=>{
+      localStorage.getItem('token') && navigate('/home')
+    },[])
 
     return(
         <div className="bg-white">
