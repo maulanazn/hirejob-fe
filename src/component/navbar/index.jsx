@@ -5,12 +5,24 @@ import mail from "../../assets/image/mail.svg";
 import bell from "../../assets/image/bell.svg";
 import home from "../../assets/image/home.svg";
 import homerec from "../../assets/image/home-recruiter.svg";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  const navigate = useNavigate();
+
+  function LogoutUser() {
+    if (localStorage.getItem("company_name")) {
+      localStorage.clear()
+      navigate("/")
+    } else {
+      localStorage.clear()
+      navigate("/login/candidate")
+    }
+  }
   return (
     <Navbar expand="lg" className="bg-body-tertiary" style={{ maxHeight: '100px' }}>
       <Container >
-        <Navbar.Brand href="/">
+        <Navbar.Brand href={localStorage.getItem("company_name") ? '/home' : '/'}>
           <img
             src={Logo}
             alt=""
@@ -23,6 +35,14 @@ const NavBar = () => {
           localStorage.getItem("token") ?
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto gap-5">
+              {
+                localStorage.getItem("company_name") ? 
+                  <Nav.Link onClick={LogoutUser}>
+                    Logout
+                  </Nav.Link>
+                :
+                  undefined
+              }
               <Nav.Link href="#home">
                 <img
                   src={bell}

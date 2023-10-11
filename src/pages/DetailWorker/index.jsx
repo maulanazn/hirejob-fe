@@ -30,7 +30,10 @@ const DetailWorker = () => {
     sosmedObj[item.social_media_name.toLowerCase()] = item.link;
   });
 
-  const skillsArr = user?.skill_name.split(',');
+  let skillsArr = []
+  if (user?.skill_name) {
+    skillsArr = user?.skill_name.split(',');
+  }
 
   const handleHire = () => {
     dispatch(createFormChat(id,navigate))

@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 export default function HomePage() {
-  const [data, setData] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPage, setTotalPage] = useState([])
   const dispatch = useDispatch()
@@ -30,7 +29,6 @@ export default function HomePage() {
     const totalPage = Math.ceil(listWorkers?.length / 10)
     manipulateTotalPage(totalPage)
   }, [])
-  // console.log({listWorkers})
 
   return (
     <div className="body">
@@ -44,7 +42,6 @@ export default function HomePage() {
         </Container>
       </Navbar>
 
-      {/* search */}
       <Search />
 
       {/* Card */}

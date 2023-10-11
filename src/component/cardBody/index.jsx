@@ -4,7 +4,7 @@ import { Card, Container, Button } from "react-bootstrap";
 
 import image from "../../assets/images/imgrecruiter.png";
 import "./index.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CardBody = (props) => {
     const navigate = useNavigate();

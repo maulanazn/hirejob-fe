@@ -11,7 +11,7 @@ export const loginAction = (data, navigate) =>
             localStorage.setItem("id", result.data.data.id)
 
             dispatch({payload: result.data.data, type: 'LOGIN_SUCCESS'})
-            navigate('/')
+            navigate('/edit-candidate')
         } catch(err){
             dispatch({payload:err.message, type: 'LOGIN_FAILED'})
             console.error(err.message)

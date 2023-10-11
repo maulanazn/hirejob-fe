@@ -25,7 +25,7 @@ export default function LandingPage() {
     }
 
     useEffect(()=>{
-      localStorage.getItem('token') && navigate('/home')
+      localStorage.getItem('company_name') && navigate('/home')
     },[])
 
     return(
