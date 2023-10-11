@@ -21,9 +21,7 @@ const Footer = () => {
                 <div className="py-4 fw-bold text-white">
                   <p className="m-0">
                 Jadilah Talenta terbaik untuk negeri 
-                <p className="fw-bold text-white text-center "> Demi indonesia yang lebih baik </p>
-
-                    🤐 
+                <p className="fw-bold text-white text-start">Demi indonesia yang lebih baik </p>
                   </p>
                 </div>
               </div>

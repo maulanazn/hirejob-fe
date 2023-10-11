@@ -28,7 +28,7 @@ const NavBar = () => {
                   src={bell}
                   alt=""
                   className="bell"
-                  style={{ width: "40px" }}
+                  style={{ width: "30px" }}
                 />
               </Nav.Link>
               <Nav.Link href={localStorage.getItem("token") ? '/chat' : '/'}>
@@ -36,7 +36,7 @@ const NavBar = () => {
                   src={mail}
                   alt=""
                   className="mail"
-                  style={{ width: "40px" }}
+                  style={{ width: "30px" }}
                 />
               </Nav.Link>
               <Nav.Link href={localStorage.getItem("company_name") ? '/edit-recruiter' : '/edit-candidate'}>
@@ -44,7 +44,7 @@ const NavBar = () => {
                   src={localStorage.getItem("company_name") ? homerec : home}
                   alt=""
                   className="profile"
-                  style={{ width: "40px" }}
+                  style={{ width: "30px" }}
                 />
 
               </Nav.Link>
