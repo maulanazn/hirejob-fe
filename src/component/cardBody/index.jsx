@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const CardBody = (props) => {
     const navigate = useNavigate();
     const data = props.dataSource || {}
+    const skillsArr = data?.skill_name?.split(',');
 
     function toDetail(id) {
         navigate(`/detail-candidate/${id}`)
@@ -18,7 +19,7 @@ const CardBody = (props) => {
         <Container>
             <Card className="border-0 rounded-0">
                 <div className="p-3 d-md-flex justify-content-between">
-                    <div className="d-flex">
+                    <div className="d-flex align-items-center">
                         <img
                             src={data?.user_photo || image}
                             alt="photo profile"
@@ -27,13 +28,17 @@ const CardBody = (props) => {
                         />
                         <div className="ms-3">
                             <h5 className="text-black">{data?.name}</h5>
-                            <p className="mb-1">{data?.last_work}</p>
-                            <div className="d-flex">
-                                <box-icon name="map" color="gray" animation="tada"></box-icon>
-                                <p className="ps-1">{data?.domicile}</p>
+                            <p className="mb-1 text-capitalize">{data?.last_work}</p>
+                            <div className="d-flex gap-1">
+                                <img src='/image/icon-location.svg' alt="" style={{width:'15px',height:'23px'}} />
+                                <p className="text-capitalize">{data?.domicile}</p>
                             </div>
-                            <div className="d-flex gap-2 flew-wrap flex-grow-1">
-                                {data?.skill_name}
+                            <div className="d-flex flex-wrap gap-2">
+                                {skillsArr?.map((item,index) => {
+                                    return(
+                                        <p key={index} className="bg-warning text-white rounded-1 p-1 mb-0" style={{fontSize:'13px'}}>{item}</p>
+                                    )
+                                })}
                             </div>
                         </div>
                     </div>

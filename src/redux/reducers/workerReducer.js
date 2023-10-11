@@ -1,5 +1,5 @@
 const initialState = {
-  workers: [],
+  listWorkers: [],
   totalCount:null,
   worker:{},
   isError:false,
@@ -15,6 +15,36 @@ const workerReducer = (state = initialState, action) => {
         return {
             ...state,
             isLoading:true,
+        };
+      //get all workers
+      case 'GET_ALL_WORKERS_SUCCESS':
+        console.log('get workers success')
+        return {
+            ...state,
+            listWorkers: action.payload,
+            isLoading:false
+        };
+      case 'GET_ALL_WORKERS_FAILED':
+        console.log('get workers fail')
+        return {
+          ...state,
+          isError: true,
+          isLoading:false
+        };
+      //search workers
+      case 'SEARCH_WORKERS_SUCCESS':
+        console.log('search workers success')
+        return {
+            ...state,
+            listWorkers: action.payload,
+            isLoading:false
+        };
+      case 'SEARCH_WORKERS_FAILED':
+        console.log('search workers fail')
+        return {
+          ...state,
+          isError: true,
+          isLoading:false
         };
       //get worker by id
       case 'GET_WORKER_SUCCESS':

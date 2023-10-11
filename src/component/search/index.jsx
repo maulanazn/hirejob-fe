@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import "./index.css";
 import { Container, FormControl, Button, Dropdown } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { searchWorkers } from "../../redux/actions/workerActions";
 
 const Search = () => {
-    const [category, setCategory] = useState('')
+    const [category, setCategory] = useState('skill')
+    const [searchKey,setSearchKey] = useState('')
+    const dispatch = useDispatch()
+
+    const onSearch = () => {
+        dispatch(searchWorkers(searchKey))
+    }
 
     return (
         <Container className="my-4">
@@ -12,6 +20,7 @@ const Search = () => {
                     <FormControl
                         className="py-3 border-0"
                         placeholder={`Search for any ${category}`}
+                        onChange={(e)=>{setSearchKey(e.target.value)}}
                     />
                     <Dropdown className="d-flex align-items-center me-2 border-start my-2">
                         <Dropdown.Toggle
@@ -39,7 +48,7 @@ const Search = () => {
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
-                    <Button className="my-2 me-2 px-3 custom-button-search">
+                    <Button className="my-2 me-2 px-3 custom-button-search" onClick={onSearch}>
                         Search
                     </Button>
                 </div>

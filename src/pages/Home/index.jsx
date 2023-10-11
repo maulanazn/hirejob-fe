@@ -5,15 +5,17 @@ import Search from "../../component/search";
 import CardBody from "../../component/cardBody";
 import "../../assets/exCss/main.css";
 import "./index.css"
-import axios from "axios";
 import Footer from "../../component/footer";
-import { URL } from "../../redux/config/URL";
+import { getAllWorkers } from "../../redux/actions/workerActions";
+import { useDispatch, useSelector } from "react-redux";
 
 
 export default function HomePage() {
   const [data, setData] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPage, setTotalPage] = useState([])
+  const dispatch = useDispatch()
+  const {listWorkers} = useSelector((state)=>state.worker)
 
   const manipulateTotalPage = (totalPage) => {
     let rows = []
@@ -23,30 +25,12 @@ export default function HomePage() {
     return setTotalPage(rows)
   }
 
-  const token = localStorage.getItem('token')
-  const getData = () => {
-    axios.get(`${URL}/candidates?offset=${currentPage}&limit=5`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-      .then((res) => {
-        const totalPage = Math.ceil(res.data.data.length / 10)
-        manipulateTotalPage(totalPage)
-        setData(res.data.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
-
   useEffect(() => {
-    getData()
+    dispatch(getAllWorkers(currentPage))
+    const totalPage = Math.ceil(listWorkers?.length / 10)
+    manipulateTotalPage(totalPage)
   }, [])
-
-  useEffect(() => {
-    getData()
-  }, [currentPage])
+  // console.log({listWorkers})
 
   return (
     <div className="body">
@@ -64,7 +48,7 @@ export default function HomePage() {
       <Search />
 
       {/* Card */}
-      {data?.map((el, index) => {
+      {listWorkers?.map((el, index) => {
         return (<CardBody dataSource={el} key={index} />)
       })}
 

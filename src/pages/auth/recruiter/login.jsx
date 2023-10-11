@@ -26,10 +26,10 @@ export default function LoginPage() {
 
     const loginUser = (e) => {
         e.preventDefault();
-        if (!isValidPassword(dataLogin.password)) {
-            setPasswordError("Password harus memiliki huruf kapital dan karakter unik");
-            return;
-        }
+        // if (!isValidPassword(dataLogin.password)) {
+        //     setPasswordError("Password harus memiliki huruf kapital dan karakter unik");
+        //     return;
+        // }
         dispatch(loginAction(dataLogin, navigate))
     }
 
@@ -38,12 +38,12 @@ export default function LoginPage() {
             ...dataLogin,
             [e.target.name]: e.target.value
         });
-        if (e.target.name === "password") setPasswordError("");  // reset passwordError jika user mengetik di input password
+        if (e.target.name === "password") setPasswordError(""); 
     }
 
     return (
         <>
-            {isLoading && <BounceLoader color='#000000' cssOverride={{ marginLeft: '50vw' }} />}
+            {isLoading && <BounceLoader color='#000000' size={50} cssOverride={{ position:'fixed',top:'0',zIndex:'999',marginLeft: '50vw',marginTop:'30px'}} />}
             {isError && errorMessage && <Alert alerttype='danger' message={errorMessage} />}
             <div className="page">
                 <section id="box">

@@ -64,8 +64,7 @@ export default function RegisterPage() {
         <>
             <ToastContainer autoClose={200} />
             {isError && errorMessage && <Alert alerttype='danger' message={errorMessage} />}
-            {isLoading && <BounceLoader color='#000000' cssOverride={{ marginLeft: '50vw' }} />}
-            {!isLoading && <BounceLoader color='#000000' cssOverride={{ marginLeft: '50vw' }} loading={false} />}
+            {isLoading && <BounceLoader color='#000000' size={50} cssOverride={{ position:'fixed',top:'0',zIndex:'999',marginLeft: '50vw',marginTop:'30px'}} />}
             <div className="page">
                 <section id="box">
                     <nav className="flow">
@@ -156,7 +155,7 @@ export default function RegisterPage() {
                                     onChange={onUserChange}
                                 />
                             </div>
-                            <button type="submit" className="tolog" onClick={afterRegister} disabled={!allFieldsFilled() || !isValidPassword(userData.password) || userData.password !== userData.confirm}>Daftar</button>
+                            <button type="submit" className="tolog" onClick={registerUser}>Daftar</button>
                             <p className="account">Anda sudah punya akun? <Link to={'/login/recruiter'} className="href">Masuk disini</Link></p>
                         </form>
                     </div>
