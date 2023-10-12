@@ -4,6 +4,8 @@ import './style.css'
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import BioWorker from "../../component/BioWorker";
+import NavBar from "../../component/navbar";
+import Footer from "../../component/footer";
 
 const DetailWorker = () => {
   const dispatch = useDispatch();
@@ -41,59 +43,63 @@ const DetailWorker = () => {
   }
 
   return (
-    <div id='detail-profile'>
+    <>
+      <NavBar/>
+      <div id='detail-profile'>
 
-      <BioWorker user={user} skillsArr={skillsArr} sosmedObj={sosmedObj} handleHire={handleHire} />
+        <BioWorker user={user} skillsArr={skillsArr} sosmedObj={sosmedObj} handleHire={handleHire} />
 
-      <div className="etalase">
-        <div className="portfolio">
+        <div className="etalase">
+          <div className="portfolio">
 
-            <h2 className="head-portfolio">Portfolio</h2>
+              <h2 className="head-portfolio">Portfolio</h2>
 
-            <div className="list-portfolio">{ !portfolio?.length==0 || !portfolio ? 
-              (portfolio?.map((item,index)=>{return(
-                <div className="card-portfolio" key={index}>
-                  <div className="image-portfolio" style={{backgroundImage:`url("${item.portfolio_photo}")`}}/>
-                  <h5 className="title">{item.portfolio_name}</h5>
-                </div>
-              )})) :
-                <p>Tidak ada portfolio</p>
-              }
-            </div>
-            
-        </div>
-
-        <div className="pengalaman">
-          <h2 className="head-pengalaman">Pengalaman Kerja</h2>
-
-          <div className="list-pengalaman">
-            { !workexp?.length==0 || !workexp ?
-            workexp?.map((item,index)=>{return(
-            <div className="card-pengalaman" key={index}>
-              <img src={item.work_experience_photo ? item.work_experience_photo : "/image/company.svg"} alt="" className="image-pengalaman" />
-              <div className="info-pengalaman">
-                <h3 className="job">{item.work_experience_position}</h3>
-                <h4 className="company">{item.company_name}</h4>
-                <h5 className="date">{formatDate(item.working_start_at) +`  -  `+ formatDate(item.working_end_at)}</h5>
-                <p className="job-description">
-                  {item.work_experience_description}
-                </p>
+              <div className="list-portfolio">{ !portfolio?.length==0 || !portfolio ? 
+                (portfolio?.map((item,index)=>{return(
+                  <div className="card-portfolio" key={index}>
+                    <div className="image-portfolio" style={{backgroundImage:`url("${item.portfolio_photo}")`}}/>
+                    <h5 className="title">{item.portfolio_name}</h5>
+                  </div>
+                )})) :
+                  <p>Tidak ada portfolio</p>
+                }
               </div>
+              
+          </div>
+
+          <div className="pengalaman">
+            <h2 className="head-pengalaman">Pengalaman Kerja</h2>
+
+            <div className="list-pengalaman">
+              { !workexp?.length==0 || !workexp ?
+              workexp?.map((item,index)=>{return(
+              <div className="card-pengalaman" key={index}>
+                <img src={item.work_experience_photo ? item.work_experience_photo : "/image/company.svg"} alt="" className="image-pengalaman" />
+                <div className="info-pengalaman">
+                  <h3 className="job">{item.work_experience_position}</h3>
+                  <h4 className="company">{item.company_name}</h4>
+                  <h5 className="date">{formatDate(item.working_start_at) +`  -  `+ formatDate(item.working_end_at)}</h5>
+                  <p className="job-description">
+                    {item.work_experience_description}
+                  </p>
+                </div>
+              </div>
+              )}) : 
+              <p>Tidak ada Pengalaman Kerja</p>
+              }
+
             </div>
-            )}) : 
-            <p>Tidak ada Pengalaman Kerja</p>
-            }
+
 
           </div>
 
-
         </div>
 
+
+        <div className="box-purple"></div>
       </div>
-
-
-      <div className="box-purple"></div>
-    </div>
+      <Footer />
+    </>
 
 
   )

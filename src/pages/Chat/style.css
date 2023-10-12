@@ -184,7 +184,7 @@ height: 500px;
 .detail-chat .bouble-chat-sender{
   color: #fff;
   font-size: 14px;
-  text-align: right;
+  text-align: left;
   font-weight: 400;
   padding: 10px;
   background-color: #5d44db ;
@@ -201,7 +201,7 @@ height: 500px;
   font-weight: 400;
   padding: 10px;
   width: fit-content;
-  text-align: left;
+  text-align: right;
   max-width: 80%;
   margin: 8px;
   background-color:  #433391;

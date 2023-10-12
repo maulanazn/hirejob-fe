@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch ,useSelector} from "react-redux";
 import BioWorker from "../../component/BioWorker";
 import {hire} from "../../redux/actions/chatAction"
+import NavBar from "../../component/navbar";
+import Footer from "../../component/footer";
 
 const Hire = () => {
 
@@ -43,28 +45,33 @@ const handleSubmit = (event) => {
 }
 
   return (
-    <div id='hire'>
-       <BioWorker user={user} skillsArr={skillsArr} sosmedObj={sosmedObj} />
 
-      <div className="hire-section">
-        <h1 className="head">Hubungi Lous Tomlinson</h1>
-        <p className="instruction">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, quod quis. Odio consectetur harum dolores hic velit ipsum sequi magnam!
-        </p>
-        <form action="" className="hire-form">
-          <div className="position">
-            <label htmlFor="input-position">Posisi</label>
-            <input name='position' value={message.position} type="text" id="input-position" placeholder="Masukan posisi" spellCheck="false" onChange={handleChange}/>
-          </div>
-          <div className="description">
-            <label htmlFor="input-description">Deskripsi</label>
-            <textarea name='message_detail' value={message.message_detail} id="input-description" placeholder="Deskripsi" spellCheck="false" onChange={handleChange}/>
-          </div>
-          <button className="hire-button" type="submit" onClick={handleSubmit}>Hire</button>
-        </form>
+    <>
+      <NavBar />
+      <div id='hire'>
+        <BioWorker user={user} skillsArr={skillsArr} sosmedObj={sosmedObj} />
+
+        <div className="hire-section">
+          <h1 className="head">Hubungi Lous Tomlinson</h1>
+          <p className="instruction">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, quod quis. Odio consectetur harum dolores hic velit ipsum sequi magnam!
+          </p>
+          <form action="" className="hire-form">
+            <div className="position">
+              <label htmlFor="input-position">Posisi</label>
+              <input name='position' value={message.position} type="text" id="input-position" placeholder="Masukan posisi" spellCheck="false" onChange={handleChange}/>
+            </div>
+            <div className="description">
+              <label htmlFor="input-description">Deskripsi</label>
+              <textarea name='message_detail' value={message.message_detail} id="input-description" placeholder="Deskripsi" spellCheck="false" onChange={handleChange}/>
+            </div>
+            <button className="hire-button" type="submit" onClick={handleSubmit}>Hire</button>
+          </form>
+        </div>
+
       </div>
-
-    </div>
+      <Footer />
+    </>
   )
 };
 
