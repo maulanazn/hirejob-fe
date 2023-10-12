@@ -39,7 +39,7 @@ export default function LandingPage() {
               <button style={{color: '#5E50A1', fontFamily: 'OpenSans', padding: '0.8rem', outlineColor: '#5E50A1', outlineStyle: 'solid', textDecoration: 'none'}} onClick={logoutUser}>Log Out</button>
             :
               <form className="d-flex gap-5">
-                <a href="/login/candidate" style={{color: '#5E50A1', fontFamily: 'OpenSans', padding: '0.8rem', outlineColor: '#5E50A1', outlineStyle: 'solid', textDecoration: 'none'}}>Login as Worker</a>
+                <a className="workerLogin" href="/login/candidate" style={{color: '#5E50A1', fontFamily: 'OpenSans', padding: '0.8rem', outlineColor: '#5E50A1', outlineStyle: 'solid', textDecoration: 'none'}}>Login as Worker</a>
                 <a style={{color: '#FFFFFF', backgroundColor: '#5E50A1',  fontFamily: 'OpenSans', padding: '0.8rem', outlineColor: '#5E50A1', outlineStyle: 'solid', textDecoration: 'none'}} href="/login/recruiter">Login as Recruiter</a>
               </form>
           }
