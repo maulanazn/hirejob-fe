@@ -14,7 +14,7 @@ const BioWorker = ({user,skillsArr,sosmedObj,handleHire}) => {
       <h3 className="text-address">{user?.domicile}</h3>
     </div>
 
-    <h3 className="type-job">{user?.position}Leader</h3>
+    <h3 className="type-job">{user?.position}</h3>
 
     <p className="description">{user?.description}</p>
 

@@ -50,8 +50,8 @@ const Index = () => {
     bodyIndex.append("photo", photo);
     bodyIndex.append("name", userData.name);
     bodyIndex.append("domicile", userData.domicile);
-    bodyIndex.append("last_work", userData.last_work);
-    bodyIndex.append("position", userData.position);
+    bodyIndex.append("position", userData.last_work);
+    bodyIndex.append("last_work", userData.position);
     bodyIndex.append("description", userData.description);
     bodyIndex.append("skill_name", userData.skill_name);
 
