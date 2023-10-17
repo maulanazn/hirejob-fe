@@ -6,29 +6,32 @@ import CardBody from "../../component/cardBody";
 import "../../assets/exCss/main.css";
 import "./index.css"
 import Footer from "../../component/footer";
-import { getAllWorkers } from "../../redux/actions/workerActions";
+import { getAllWorkers} from "../../redux/actions/workerActions";
 import { useDispatch, useSelector } from "react-redux";
+import Pagination from "../../component/Pagination/Pagination";
 
 
 export default function HomePage() {
   const [currentPage, setCurrentPage] = useState(1)
-  const [totalPage, setTotalPage] = useState([])
   const dispatch = useDispatch()
   const {listWorkers} = useSelector((state)=>state.worker)
+  const limit = 5
+  const totalPage = Math.ceil( listWorkers?.length / limit )
 
-  const manipulateTotalPage = (totalPage) => {
-    let rows = []
-    for (let i = 1; i <= totalPage; i++) {
-      rows.push(i)
-    }
-    return setTotalPage(rows)
-  }
+
 
   useEffect(() => {
-    dispatch(getAllWorkers(currentPage))
-    const totalPage = Math.ceil(listWorkers?.length / 10)
-    manipulateTotalPage(totalPage)
+    dispatch(getAllWorkers())
+    console.log({listWorkers})
   }, [])
+
+  // const onNext = () => {
+  //   currentPage < totalPage && setDataWorkers(listWorkers.slice(6,10))
+  // }
+
+  // const onPrev = () => {
+  //   currentPage > 1 && setCurrentPage(currentPage - 1)
+  // }
 
   return (
     <div className="body">
@@ -49,35 +52,7 @@ export default function HomePage() {
         return (<CardBody dataSource={el} key={index} />)
       })}
 
-      <Container>
-        <div className="d-flex justify-content-center mt-4">
-          <div>
-            <nav aria-label="Page navigation example">
-              <ul className="pagination gap-2">
-                <li className="page-item">
-                  <button className="pagination-btn" onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage == 1}>
-                    <span aria-hidden="true">&laquo;</span>
-                  </button>
-                </li>
-                {totalPage.map((data, index) => {
-                  return <li className="page-item" key={index}>
-                    <button className={"pagination-btn " + (data == currentPage && 'active-btn')} onClick={() => setCurrentPage(data)}>
-                      {data}
-                    </button>
-                  </li>
-                })}
-
-                <li className="page-item">
-                  <button className="pagination-btn" onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage == totalPage.length}>
-                    <span aria-hidden="true">&raquo;</span>
-                  </button>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-
-      </Container>
+      {/* <Pagination onNext={onNext} onPrev={onPrev} totalPage={totalPage} currentPage={currentPage} /> */}
 
       <Footer />
     </div>

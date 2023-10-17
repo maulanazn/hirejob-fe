@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <>
       <footer
-        className="footer text-white"
+        className="footer text-white mt-5"
         style={{ backgroundColor: "#5E50A1" }}
       >
         <Container>
@@ -20,8 +20,8 @@ const Footer = () => {
                 />
                 <div className="py-4 fw-bold text-white">
                   <p className="m-0">
-                Jadilah Talenta terbaik untuk negeri 
-                <p className="fw-bold text-white text-start">Demi indonesia yang lebih baik </p>
+                Jadilah Talenta terbaik untuk negeri <br/>
+                <span className="fw-bold text-white text-start">Demi indonesia yang lebih baik </span>
                   </p>
                 </div>
               </div>

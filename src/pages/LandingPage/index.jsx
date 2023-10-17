@@ -247,7 +247,6 @@ export default function LandingPage() {
           className="row flex-column flex-md-row justify-content-between align-items-center px-5 py-4 mb-4 bg-primary"
           style={{
             height: "294px",
-            backgroundImage: "url('bg-mulai-dari-sekarang.png')",
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",

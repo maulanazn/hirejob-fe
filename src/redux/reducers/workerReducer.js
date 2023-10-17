@@ -16,6 +16,21 @@ const workerReducer = (state = initialState, action) => {
             ...state,
             isLoading:true,
         };
+      //get count
+      case 'GET_COUNT_SUCCESS':
+        console.log('get count success')
+        return {
+            ...state,
+            listCount: action.payload.length,
+            isLoading:false
+        };
+      case 'GET_COUNT_FAILED':
+        console.log('get count fail')
+        return {
+          ...state,
+          isError: true,
+          isLoading:false
+        };
       //get all workers
       case 'GET_ALL_WORKERS_SUCCESS':
         console.log('get workers success')

@@ -1,12 +1,12 @@
 import axios from 'axios';
 import {URL} from './../config/URL.js';
-const token = localStorage.getItem('token')
 
-export const getAllWorkers = (currentPage = 1) => {
+export const getAllWorkers = (currentPage = 1,limit = 999) => {
+  const token = localStorage?.getItem('token')
   return async(dispatch) => {
     try {
       dispatch({type:'PENDING'})
-      const res = await axios.get(`${URL}/candidates?offset=${currentPage}&limit=5`, {
+      const res = await axios.get(`${URL}/candidates?offset=${currentPage}&limit=${limit}`,{
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -19,6 +19,7 @@ export const getAllWorkers = (currentPage = 1) => {
 }
 
 export const searchWorkers = (key) => {
+  const token = localStorage.getItem('token')
   return async(dispatch) => {
     try {
       dispatch({type:'PENDING'})
@@ -35,6 +36,7 @@ export const searchWorkers = (key) => {
 }
 
 export const getWorkerById = (id) => {
+  const token = localStorage?.getItem('token')
     return async(dispatch) => {
         try {
           dispatch({type:'PENDING'})
@@ -52,6 +54,7 @@ export const getWorkerById = (id) => {
 };
 
 export const createFormChat = (id,navigete) => {
+  const token = localStorage?.getItem('token')
     return async(dispatch) => {
         try {
           dispatch({type:'PENDING'})
